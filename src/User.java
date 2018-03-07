@@ -30,6 +30,7 @@ public class User {
 	private ArrayList<Sculpture> sculptures;  // ArrayList of the users Sculptures for auction
 	private ArrayList<Painting> paintings; // ArrayList of the users paintings for auction
 	private ArrayList<Bid> wonBids; // ArrayList of the artworks the user has won
+	private ArrayList<Date> logins;
 	/**
 	 * Constructor for a new User object.
 	 * 
@@ -59,6 +60,7 @@ public class User {
 		this.avatarIndex = 1;
 		this.customImage = false;
 		this.imgView = new ImageView();
+		logins = new ArrayList<>();
 		try {
 			this.image = new Image(new FileInputStream("avatars/avatar" + avatarIndex + ".png"));
 		} catch (FileNotFoundException e) {
@@ -82,7 +84,7 @@ public class User {
 			int index) {
 		customImage = false;
 		imgView = new ImageView();
-
+		logins = new ArrayList<>();
 		setUsername(username);
 		setFirstName(fname);
 		setLastName(lname);
@@ -481,6 +483,11 @@ public class User {
 	 */
 	public void addToWon(Bid bid) {
 		wonBids.add(bid);
+	}
+	
+	public void addLogin() {
+		logins.add(new Date());
+		
 	}
 
 }

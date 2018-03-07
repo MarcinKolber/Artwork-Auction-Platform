@@ -50,6 +50,12 @@ public class LoginController {
 		User userA = FileReader.getUser(username);
 		// Checks if user is in memory then logs in if it is
 		if (userA != null) {
+			try {
+				Writer.addLogin(userA);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			System.out.println("Logging in was successful");
 			user = userA;
 			FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("MainGUI.fxml"));
