@@ -33,7 +33,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Hyperlink>
-            <Hyperlink fx:id="searching" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Searching" textFill="WHITE">
+            <Hyperlink fx:id="searchingB" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Searching" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

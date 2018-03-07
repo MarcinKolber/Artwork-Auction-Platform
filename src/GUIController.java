@@ -107,6 +107,19 @@ public class GUIController {
 
 	@FXML
 	private Label today; // Shows the date
+	
+
+    @FXML
+    private Hyperlink mainPage;
+    
+
+    @FXML
+    private Hyperlink sales;
+    
+    
+    @FXML
+    private Hyperlink searchingB;
+	
 
 	/**
 	 * Initialises the main elements of GUI
@@ -118,7 +131,6 @@ public class GUIController {
 		sculptureSelect.setSelected(true);
 		artworkSelect.setSelected(true);
 
-		searchButton.setOnAction(e -> handleSearch());
 
 		ToggleGroup tg = new ToggleGroup();
 		userSelect.setToggleGroup(tg);
@@ -138,7 +150,45 @@ public class GUIController {
 		myBidsLink.setOnAction(e-> displayMyBids());
 		dashboardLink.setOnAction(e -> displayMainDashboard());
 
+		
+		searchingB.setOnAction(e-> openSearchTab());
+		sales.setOnAction(e-> openSalesTab());
+		searchButton.setOnAction(e -> handleSearch());
 	}
+	
+	
+	
+	/**
+	 * Method to display a tab for sales
+	 */
+	public void openSalesTab() {
+		BorderPane bp; // Border Pane to load the new BorderPane in
+
+		try {
+			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/Sales.fxml"));
+			mainSection.getChildren().setAll(bp);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Method to display a searching tab
+	 */
+	public void openSearchTab() {
+		BorderPane bp; // Border Pane to load the new BorderPane in
+
+		try {
+			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/Searching.fxml"));
+			mainSection.getChildren().setAll(bp);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	/**
 	 * Method to display my bids
