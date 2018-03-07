@@ -23,6 +23,7 @@ public class Main extends Application {
 		stage.setScene(scene);
 
 		stage.show();
+		System.out.println("Deadline on 19.03.2018");
 
 	}
 
