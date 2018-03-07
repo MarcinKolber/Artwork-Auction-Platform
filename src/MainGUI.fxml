@@ -12,7 +12,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -24,11 +23,21 @@
    <left>
       <VBox prefHeight="775.0" prefWidth="210.0" spacing="2.0" style="-fx-background-color: rgb(26, 40, 61);" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="111.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Icons/people-icon--icon-search-engine-18.png" />
-               </image>
-            </ImageView>
+            <Button alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Log out" />
+            <ImageView fitHeight="112.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true" />
+            <Hyperlink fx:id="mainPage" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Main page" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Hyperlink>
+            <Hyperlink fx:id="searching" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Searching" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Hyperlink>
             <Hyperlink fx:id="dashboardLink" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Browse" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -50,6 +59,11 @@
                </font>
             </Hyperlink>
             <Hyperlink fx:id="favouriteUsers" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Favourite users" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="sales" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Sales" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
