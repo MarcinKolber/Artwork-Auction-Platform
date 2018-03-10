@@ -17,6 +17,13 @@ public class FileReader {
 	private static ArrayList<Painting> paintings; // arrayList of Painting objects
 	private static ArrayList<Bid> bids; // arrayList of Bid objects
 
+	
+	
+	static {
+		bids = new ArrayList<Bid>();
+
+	}
+	
 	/**
 	 * Method to return a specific painting object
 	 * 
@@ -350,8 +357,7 @@ public class FileReader {
 	 */
 	public static void readBidFiles() throws FileNotFoundException {
 
-		bids = new ArrayList<Bid>();
-		File[] listOfFiles = new File("bids/").listFiles();
+		File[] listOfFiles = new File("bids//").listFiles();
 		for (File e : listOfFiles) {
 
 			Scanner sc = new Scanner(e);
@@ -366,31 +372,46 @@ public class FileReader {
 					String username = linear.next();
 					String artwork = linear.next();
 					String amount = linear.next();
-					String dateString = linear.next();
-					Date date = new Date(dateString);
+					String creation = linear.next();
+
+					
+					System.out.println(line);
+					SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd yyyy HH:mm:ss a");
+
+
+					Date date1 = dateFormatter.parse(creation);
+
+
 					Double amount1 = Double.parseDouble(amount);
 
 					User user = FileReader.getUser(username);
 
 					if (type.equalsIgnoreCase("sculpture")) {
 						Sculpture sculpture = FileReader.getSculpture(artwork);
-						Bid bid = new Bid(type, user, amount1, sculpture, date);
+						Bid bid = new Bid(type, user, amount1, sculpture, date1);
 						user.addBid(bid);
 						sculpture.addBidToItem(bid);
+
 						bids.add(bid);
 
+						//addBid(bid);
 					} else if (type.equalsIgnoreCase("painting")) {
 						Painting painting = FileReader.getPainting(artwork);
-						Bid bid = new Bid(type, user, amount1, painting, date);
+						Bid bid = new Bid(type, user, amount1, painting, date1);
 						user.addBid(bid);
 						painting.addBidToItem(bid);
 						bids.add(bid);
+						//addBid(bid);
 
 					}
+					linear.close();
 				} catch (Exception e2) {
+					System.out.println("Coulnt read bids");
 				}
 			}
+
 		}
+		
 	}
 
 	/**
@@ -515,9 +536,14 @@ public class FileReader {
 					String creation = in.next();
 					SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
 
-					Date date1 = dateFormatter.parse(creation);
-					sculpture = new Sculpture(seller, date1, name, creator, yearWasMade, numberOfBids,
-							reservePrice, width, height, depth, material, description);
+					try {
+						Date date1 = dateFormatter.parse(creation);
+
+						sculpture = new Sculpture(seller, date1, name, creator, yearWasMade, numberOfBids,
+								reservePrice, width, height, depth, material, description);
+					} catch (Exception e){
+						System.out.println("ops" + name);
+					}
 				} else  {
 					sculpture = new Sculpture(seller, new Date(), name, creator, yearWasMade, numberOfBids,
 							reservePrice, width, height, depth, material, description);
@@ -578,20 +604,35 @@ public class FileReader {
 	private static ArrayList<Date> addLogins(User user) {
 		ArrayList<Date> logins = new ArrayList<>();
 		try {
-			Scanner in = new Scanner(new File("userFiles//logs//" + user.getUsername() + "_log.txt"));
+			
+			try {
+				Scanner in = new Scanner(new File("userFiles//logs//" + user.getUsername() + "_log.txt"));
+				while (in.hasNextLine()) {
+					String date = in.nextLine();
+					SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
 
-			while (in.hasNextLine()) {
-				String date = in.nextLine();
-				SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+					Date date1 = dateFormatter.parse(date);
+					logins.add(date1);
+				}
 
-				Date date1 = dateFormatter.parse(date);
-				logins.add(date1);
+			} catch (Exception e) {
+				String path1 = "userFiles//" + user.getUsername() + "_log" + ".txt";
+				PrintWriter writer;
+				try {
+					writer = new PrintWriter(path1, "UTF-8");
+					writer.print("");
+					writer.close();
+				} catch (UnsupportedEncodingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+
 			}
 
+		
+
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

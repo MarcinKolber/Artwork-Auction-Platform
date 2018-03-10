@@ -17,6 +17,13 @@ public class DrawNotification {
 		gc.fillOval(0,0,75,75);
 	}
 	
+	
+	public static void drawShapesBlue(GraphicsContext gc) {
+		Color color = new Color(0.000, 0.000, 0.502, 0.3);
+		gc.setFill(color);
+
+		gc.fillOval(0,0,75,75);
+	}
 
 
 }

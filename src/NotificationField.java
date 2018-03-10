@@ -9,10 +9,13 @@ public class NotificationField {
 	private VBox vbox;
 	private Canvas canvas;
 	private Label label;
+	private boolean change;
 
 	public NotificationField(VBox box, Canvas canvas, Label label) {
 
+		
 
+	
 		this.label = label;
 		this.vbox = box;
 		this.canvas = canvas;
@@ -20,13 +23,68 @@ public class NotificationField {
 		vbox.setOnMouseEntered(e-> {vbox.setStyle("-fx-background-color: #2e3135;");});
 		vbox.setOnMouseExited(e-> {vbox.setStyle("-fx-background-color: #1b1b1b;");});
 		
-    	Updates u = new Updates(LoginController.getUser());
     	GraphicsContext gc = canvas.getGraphicsContext2D();
 
-    	DrawNotification.drawShapes(gc);
+    	int val = Integer.parseInt(label.getText());
+		if(val>0) {
+	    	DrawNotification.drawShapes(gc);
+
+		} else {
+	    	DrawNotification.drawShapesBlue(gc);
+
+		}
     	
-    	label.setText(u.getNewArtworks().size() + "");
+    	
     	
 	}
+
+	
+	public NotificationField(VBox box, Canvas canvas, Label label, int val) {
+
+		
+
+		
+		this.label = label;
+		this.vbox = box;
+		this.canvas = canvas;
+		vbox.setStyle("-fx-background-color: #1b1b1b");
+		vbox.setOnMouseEntered(e-> {vbox.setStyle("-fx-background-color: #2e3135;");});
+		vbox.setOnMouseExited(e-> {vbox.setStyle("-fx-background-color: #1b1b1b;");});
+		
+    	GraphicsContext gc = canvas.getGraphicsContext2D();
+
+		if(val>0) {
+	    	DrawNotification.drawShapes(gc);
+
+		} else {
+	    	DrawNotification.drawShapesBlue(gc);
+
+		}
+    	
+    	
+    	
+	}
+	
+	public boolean isChange() {
+		return change;
+	}
+
+	public void setChange(boolean change) {
+		this.change = change;
+	}
+
+
+	public VBox getVbox() {
+		return vbox;
+	}
+
+
+	public void setVbox(VBox vbox) {
+		this.vbox = vbox;
+	}
+	
+	
+	
+	
 
 }

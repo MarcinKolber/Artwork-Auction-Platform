@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -151,11 +152,16 @@ public class Bid {
 	 */
 	public String getTextFileOutput() {
 		
+		Date date = bidDate;
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+		String d = dateFormatter.format(date);
+		
 		
 		String output = this.getTypeOfArtwork() + "," +
 				this.getBidder().getUsername() + "," +
 				this.artwork.getTitle() + "," + this.getAmount() +
-				"," + this.bidDate;
+				"," + d;
 		return output;
 	}
 

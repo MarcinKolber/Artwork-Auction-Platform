@@ -53,7 +53,7 @@
                   <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <Canvas fx:id="canvas1" height="75.0" width="75.0" />
-                        <Label fx:id="newArts" text="5" textFill="WHITE">
+                        <Label fx:id="newArts" text="0" textFill="WHITE">
                            <font>
                               <Font size="41.0" />
                            </font></Label>
@@ -71,7 +71,7 @@
                   <StackPane fx:id="stackPane1" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <Canvas fx:id="canBid" height="75.0" width="75.0" />
-                        <Label fx:id="prevNo" text="5" textFill="WHITE">
+                        <Label fx:id="prevNo" text="0" textFill="WHITE">
                            <font>
                               <Font size="41.0" />
                            </font>
@@ -90,7 +90,7 @@
                   <StackPane fx:id="stackPane11" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <Canvas fx:id="canWon" height="75.0" width="75.0" />
-                        <Label fx:id="wonNo" text="5" textFill="WHITE">
+                        <Label fx:id="wonNo" text="0" textFill="WHITE">
                            <font>
                               <Font size="41.0" />
                            </font>
@@ -109,7 +109,7 @@
                   <StackPane fx:id="stackPane111" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <Canvas fx:id="newUsersCan" height="75.0" width="75.0" />
-                        <Label fx:id="newUsersCount" text="5" textFill="WHITE">
+                        <Label fx:id="newUsersCount" text="0" textFill="WHITE">
                            <font>
                               <Font size="41.0" />
                            </font>
@@ -128,7 +128,7 @@
                   <StackPane fx:id="stackPane1111" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <Canvas fx:id="closeCan" height="75.0" width="75.0" />
-                        <Label fx:id="closeLabel" text="5" textFill="WHITE">
+                        <Label fx:id="closeLabel" text="0" textFill="WHITE">
                            <font>
                               <Font size="41.0" />
                            </font>
@@ -147,7 +147,7 @@
                   <StackPane fx:id="stackPane11111" prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <Canvas fx:id="lostCan" height="75.0" width="75.0" />
-                        <Label fx:id="lost" text="5" textFill="WHITE">
+                        <Label fx:id="lost" text="0" textFill="WHITE">
                            <font>
                               <Font size="41.0" />
                            </font>
