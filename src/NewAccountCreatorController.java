@@ -231,6 +231,16 @@ public class NewAccountCreatorController {
 				alert.showAndWait();
 				return;
 			}
+			
+			if(FileReader.exists(username)) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error");
+
+				alert.setHeaderText("User with the username "+ username +" already exists. ");
+				alert.setContentText("Please choose another username");
+				alert.showAndWait();
+				return;
+			}
 
 			String userdata = "";
 			userdata += "\n Username: " + username;
@@ -239,6 +249,7 @@ public class NewAccountCreatorController {
 			userdata += "\n Address: " + address;
 			userdata += "\n Post code: " + postCode;
 			userdata += "\n Phone number: " + phoneNumberLong;
+			
 
 			if(custom) {
 				avatarIndex = 101;
