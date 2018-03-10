@@ -490,4 +490,19 @@ public class User {
 		
 	}
 
+	public ArrayList<Date> getLogins() {
+		return logins;
+	}
+
+	public void setLogins(ArrayList<Date> logins) {
+		this.logins = logins;
+	}
+	
+	public Date getLastLogin() {
+		int n = logins.size();
+		return logins.get(n-1);
+	}
+	
+	
+
 }

@@ -1,11 +1,14 @@
+import java.util.Date;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
-/** 
+/**
  * This is the GUI class for displaying user information
- * @author Marcin
- * Created on 04/12/2017
+ * 
+ * @author Marcin Created on 04/12/2017
  */
 public class DashboardSettingsController {
 
@@ -32,17 +35,20 @@ public class DashboardSettingsController {
 
 	@FXML
 	private Label phoneNumber; // Shows phone number of user
-	
-    @FXML
-    private ImageView avatar; // Container for the user's avatar image
+
+	@FXML
+	private ImageView avatar; // Container for the user's avatar image
 
 	private User user; // A user object
+
+	@FXML
+	private VBox logins;
 
 	/**
 	 * Method to intialise the dashboard window
 	 */
 	public void initialize() {
-		
+
 		user = LoginController.getUser();
 
 		username.setText(user.getUsername());
@@ -51,9 +57,21 @@ public class DashboardSettingsController {
 		fullName.setText(user.getFullName());
 		address.setText(user.getAddress());
 		postcode.setText(user.getPostcode());
-		phoneNumber.setText(user.getPhonenumber()+"");
+		phoneNumber.setText(user.getPhonenumber() + "");
 		avatar.setImage(user.getImage());
-		
+		showLogins();
+	}
+
+	public void showLogins() {
+
+		for (Date d : user.getLogins()) {
+
+			Label l = new Label();
+			l.setText(d.toString());
+			logins.getChildren().add(l);
+
+		}
+
 	}
 
 }

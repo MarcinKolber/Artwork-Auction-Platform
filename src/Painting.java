@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 /**
  * This class is a subclass of Artwork which creates painting objects and 
@@ -71,10 +72,16 @@ public class Painting extends Artwork{
     * @return String - text file format of the painting info
     */
    public String getTextFileOutput(){
+	   
+		Date date = new Date();
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+		String d = dateFormatter.format(date);
+	   
        String output = this.getTitle() + "#" + this.getOwner().getUsername()
                + "#" + this.getCreator() + "#" + this.getCreationYear() +
                "#" + this.getBidsAllowed() + "#" + this.getReservePrice() +
-               "#" + this.getWidth() + "#" + this.getHeight() + "#" +this.getDescription();;
+               "#" + this.getWidth() + "#" + this.getHeight() + "#" +this.getDescription()+"#"+d;
        return output;
    }   
 

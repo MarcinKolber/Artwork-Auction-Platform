@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -32,20 +33,35 @@ public class Writer {
 		} catch (IOException e) {
 			throw new IOException("error writing to file of user " + user.getUsername());
 		}
+
+		String path1 = "userFiles//" + user.getUsername() + "_log" + ".txt";
+		try {
+			PrintWriter writer = new PrintWriter(path1, "UTF-8");
+			writer.print("");
+			writer.close();
+		} catch (IOException e) {
+			throw new IOException("error writing to file log of user " + user.getUsername());
+		}
 	}
 
 	public static void addLogin(User user) throws IOException {
-        String path = "userFiles//"+user.getUsername()+".txt";
-        try{
-        	PrintWriter writer = new PrintWriter(new FileOutputStream(
-        		    new File("userFiles//"+user.getUsername()+".txt"), true));
-            writer.println(new Date());
-            writer.close();
-        }
-        catch(IOException e){
-            throw new IOException("error writing to file of user " + user.getUsername());
-        }
-    }
+		String path = "userFiles//" + user.getUsername() + ".txt";
+		try {
+			PrintWriter writer = new PrintWriter(
+					new FileOutputStream(new File("userFiles//logs//" + user.getUsername() + "_log" + ".txt"), true));
+
+			Date date = new Date();
+			SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+			String d = dateFormatter.format(date);
+
+			
+			writer.println(d);
+			writer.close();
+		} catch (IOException e) {
+			throw new IOException("error writing to file of user " + user.getUsername());
+		}
+	}
 
 	/**
 	 * Method to create and append a text file of a unique users bid history

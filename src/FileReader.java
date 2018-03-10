@@ -1,6 +1,8 @@
 import java.util.*;
 import javafx.scene.image.Image;
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * This class reads through all the text files in the system
@@ -136,7 +138,7 @@ public class FileReader {
 
 		try {
 			readUserFiles();
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -179,7 +181,7 @@ public class FileReader {
 	 */
 	public static ArrayList<User> readUserFile() throws FileNotFoundException {
 		ArrayList<User> users = new ArrayList<>();
-		File[] listOfFiles = new File("userFiles//").listFiles();
+		File[] listOfFiles = new File("userFiles//users//").listFiles();
 		for (File e : listOfFiles) {
 			users.add(constructUser(e.getName()));
 		}
@@ -284,11 +286,16 @@ public class FileReader {
 	 * @throws FileNotFoundException
 	 *             - if file doesn't exist
 	 */
-	public static void readUserFiles() throws FileNotFoundException {
-		users = new ArrayList<>();
-		File[] listOfFiles = new File("userFiles//").listFiles();
-		for (File e : listOfFiles) {
-			users.add(constructUser(e.getName()));
+	public static void readUserFiles() {
+
+		try {
+			users = new ArrayList<>();
+			File[] listOfFiles = new File("userFiles//users//").listFiles();
+			for (File e : listOfFiles) {
+				users.add(constructUser(e.getName()));
+			}
+		} catch (Exception e) {
+
 		}
 
 	}
@@ -304,7 +311,12 @@ public class FileReader {
 		paintings = new ArrayList<>();
 		File[] listOfFiles = new File("artworkFiles//paintings").listFiles();
 		for (File e : listOfFiles) {
-			paintings.add(constructPainting(e.getName()));
+			try {
+				paintings.add(constructPainting(e.getName()));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -320,7 +332,12 @@ public class FileReader {
 		sculptures = new ArrayList<>();
 		File[] listOfFiles = new File("artworkFiles//sculptures").listFiles();
 		for (File e : listOfFiles) {
-			sculptures.add(constructSculptures(e.getName()));
+			try {
+				sculptures.add(constructSculptures(e.getName()));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		return sculptures;
 	}
@@ -382,8 +399,9 @@ public class FileReader {
 	 * @param filename
 	 *            - file name of the painting
 	 * @return Painting
+	 * @throws ParseException
 	 */
-	public static Painting constructPainting(String filename) {
+	public static Painting constructPainting(String filename) throws ParseException {
 		final String PATH = "artworkFiles//paintings//" + filename;
 		try {
 			Scanner in = new Scanner(new File(PATH));
@@ -402,8 +420,23 @@ public class FileReader {
 			String description = "";
 			if (in.hasNext()) {
 				description = in.next();
-				Painting painting = new Painting(seller, new Date(), name, creator, yearWasMade, numberOfBids,
-						reservePrice, width, height, description);
+				Painting painting = null;
+				
+				if (in.hasNextLine()) {
+
+					String creation = in.next();
+					SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+					Date date1 = dateFormatter.parse(creation);
+
+					painting = new Painting(seller, date1, name, creator, yearWasMade, numberOfBids, reservePrice,
+							width, height, description);
+					System.out.println(date1);
+				} else {
+					painting = new Painting(seller, new Date(), name, creator, yearWasMade, numberOfBids, reservePrice,
+							width, height, description);
+				}
+
 				seller.addArtwork(painting);
 				System.out.println("has been added");
 				in.close();
@@ -453,8 +486,9 @@ public class FileReader {
 	 * @param filename
 	 *            - name of the sculpture file
 	 * @return Sculpture - Sculpture object made from the text file info
+	 * @throws ParseException
 	 */
-	private static Sculpture constructSculptures(String filename) {
+	private static Sculpture constructSculptures(String filename) throws ParseException {
 		final String PATH = "artworkFiles//sculptures//" + filename;
 		try {
 			Scanner in = new Scanner(new File(PATH));
@@ -475,10 +509,21 @@ public class FileReader {
 			String description = "";
 			if (in.hasNext()) {
 				description = in.next();
-				Sculpture sculpture = new Sculpture(seller, new Date(), name, creator, yearWasMade, numberOfBids,
-						reservePrice, width, height, depth, material, description);
+
+				Sculpture sculpture = null;
+				if(in.hasNextLine()) {
+					String creation = in.next();
+					SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+					Date date1 = dateFormatter.parse(creation);
+					sculpture = new Sculpture(seller, date1, name, creator, yearWasMade, numberOfBids,
+							reservePrice, width, height, depth, material, description);
+				} else  {
+					sculpture = new Sculpture(seller, new Date(), name, creator, yearWasMade, numberOfBids,
+							reservePrice, width, height, depth, material, description);
+				}
+			
 				seller.addArtwork(sculpture);
-				System.out.println("has been added");
 
 				in.close();
 				return sculpture;
@@ -487,9 +532,7 @@ public class FileReader {
 				Sculpture sculpture = new Sculpture(seller, new Date(), name, creator, yearWasMade, numberOfBids,
 						reservePrice, width, height, depth, material);
 				seller.addArtwork(sculpture);
-				System.out.println("has been added");
 
-				System.out.println("Sculpture " + sculpture.getTitle() + " was created");
 				in.close();
 				return sculpture;
 			}
@@ -510,7 +553,7 @@ public class FileReader {
 	public static User constructUser(String filename) {
 
 		try {
-			Scanner in = new Scanner(new File("userFiles//" + filename));
+			Scanner in = new Scanner(new File("userFiles//users//" + filename));
 			in.useDelimiter(",");
 			String username = in.next();
 			String firstname = in.next();
@@ -522,7 +565,7 @@ public class FileReader {
 			String postcode = in.next();
 
 			User user = new User(username, firstname, lastname, address, postcode, phonenumber, avatarIndex);
-			System.out.println(user.getUsername() + "," + avatarIndex);
+			user.setLogins(addLogins(user));
 			in.close();
 			return user;
 		} catch (FileNotFoundException e) {
@@ -530,6 +573,30 @@ public class FileReader {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private static ArrayList<Date> addLogins(User user) {
+		ArrayList<Date> logins = new ArrayList<>();
+		try {
+			Scanner in = new Scanner(new File("userFiles//logs//" + user.getUsername() + "_log.txt"));
+
+			while (in.hasNextLine()) {
+				String date = in.nextLine();
+				SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+				Date date1 = dateFormatter.parse(date);
+				logins.add(date1);
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return logins;
+
 	}
 
 	/**

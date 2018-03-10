@@ -1,11 +1,6 @@
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import javax.swing.event.ChangeListener;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -108,6 +104,9 @@ public class GUIController {
 	@FXML
 	private Label today; // Shows the date
 	
+    @FXML
+    private ImageView avatar;
+
 
     @FXML
     private Hyperlink mainPage;
@@ -120,17 +119,22 @@ public class GUIController {
     @FXML
     private Hyperlink searchingB;
 	
+    
+    @FXML
+    private Button logOut;
 
 	/**
 	 * Initialises the main elements of GUI
 	 */
 	@SuppressWarnings("deprecation")
 	public void initialize() {
+		avatar.setImage(LoginController.getUser().getImage());
 		searching.setDisable(true);
 		paintingSelect.setSelected(true);
 		sculptureSelect.setSelected(true);
 		artworkSelect.setSelected(true);
 
+		mainPage.setOnAction(e-> openMainTab());
 
 		ToggleGroup tg = new ToggleGroup();
 		userSelect.setToggleGroup(tg);
@@ -154,8 +158,15 @@ public class GUIController {
 		searchingB.setOnAction(e-> openSearchTab());
 		sales.setOnAction(e-> openSalesTab());
 		searchButton.setOnAction(e -> handleSearch());
+		
+		
+		logOut.setOnAction(e-> exit());
 	}
 	
+	
+	public void exit() {
+		System.exit(0);
+	}
 	
 	
 	/**
@@ -172,6 +183,21 @@ public class GUIController {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public void openMainTab() {
+		BorderPane bp; // Border Pane to load the new BorderPane in
+
+		try {
+			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/MainPage.fxml"));
+			mainSection.getChildren().setAll(bp);
+			Updates update = new Updates(LoginController.getUser());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	/**
 	 * Method to display a searching tab
@@ -262,7 +288,6 @@ public class GUIController {
 	public void getSearchSelection() {
 		String s = searchList.getSelectionModel().getSelectedItem();
 
-		System.out.println("Selected " + s);
 
 		BorderPane bp; // Border Pane to load the new BorderPane in
 

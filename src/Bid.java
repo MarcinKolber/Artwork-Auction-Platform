@@ -150,6 +150,8 @@ public class Bid {
 	 * @return String - data on the bid.
 	 */
 	public String getTextFileOutput() {
+		
+		
 		String output = this.getTypeOfArtwork() + "," +
 				this.getBidder().getUsername() + "," +
 				this.artwork.getTitle() + "," + this.getAmount() +

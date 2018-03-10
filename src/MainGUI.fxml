@@ -21,10 +21,10 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
    <left>
-      <VBox prefHeight="775.0" prefWidth="210.0" spacing="2.0" style="-fx-background-color: rgb(26, 40, 61);" BorderPane.alignment="CENTER">
+      <VBox prefHeight="575.0" prefWidth="170.0" spacing="2.0" style="-fx-background-color: rgb(26, 40, 61);" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Log out" />
-            <ImageView fitHeight="112.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="logOut" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Log out" />
+            <ImageView fx:id="avatar" fitHeight="112.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true" />
             <Hyperlink fx:id="mainPage" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Main page" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -157,7 +157,7 @@
       </BorderPane>
    </center>
    <right>
-      <VBox spacing="10.0" style="-fx-background-color: rgb(26, 40, 61, 1);" BorderPane.alignment="CENTER">
+      <VBox prefHeight="575.0" prefWidth="246.0" spacing="10.0" style="-fx-background-color: rgb(26, 40, 61, 1);" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="TOP" prefHeight="38.0" prefWidth="228.0" text="Searching" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <font>

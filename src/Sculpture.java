@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javafx.scene.image.Image;
 
@@ -152,10 +153,16 @@ public class Sculpture extends Artwork {
 	 * @return String - text file output for a sculpture
 	 */
 	public String getTextFileOutput() {
+		
+		Date date = new Date();
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+		String d = dateFormatter.format(date);
+		
 		String output = this.getTitle() + "#" + this.getOwner().getUsername() + "#" + this.getCreator() + "#"
 				+ this.getCreationYear() + "#" + this.getBidsAllowed() + "#" + this.getReservePrice() + "#"
 				+ this.getWidth() + "#" + this.getHeight() + "#" + this.getDepth() + "#" + this.getMaterial() + "#"
-				+ this.getDescription();
+				+ this.getDescription() +"#"+d  ;
 		return output;
 	}
 
