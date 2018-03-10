@@ -1,51 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SalesController">
-   <left>
-      <VBox prefHeight="496.0" prefWidth="58.0" BorderPane.alignment="CENTER" />
-   </left>
-   <center>
-      <VBox prefHeight="496.0" prefWidth="664.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="460.0" prefWidth="711.0" spacing="15.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="New artworks" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="New bids on currently selling items " />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Won auctions since the last login" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Lost auctions since the last login" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Auctions coming to end (with user's bid on it)" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NotificationController">
    <right>
       <VBox prefHeight="496.0" prefWidth="131.0" BorderPane.alignment="CENTER" />
    </right>
@@ -66,4 +32,134 @@
          </children>
       </VBox>
    </top>
+   <center>
+      <GridPane hgap="30.0" vgap="30.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox fx:id="one" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgb(114, 36, 2); -fx-background-color: #2e3135;">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="377.0" text="New auctions since the last login" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font></Label>
+                  <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Canvas fx:id="canvas1" height="75.0" width="75.0" />
+                        <Label fx:id="newArts" text="5" textFill="WHITE">
+                           <font>
+                              <Font size="41.0" />
+                           </font></Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <VBox fx:id="previouslyBidded" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgb(114, 36, 2); -fx-background-color: #2e3135;" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="377.0" text="New bids on previously bidded items" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="stackPane1" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Canvas fx:id="canBid" height="75.0" width="75.0" />
+                        <Label fx:id="prevNo" text="5" textFill="WHITE">
+                           <font>
+                              <Font size="41.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <VBox fx:id="won" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgb(114, 36, 2); -fx-background-color: #2e3135;" GridPane.rowIndex="2">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="377.0" text="Won auctions since the last login" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="stackPane11" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Canvas fx:id="canWon" height="75.0" width="75.0" />
+                        <Label fx:id="wonNo" text="5" textFill="WHITE">
+                           <font>
+                              <Font size="41.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <VBox fx:id="newUsers" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgb(114, 36, 2); -fx-background-color: #2e3135;" GridPane.columnIndex="1">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="377.0" text="New users " textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="stackPane111" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Canvas fx:id="newUsersCan" height="75.0" width="75.0" />
+                        <Label fx:id="newUsersCount" text="5" textFill="WHITE">
+                           <font>
+                              <Font size="41.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <VBox fx:id="close" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgb(114, 36, 2); -fx-background-color: #2e3135;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="377.0" text="Auctions coming to close" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="stackPane1111" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Canvas fx:id="closeCan" height="75.0" width="75.0" />
+                        <Label fx:id="closeLabel" text="5" textFill="WHITE">
+                           <font>
+                              <Font size="41.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+            <VBox fx:id="lostAuc" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgb(114, 36, 2); -fx-background-color: #2e3135;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="377.0" text="Lost auctions since the last login" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="stackPane11111" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Canvas fx:id="lostCan" height="75.0" width="75.0" />
+                        <Label fx:id="lost" text="5" textFill="WHITE">
+                           <font>
+                              <Font size="41.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </center>
+   <padding>
+      <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+   </padding>
 </BorderPane>

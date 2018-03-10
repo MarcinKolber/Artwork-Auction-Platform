@@ -191,7 +191,6 @@ public class GUIController {
 		try {
 			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/MainPage.fxml"));
 			mainSection.getChildren().setAll(bp);
-			Updates update = new Updates(LoginController.getUser());
 
 		} catch (IOException e) {
 			e.printStackTrace();

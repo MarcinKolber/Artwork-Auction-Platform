@@ -10,7 +10,7 @@ public class Updates {
 	private User user;
 
 	public Updates(User user) {
-
+		newArtworks = new ArrayList<Artwork>();
 
 		date = user.getLastLogin();
 
@@ -24,12 +24,15 @@ public class Updates {
 
 	public void addArtworks() {
 
-		System.out.println("started");
 		ArrayList<Artwork> arts = FileReader.getArtworks();
-		
+		System.out.println(arts.size());
 		for(Artwork a: arts) {
+			System.out.println(a.getTitle());
 			if(a.getDateAdded().after(date) ) {
-				System.out.println(a.getTitle());
+				newArtworks.add(a);
+				System.out.println(true);
+			} else {
+				System.out.println(false);
 			}
 		}
 		
@@ -39,5 +42,23 @@ public class Updates {
 	public void addBids() {
 
 	}
+
+	public ArrayList<Artwork> getNewArtworks() {
+		return newArtworks;
+	}
+
+	public void setNewArtworks(ArrayList<Artwork> newArtworks) {
+		this.newArtworks = newArtworks;
+	}
+
+	public ArrayList<Bid> getNewBids() {
+		return newBids;
+	}
+
+	public void setNewBids(ArrayList<Bid> newBids) {
+		this.newBids = newBids;
+	}
+	
+	
 
 }

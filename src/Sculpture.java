@@ -162,7 +162,7 @@ public class Sculpture extends Artwork {
 		String output = this.getTitle() + "#" + this.getOwner().getUsername() + "#" + this.getCreator() + "#"
 				+ this.getCreationYear() + "#" + this.getBidsAllowed() + "#" + this.getReservePrice() + "#"
 				+ this.getWidth() + "#" + this.getHeight() + "#" + this.getDepth() + "#" + this.getMaterial() + "#"
-				+ this.getDescription() +"#"+d  ;
+				+ this.getDescription() +" #"+d  ;
 		return output;
 	}
 
