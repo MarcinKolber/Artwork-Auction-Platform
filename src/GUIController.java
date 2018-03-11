@@ -156,7 +156,7 @@ public class GUIController {
 		myBidsLink.setOnAction(e -> displayMyBids());
 		dashboardLink.setOnAction(e -> displayMainDashboard());
 
-		nickname.setText(LoginController.getUser().getUsername());
+		nickname.setText("  "+LoginController.getUser().getUsername());
 		searchingB.setOnAction(e -> openSearchTab());
 		sales.setOnAction(e -> openSalesTab());
 		searchButton.setOnAction(e -> handleSearch());

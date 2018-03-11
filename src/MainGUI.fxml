@@ -17,6 +17,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
@@ -28,10 +30,18 @@
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin></ImageView>
-            <Label fx:id="nickname" alignment="TOP_CENTER" prefHeight="19.0" prefWidth="140.0" text="Nickname" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="nickname" alignment="TOP_LEFT" prefHeight="19.0" prefWidth="140.0" text="Nickname" textAlignment="CENTER">
                <font>
-                  <Font size="13.0" />
+                  <Font size="25.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#1b99cc" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
             <Hyperlink fx:id="mainPage" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Main page" textFill="WHITE">
                <font>
