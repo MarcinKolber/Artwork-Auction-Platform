@@ -176,16 +176,25 @@ public class ShowArtworkController {
 		addToFav.setOnAction(e -> showUser());
 		placeBid.setOnAction(e -> addBid());
 
+		addToCustomGallery.setOnAction(e-> addToCustomGallery());
+
 	}
 
 	public void addToCustomGallery() {
+		
+
 		Writer.addArtworkToGallery(LoginController.getUser(), artwork,
 				LoginController.getUser().getCustomGallery(track.getValue()));
+		
+		
 		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Added");
 		alert.setHeaderText("Added to a custom gallery");
 		alert.setContentText("Thank you!");
+		alert.showAndWait();
+		
+
 
 	}
 

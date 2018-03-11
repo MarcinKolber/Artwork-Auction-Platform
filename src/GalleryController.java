@@ -37,24 +37,33 @@ public class GalleryController {
 		ArrayList<CustomGallery> galleries = FileReader.readGalleries(LoginController.getUser());
 		System.out.println("The size is " + galleries.size());
 
-		for (int i = 0; i < galleries.size(); i++) {
-			Button b1 = new Button(galleries.get(i).getName());
+		ArrayList<GalleryButton> galleryButtons = new ArrayList<GalleryButton>();
+		
+		
+		
 
-			b1.setMinWidth(214);
-			b1.setMinHeight(100);
-			int r = rnd.nextInt(255);
-			int g = rnd.nextInt(100);
-			int b = rnd.nextInt(255);
-
-			b1.setStyle("-fx-background-color: rgb(" + 0 + "," + g + "," + b + ",0.2); -fx-font-size: 1.5em; ");
-			vbox1.getChildren().add(b1);
+		vbox1.getChildren().clear();
+		for(CustomGallery g : galleries) {
+			GalleryButton gb = new GalleryButton(g);
+			galleryButtons.add(gb);
+			vbox1.getChildren().add(gb);
+			gb.setOnAction(e-> displayGallery(gb.getCustomGallery()));
+			
 		}
 		
 
 	}
 
-	public void displayGallery() {
+	public void displayGallery(CustomGallery cg) {
+		display.getChildren().clear();
+		System.out.println("llllll");
+		for(Artwork art : cg.getArtwork()) {
+			Listing listing = new Listing(art);
+			display.getChildren().add(listing);
+			System.out.println("l1dsaasdlllll");
 
+			
+		}
 	}
 
 	public void galleryCreator() {

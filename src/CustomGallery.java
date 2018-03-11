@@ -48,6 +48,12 @@ public class CustomGallery {
 		return output;
 	}
 	
+	public void addArtwork(Artwork artwork1) {
+		if(!artwork.contains(artwork1)) {
+			artwork.add(artwork1);
+
+		}
+	}
 	
 	
 }

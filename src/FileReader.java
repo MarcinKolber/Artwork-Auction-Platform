@@ -779,6 +779,18 @@ public class FileReader {
 				galleries.add(ng);
 				in.close();
 				
+				
+				Scanner in1 = new Scanner(e);
+				
+				in1.nextLine();
+				
+				while(in1.hasNextLine()) {
+					String line = in1.nextLine();
+					Artwork art = FileReader.getArtwork(line);
+					ng.addArtwork(art);
+				}
+				in1.close();
+				
 			}
 		} catch (Exception e) {
 			System.out.println("rip");
