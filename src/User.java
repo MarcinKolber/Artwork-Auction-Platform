@@ -31,6 +31,7 @@ public class User {
 	private ArrayList<Painting> paintings; // ArrayList of the users paintings for auction
 	private ArrayList<Bid> wonBids; // ArrayList of the artworks the user has won
 	private ArrayList<Date> logins;
+	private ArrayList<CustomGallery> customGalleries;
 	/**
 	 * Constructor for a new User object.
 	 * 
@@ -61,6 +62,7 @@ public class User {
 		this.customImage = false;
 		this.imgView = new ImageView();
 		logins = new ArrayList<>();
+		customGalleries = new ArrayList<>();
 		try {
 			this.image = new Image(new FileInputStream("avatars/avatar" + avatarIndex + ".png"));
 		} catch (FileNotFoundException e) {
@@ -96,6 +98,8 @@ public class User {
 		this.placedBids = new ArrayList<>();
 		this.avatarIndex = index;
 		this.wonBids = new ArrayList<>();
+		customGalleries = new ArrayList<>();
+
 		
 		if (index < 100) {
 			try {
@@ -503,6 +507,9 @@ public class User {
 		return logins.get(n-1);
 	}
 	
+	public void addCustomGallery(CustomGallery gallery) {
+		customGalleries.add(gallery);
+	}
 	
 
 }

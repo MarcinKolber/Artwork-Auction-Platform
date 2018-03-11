@@ -1,7 +1,12 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
@@ -11,6 +16,9 @@ import javafx.scene.layout.VBox;
  * @author Marcin Created on 04/12/2017
  */
 public class DashboardSettingsController {
+
+	@FXML
+	private ListView<Date> list;
 
 	@FXML
 	private Label username; // Shows username of user
@@ -50,7 +58,10 @@ public class DashboardSettingsController {
 	public void initialize() {
 
 		user = LoginController.getUser();
-
+		ArrayList<Date> ddd1 = (ArrayList<Date>) user.getLogins().clone();
+		Collections.reverse(ddd1);
+		ObservableList<Date> items = FXCollections.observableArrayList(ddd1);
+		list.setItems(items);
 		username.setText(user.getUsername());
 		firstName.setText(user.getFirstName());
 		lastName.setText(user.getLastName());
@@ -59,7 +70,7 @@ public class DashboardSettingsController {
 		postcode.setText(user.getPostcode());
 		phoneNumber.setText(user.getPhonenumber() + "");
 		avatar.setImage(user.getImage());
-		showLogins();
+		// showLogins();
 	}
 
 	public void showLogins() {

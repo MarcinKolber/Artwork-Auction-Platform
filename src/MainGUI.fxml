@@ -21,10 +21,18 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
    <left>
-      <VBox prefHeight="575.0" prefWidth="170.0" spacing="2.0" style="-fx-background-color: rgb(26, 40, 61);" BorderPane.alignment="CENTER">
+      <VBox prefHeight="575.0" prefWidth="191.0" spacing="2.0" style="-fx-background-color: rgb(26, 40, 61);" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="logOut" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Log out" />
-            <ImageView fx:id="avatar" fitHeight="112.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="avatar" fitHeight="112.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin></ImageView>
+            <Label fx:id="nickname" alignment="TOP_CENTER" prefHeight="19.0" prefWidth="140.0" text="Nickname" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
             <Hyperlink fx:id="mainPage" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Main page" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -64,6 +72,11 @@
                </font>
             </Hyperlink>
             <Hyperlink fx:id="sales" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Sales" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="customGalleries" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Custom galleries" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

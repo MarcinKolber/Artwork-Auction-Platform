@@ -23,10 +23,13 @@ import javafx.stage.Stage;
 
 /**
  * This is the main GUI class which links to all other GUI classes
- * @author Marcin
- * Created on 22/11/2017
+ * 
+ * @author Marcin Created on 22/11/2017
  */
 public class GUIController {
+
+	@FXML
+	private Label nickname;
 
 	@FXML
 	private ListView<String> searchList; // A list of searched items
@@ -103,25 +106,24 @@ public class GUIController {
 
 	@FXML
 	private Label today; // Shows the date
-	
-    @FXML
-    private ImageView avatar;
 
+	@FXML
+	private ImageView avatar;
 
-    @FXML
-    private Hyperlink mainPage;
-    
+	@FXML
+	private Hyperlink mainPage;
 
-    @FXML
-    private Hyperlink sales;
-    
-    
-    @FXML
-    private Hyperlink searchingB;
-	
-    
-    @FXML
-    private Button logOut;
+	@FXML
+	private Hyperlink sales;
+
+	@FXML
+	private Hyperlink searchingB;
+
+	@FXML
+	private Button logOut;
+
+	@FXML
+	private Hyperlink customGalleries;
 
 	/**
 	 * Initialises the main elements of GUI
@@ -134,7 +136,7 @@ public class GUIController {
 		sculptureSelect.setSelected(true);
 		artworkSelect.setSelected(true);
 
-		mainPage.setOnAction(e-> openMainTab());
+		mainPage.setOnAction(e -> openMainTab());
 
 		ToggleGroup tg = new ToggleGroup();
 		userSelect.setToggleGroup(tg);
@@ -151,24 +153,45 @@ public class GUIController {
 
 		display.setOnAction(e -> getSearchSelection());
 
-		myBidsLink.setOnAction(e-> displayMyBids());
+		myBidsLink.setOnAction(e -> displayMyBids());
 		dashboardLink.setOnAction(e -> displayMainDashboard());
 
-		
-		searchingB.setOnAction(e-> openSearchTab());
-		sales.setOnAction(e-> openSalesTab());
+		nickname.setText(LoginController.getUser().getUsername());
+		searchingB.setOnAction(e -> openSearchTab());
+		sales.setOnAction(e -> openSalesTab());
 		searchButton.setOnAction(e -> handleSearch());
-		
-		
-		logOut.setOnAction(e-> exit());
+
+		avatar.setOnMouseClicked(e -> userSettings());
+
+		logOut.setOnAction(e -> exit());
+
+		customGalleries.setOnAction(e -> openGalleries());
 	}
-	
-	
+
+	public void openGalleries() {
+		FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/Gallery.fxml"));
+
+		// Try to display the user
+		try {
+			Parent root = fxmlL.load();
+
+			Scene scene = new Scene(root, 1000, 600);
+
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.initModality(Modality.APPLICATION_MODAL);
+
+			stage.show();
+
+		} catch (IOException e) { // catch an exception if file cannot be loaded
+			e.printStackTrace();
+		}
+	}
+
 	public void exit() {
 		System.exit(0);
 	}
-	
-	
+
 	/**
 	 * Method to display a tab for sales
 	 */
@@ -183,8 +206,7 @@ public class GUIController {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public void openMainTab() {
 		BorderPane bp; // Border Pane to load the new BorderPane in
 
@@ -196,8 +218,7 @@ public class GUIController {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	/**
 	 * Method to display a searching tab
 	 */
@@ -212,9 +233,7 @@ public class GUIController {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
 	/**
 	 * Method to display my bids
 	 */
@@ -229,7 +248,7 @@ public class GUIController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Method to filter by artwork or users
 	 */
@@ -287,15 +306,13 @@ public class GUIController {
 	public void getSearchSelection() {
 		String s = searchList.getSelectionModel().getSelectedItem();
 
-
 		BorderPane bp; // Border Pane to load the new BorderPane in
 
 		try {
-			
-			if(FileReader.getUser(s) != null) {
+
+			if (FileReader.getUser(s) != null) {
 				User user = FileReader.getUser(s);
 				UserDisplayController.setUser(user);
-				
 
 				FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/UserDisplay.fxml"));
 				try {
@@ -314,7 +331,6 @@ public class GUIController {
 					e.printStackTrace();
 				}
 
-				
 			} else {
 				if (FileReader.getSculpture(s) != null) {
 					ArtworkController.setCurrentSculpture(FileReader.getSculpture(s));
@@ -328,15 +344,12 @@ public class GUIController {
 				mainSection.getChildren().setAll(bp);
 			}
 
-
-
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	/**
 	 * Displays a user
 	 */
@@ -378,7 +391,6 @@ public class GUIController {
 			bp = (BorderPane) FXMLLoader.load(getClass().getResource("FavouriteUsers.fxml"));
 			mainSection.getChildren().setAll(bp);
 
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -453,9 +465,10 @@ public class GUIController {
 		}
 
 	}
-	
+
 	/**
 	 * Returns the main section
+	 * 
 	 * @return mainSection - the main GUI
 	 */
 	public BorderPane getMainSection() {

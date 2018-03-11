@@ -1,20 +1,22 @@
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.*;
 
 /**
  * This is the GUI class for displaying artwork
@@ -24,6 +26,17 @@ import java.util.*;
 
 public class ArtworkController {
 
+
+
+    @FXML
+    private Button addToCustomGallery;
+	
+    @FXML
+    private Label description;
+	
+    @FXML
+    private CheckBox track;
+	
 	@FXML
 	private Button back; // button to return to browsing
 
@@ -143,7 +156,16 @@ public class ArtworkController {
 
 		// Return to browsing page
 		back.setOnAction(e -> backToBrowsing());
+		
+		
+		addToCustomGallery.setOnAction(e-> addToCustomGallery());
 
+	}
+	
+	
+	
+	public void addToCustomGallery() {
+		
 	}
 
 	/**
@@ -222,6 +244,7 @@ public class ArtworkController {
 		bidsLimitA.setText(currentPainting.getBidsAllowed() + "");
 		mainPic.setImage(currentPainting.getImage());
 		sellerA.setText(currentPainting.getOwner().getUsername());
+		description.setText(currentPainting.getDescription());
 		
 		// Gets the owner of the painting
 		User owner = currentPainting.getOwner();
@@ -267,6 +290,7 @@ public class ArtworkController {
 		creatorA.setText(currentSculpture.getCreator());
 		noOfBidsA.setText(currentSculpture.getNumberOfPlacedBids() + "");
 		bidsLimitA.setText(currentSculpture.getBidsAllowed() + "");
+		description.setText(currentSculpture.getDescription());
 
 		// Get the owner of sculpture
 		User owner = currentSculpture.getOwner();
