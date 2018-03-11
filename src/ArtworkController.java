@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -26,7 +28,8 @@ import javafx.stage.Stage;
 
 public class ArtworkController {
 
-
+    @FXML
+    private ChoiceBox<String> track;
 
     @FXML
     private Button addToCustomGallery;
@@ -34,9 +37,7 @@ public class ArtworkController {
     @FXML
     private Label description;
 	
-    @FXML
-    private CheckBox track;
-	
+
 	@FXML
 	private Button back; // button to return to browsing
 
@@ -111,11 +112,20 @@ public class ArtworkController {
 
 	private static Painting currentPainting; // displayed painting
 	private static Sculpture currentSculpture; // displayed sculpture
+	
 
 	/**
 	 * Initialises the view of an artwork
 	 */
 	public void initialize() {
+		
+		
+		ObservableList<String> options = 
+			    FXCollections.observableArrayList(
+			    		LoginController.getUser().customGalleriesToString()
+			    );
+		track.setItems(options);
+		
 
 		// If painting is displayed, update the page
 		if (currentPainting != null) {
@@ -166,7 +176,19 @@ public class ArtworkController {
 	
 	public void addToCustomGallery() {
 		
+		if(currentPainting != null) {
+			Writer.addArtworkToGallery(LoginController.getUser(), currentPainting, 
+					LoginController.getUser().getCustomGallery(track.getValue()));
+
+		}
+		
+		if(currentSculpture != null) {
+			Writer.addArtworkToGallery(LoginController.getUser(), currentSculpture,
+					LoginController.getUser().getCustomGallery(currentSculpture.getTitle()));
+
+		}
 	}
+	
 
 	/**
 	 * Method to set the page back to browsing

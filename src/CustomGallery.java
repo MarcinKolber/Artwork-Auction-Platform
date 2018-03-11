@@ -5,11 +5,17 @@ public class CustomGallery {
 	private User user;
 	private String name;
 	private ArrayList<Artwork> artwork;
+	private String description;
+	private int numberOfPaintings;
+	private int numberOfSculptures;
 	
-	public CustomGallery(String name, User user) {
+	public CustomGallery(String name, User user, String description, int paintings, int sculptures) {
 		this.name = name;
 		this.user = user;
 		artwork = new ArrayList<>();
+		this.description = description;
+		this.numberOfPaintings = paintings;
+		this.numberOfSculptures = sculptures;
 	}
 
 	public User getUser() {
@@ -36,7 +42,11 @@ public class CustomGallery {
 		this.artwork = artwork;
 	}
 	
-	
+	public String getTextFileOutput() {
+		String output = name+"#"+user.getUsername() +"#"+description+"#"+numberOfPaintings+"#"+numberOfSculptures+"#";
+		
+		return output;
+	}
 	
 	
 	

@@ -25,7 +25,7 @@ public class Writer {
 	 *             - if user cannot be saved
 	 */
 	public static void writeUserFile(User user) throws IOException {
-		String path = "userFiles//" + user.getUsername() + ".txt";
+		String path = "customGalleries//" + user.getUsername() + ".txt";
 		try {
 			PrintWriter writer = new PrintWriter(path, "UTF-8");
 			writer.println(user.getTextFileOutput());
@@ -44,6 +44,37 @@ public class Writer {
 		}
 	}
 
+	public static void createCustomGallery(User user, CustomGallery gallery) throws IOException {
+		File file = new File("customGalleries//" + user.getUsername() + "//");
+		file.mkdir();
+		String path = "customGalleries//" + user.getUsername() + "//" + gallery.getName() + ".txt";
+
+		try {
+			PrintWriter writer = new PrintWriter(path, "UTF-8");
+			writer.println(gallery.getTextFileOutput());
+			writer.close();
+		} catch (IOException e) {
+			throw new IOException("error writing to file of user " + user.getUsername());
+		}
+
+	}
+	
+	
+	public static void addArtworkToGallery(User user, Artwork artwork, CustomGallery gallery) {
+		File file = new File("customGalleries//" + user.getUsername()+"//" + gallery.getName()+".txt");
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(new FileWriter(file, true));
+			writer.println(artwork.getTitle());
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	
+	}
+
 	public static void addLogin(User user) throws IOException {
 		String path = "userFiles//" + user.getUsername() + ".txt";
 		try {
@@ -55,7 +86,6 @@ public class Writer {
 
 			String d = dateFormatter.format(date);
 
-			
 			writer.println(d);
 			writer.close();
 		} catch (IOException e) {

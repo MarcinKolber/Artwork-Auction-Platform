@@ -6,8 +6,8 @@ import javafx.scene.image.ImageView;
 
 /**
  * This class constructs a new user object and contains information of that user
- * @author Joshua
- * Created on 5/12/2017
+ * 
+ * @author Joshua Created on 5/12/2017
  */
 public class User {
 
@@ -27,11 +27,12 @@ public class User {
 	private int avatarIndex; // Index of the avatar chosen.
 	private ArrayList<Bid> placedBids; // List of bids placed by the user.
 	private ImageView imgView;
-	private ArrayList<Sculpture> sculptures;  // ArrayList of the users Sculptures for auction
+	private ArrayList<Sculpture> sculptures; // ArrayList of the users Sculptures for auction
 	private ArrayList<Painting> paintings; // ArrayList of the users paintings for auction
 	private ArrayList<Bid> wonBids; // ArrayList of the artworks the user has won
 	private ArrayList<Date> logins;
 	private ArrayList<CustomGallery> customGalleries;
+
 	/**
 	 * Constructor for a new User object.
 	 * 
@@ -66,7 +67,7 @@ public class User {
 		try {
 			this.image = new Image(new FileInputStream("avatars/avatar" + avatarIndex + ".png"));
 		} catch (FileNotFoundException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -74,13 +75,20 @@ public class User {
 	/**
 	 * Makes a new User object with a pre-made avatar as the associated image.
 	 * 
-	 * @param username - username of the user.
-	 * @param fname - first name of the user.
-	 * @param lname - last name of the user.
-	 * @param address - address of the user.
-	 * @param postcode - postcode of the user.
-	 * @param phonenumber - phonenumber of the user.
-	 * @param index - index of the image
+	 * @param username
+	 *            - username of the user.
+	 * @param fname
+	 *            - first name of the user.
+	 * @param lname
+	 *            - last name of the user.
+	 * @param address
+	 *            - address of the user.
+	 * @param postcode
+	 *            - postcode of the user.
+	 * @param phonenumber
+	 *            - phonenumber of the user.
+	 * @param index
+	 *            - index of the image
 	 */
 	public User(String username, String fname, String lname, String address, String postcode, long phonenumber,
 			int index) {
@@ -100,19 +108,18 @@ public class User {
 		this.wonBids = new ArrayList<>();
 		customGalleries = new ArrayList<>();
 
-		
 		if (index < 100) {
 			try {
 				this.image = new Image(new FileInputStream("avatars/avatar" + avatarIndex + ".png"));
 			} catch (FileNotFoundException e) {
-				
+
 				e.printStackTrace();
 			}
 		} else {
 			try {
 				this.image = new Image(new FileInputStream("customAvatars/" + username + ".png"));
 			} catch (FileNotFoundException e) {
-				
+
 				e.printStackTrace();
 			}
 		}
@@ -230,7 +237,8 @@ public class User {
 	/**
 	 * Method to set the user's username.
 	 * 
-	 * @param username - username of the user.
+	 * @param username
+	 *            - username of the user.
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -249,7 +257,8 @@ public class User {
 	/**
 	 * Method to set the user's last name.
 	 * 
-	 * @param lname last name to be set
+	 * @param lname
+	 *            last name to be set
 	 */
 	public void setLastName(String lname) {
 		this.lastName = lname;
@@ -258,7 +267,8 @@ public class User {
 	/**
 	 * Method to set the user's address.
 	 * 
-	 * @param address address to be set
+	 * @param address
+	 *            address to be set
 	 */
 	public void setAddress(String address) {
 		this.address = address;
@@ -267,7 +277,8 @@ public class User {
 	/**
 	 * Method to set the user's postcode.
 	 * 
-	 * @param postcode postcode to be set
+	 * @param postcode
+	 *            postcode to be set
 	 */
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
@@ -276,7 +287,8 @@ public class User {
 	/**
 	 * Method to set the users phone number.
 	 * 
-	 * @param phonenumber phone number to be set
+	 * @param phonenumber
+	 *            phone number to be set
 	 */
 	public void setPhonenumber(long phonenumber) {
 		this.phonenumber = phonenumber;
@@ -355,11 +367,11 @@ public class User {
 		return output;
 	}
 
-	
 	/**
 	 * Allows setting of an image to a user.
 	 * 
-	 * @param image image of the user
+	 * @param image
+	 *            image of the user
 	 */
 	public void setImage(Image image) {
 		this.image = image;
@@ -374,7 +386,6 @@ public class User {
 		return artForSale;
 	}
 
-
 	/**
 	 * Method to get the list of artworks sold by the user.
 	 * 
@@ -384,17 +395,15 @@ public class User {
 		return artSold;
 	}
 
-	
 	/**
 	 * Method to get a list of artworks won.
 	 * 
-	 * @return  won auctions
+	 * @return won auctions
 	 */
 	public ArrayList<Artwork> getArtWon() {
 		return artWon;
 	}
 
-	
 	/**
 	 * Method to set the full name of a user
 	 * 
@@ -405,11 +414,11 @@ public class User {
 		this.fullName = fullName;
 	}
 
-
 	/**
 	 * Method to add an artwork to a user's auctions
 	 * 
-	 * @param artwork artwork object to be added
+	 * @param artwork
+	 *            artwork object to be added
 	 */
 	public void addArtwork(Artwork artwork) {
 		artForSale.add(artwork);
@@ -433,18 +442,16 @@ public class User {
 		return placedBids;
 	}
 
-
 	/**
 	 * Method to add a bid to the users placedBids ArrayList
 	 * 
 	 * @param b
 	 *            - the bid the user has made
 	 */
-	public void addBid(Bid b){
-			
+	public void addBid(Bid b) {
+
 		placedBids.add(b);
-		}
-	
+	}
 
 	/**
 	 * Method to return the avatar index of a user
@@ -465,9 +472,10 @@ public class User {
 		this.avatarIndex = avatarIndex;
 		// resolvePicture();
 	}
-	
+
 	/**
 	 * Method to return the bids that the user has won
+	 * 
 	 * @return the won bids
 	 */
 	public ArrayList<Bid> getWonBids() {
@@ -480,18 +488,20 @@ public class User {
 		}
 		return wonBids;
 	}
-	
+
 	/**
 	 * Adds a bid to the ArrayList of winning bids
-	 * @param bid - bid the user made
+	 * 
+	 * @param bid
+	 *            - bid the user made
 	 */
 	public void addToWon(Bid bid) {
 		wonBids.add(bid);
 	}
-	
+
 	public void addLogin() {
 		logins.add(new Date());
-		
+
 	}
 
 	public ArrayList<Date> getLogins() {
@@ -501,15 +511,44 @@ public class User {
 	public void setLogins(ArrayList<Date> logins) {
 		this.logins = logins;
 	}
-	
+
 	public Date getLastLogin() {
 		int n = logins.size();
-		return logins.get(n-1);
+		return logins.get(n - 1);
 	}
-	
+
 	public void addCustomGallery(CustomGallery gallery) {
 		customGalleries.add(gallery);
 	}
-	
 
+	public ArrayList<CustomGallery> getCustomGalleries() {
+		return customGalleries;
+	}
+
+	public void setCustomGalleries(ArrayList<CustomGallery> customGalleries) {
+		this.customGalleries = customGalleries;
+	}
+
+	public ArrayList<String> customGalleriesToString() {
+		ArrayList<String> s = new ArrayList<>();
+		
+		for(CustomGallery c : customGalleries) {
+			s.add(c.getName());
+		}
+		
+		return s;
+
+	}
+
+	public CustomGallery getCustomGallery(String name) {
+		
+		for(CustomGallery a : customGalleries) {
+			if(a.getName().equals(name)) {
+				return a;
+			}
+		}
+		
+		return null;
+	}
+	
 }

@@ -749,4 +749,44 @@ public class FileReader {
 		return false;
 
 	}
+	
+	
+	public static ArrayList<CustomGallery> readGalleries(User user) {
+		
+		ArrayList<CustomGallery> galleries = new ArrayList<>();
+		
+		try {
+			File[] listOfFiles = new File("customGalleries//"+user.getUsername()+"//").listFiles();
+			for (File e : listOfFiles) {
+				System.out.println(e.getName());
+				System.out.println("executed once");
+
+				Scanner in = new Scanner(e);
+				
+				in.useDelimiter("#");
+				String name = in.next();
+				String username1 = in.next();
+				String des = in.next();
+				String paint = in.next();
+				String sculp = in.next();
+				System.out.println(paint+sculp);
+				
+				int numberOfPaintings = Integer.parseInt(paint);
+				
+				int numberOfSculptures = Integer.parseInt(sculp);
+
+				CustomGallery ng = new CustomGallery(name, user, username1, numberOfPaintings, numberOfSculptures);
+				galleries.add(ng);
+				in.close();
+				
+			}
+		} catch (Exception e) {
+			System.out.println("rip");
+
+		}
+		
+		user.setCustomGalleries(galleries);
+		
+		return galleries;
+	}
 }
