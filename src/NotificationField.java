@@ -21,7 +21,7 @@ public class NotificationField {
 		this.canvas = canvas;
 		vbox.setStyle("-fx-background-color: #1b1b1b");
 		vbox.setOnMouseEntered(e-> {vbox.setStyle("-fx-background-color: #2e3135;");});
-		vbox.setOnMouseExited(e-> {vbox.setStyle("-fx-background-color: #1b1b1b;");});
+		vbox.setOnMouseExited(e-> {vbox.setStyle("-fx-background-color: #1b1b1b");});
 		
     	GraphicsContext gc = canvas.getGraphicsContext2D();
 

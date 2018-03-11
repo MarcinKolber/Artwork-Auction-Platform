@@ -257,6 +257,19 @@ public class Artwork {
 	public int getBidsAllowed() {
 		return bidsAllowed;
 	}
+	
+	
+	public int leftBids() {
+		int  no = 0;
+		if(bidsOnItem != null) {
+			no  = bidsAllowed - bidsOnItem.size();
+
+		} else {
+			no = bidsAllowed;
+		}
+		
+		return no;
+	}
 
 	/**
 	 * Method to get the image assigned to an artwork.

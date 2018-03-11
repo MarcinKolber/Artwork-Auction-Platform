@@ -101,7 +101,8 @@ public class NotificationController {
 
 		int newArtsCount = u.getNewArtworks().size();
 		int newBidsCount = u.getNewBids().size();
-		
+
+		NotificationDisplayController.setArts(u.getNewArtworks());
 		
 
 		NotificationField newArt = new NotificationField(one, canvas1, newArts, newArtsCount);
@@ -134,6 +135,7 @@ public class NotificationController {
 		Scene scene;
 		try {
 			scene = new Scene(FXMLLoader.load(getClass().getResource("NotificationDisplay.fxml")));
+			
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.setResizable(false);
