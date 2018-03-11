@@ -93,16 +93,20 @@ public class NotificationController {
 
 	@FXML
 	private Label closeLabel;
+	
+	private Updates update;
 
 	public void initialize() {
-		Updates u = new Updates(LoginController.getUser());
+		update = new Updates(LoginController.getUser());
 
 		NotificationField[] notifications = new NotificationField[6];
 
-		int newArtsCount = u.getNewArtworks().size();
-		int newBidsCount = u.getNewBids().size();
+		int newArtsCount = update.getNewArtworks().size();
+		int newBidsCount = update.getNewBids().size();
+		int endingNumber = Updates.endingAuctions(5).size();
 
-		NotificationDisplayController.setArts(u.getNewArtworks());
+
+		NotificationDisplayController.setArts(update.getNewArtworks());
 		
 
 		NotificationField newArt = new NotificationField(one, canvas1, newArts, newArtsCount);
@@ -110,11 +114,12 @@ public class NotificationController {
 		NotificationField wonAuctions = new NotificationField(won, canWon, wonNo);
 		NotificationField users = new NotificationField(newUsers, newUsersCan, newUsersCount);
 		NotificationField lostArt = new NotificationField(lostAuc, lostCan, lost);
-		NotificationField closeAuc = new NotificationField(close, closeCan, closeLabel);
+		NotificationField closeAuc = new NotificationField(close, closeCan, closeLabel, endingNumber);
 		
 
 		newArts.setText(newArtsCount + "");
 		prevNo.setText(newBidsCount +"");
+		closeLabel.setText(endingNumber +"");
 		
 
 		notifications[0] = newArt;
@@ -124,22 +129,47 @@ public class NotificationController {
 		notifications[4] = lostArt;
 		notifications[5] = closeAuc;
 		
-		for(NotificationField n : notifications) {
-			n.getVbox().setOnMouseClicked(e-> openNewWindow());
-		}
+		notifications[0].getVbox().setOnMouseClicked(e-> openNewWindow(0));
+		notifications[1].getVbox().setOnMouseClicked(e-> openNewWindow(1));
+		notifications[2].getVbox().setOnMouseClicked(e-> openNewWindow(2));
+		notifications[3].getVbox().setOnMouseClicked(e-> openNewWindow(3));
+		notifications[4].getVbox().setOnMouseClicked(e-> openNewWindow(4));		
+		notifications[5].getVbox().setOnMouseClicked(e-> openNewWindow(5));
+
+
 
 		
 	}
 	
-	public void openNewWindow() {
+	public void openNewWindow(int i) {
 		Scene scene;
 		try {
-			scene = new Scene(FXMLLoader.load(getClass().getResource("NotificationDisplay.fxml")));
 			
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.setResizable(false);
-			stage.show();
+			if(i==0) {
+				scene = new Scene(FXMLLoader.load(getClass().getResource("NotificationDisplay.fxml")));
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
+			}
+			
+			if(i==1) {
+				scene = new Scene(FXMLLoader.load(getClass().getResource("NewBids.fxml")));
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
+			}
+			
+			if(i==5) {
+				scene = new Scene(FXMLLoader.load(getClass().getResource("EndingAuctions.fxml")));
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
+			}
+			
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -156,6 +186,16 @@ public class NotificationController {
 			e.printStackTrace();
 		}
 	}
+
+	public Updates getUpdate() {
+		return update;
+	}
+
+	public void setUpdate(Updates update) {
+		this.update = update;
+	}
+	
+	
 	
 
 }

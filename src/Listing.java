@@ -23,16 +23,17 @@ public class Listing extends VBox {
 		
 		imgView.setImage(artwork.getImage());
 		Label title = new Label(artwork.getTitle());
-		Label highestBid = new Label(artwork.getHighestBidAmount()+"");
-		Label creator = new Label(artwork.getCreator());
-		Label year = new Label(artwork.getCreationYear()+"");
-		Label date = new Label(artwork.getDateAdded()+"");
+		Label highestBid = new Label("Current bid: "+ artwork.getHighestBidAmount());
+		Label creator = new Label("Creator "+artwork.getCreator());
+		Label year = new Label("Year: "+ artwork.getCreationYear());
+		Label date = new Label("Added: "+ artwork.getDateAdded());
+		Label remaining = new Label("Remaining bids: "+ artwork.leftBids());
 		this.setMinWidth(width);
 		this.setSpacing(2);
 
 		
 		
-		getChildren().addAll(imgView, title, highestBid, creator, year, date);
+		getChildren().addAll(imgView, title, highestBid, creator, year, date, remaining);
 		
 		
 		

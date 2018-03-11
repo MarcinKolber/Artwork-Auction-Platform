@@ -3,16 +3,15 @@ import java.util.Date;
 
 public class Updates {
 
-	private ArrayList<Artwork> newArtworks;
-	private ArrayList<Artwork> wonArtworks;
-	private ArrayList<Artwork> lostArtworks;
+	private static ArrayList<Artwork> newArtworks;
+	private static ArrayList<Artwork> wonArtworks;
+	private  static ArrayList<Artwork> lostArtworks;
 
-	private ArrayList<Bid> newBids;
-	private ArrayList<Artwork> ending;
+	private  static ArrayList<Bid> newBids;
+	private  static ArrayList<Artwork> ending;
 
-
-	private Date date;
-	private User user;
+	private static Date date;
+	private static User user;
 
 	public Updates(User user) {
 		ending = new ArrayList<Artwork>();
@@ -29,7 +28,7 @@ public class Updates {
 		}
 	}
 
-	public void addArtworks() {
+	public static void addArtworks() {
 
 		ArrayList<Artwork> arts = FileReader.getArtworks();
 		System.out.println(arts.size());
@@ -56,67 +55,59 @@ public class Updates {
 		}
 
 	}
-	
-	
+
 	public void addLost() {
-		
+
 		ArrayList<Bid> bids = FileReader.getBids();
-		
-		for(Bid b: bids) {
-			
+
+		for (Bid b : bids) {
+
 			Artwork a = b.getArtwork();
-			if(a.isBidIsOver()) {
-				
+			if (a.isBidIsOver()) {
+
 			}
-			
-			
+
 		}
-		
+
 	}
-	
-	
-	public void endingAuctions(int i) {
-		
+
+	public static ArrayList<Artwork> endingAuctions(int i) {
+		ending = new ArrayList<Artwork>();
 		ArrayList<Bid> bids = LoginController.getUser().getPlacedBids();
 
-		
-		for(Bid b : bids) {
-			
+		for (Bid b : bids) {
+			System.out.println("not added");
+
 			Artwork artwork = b.getArtwork();
-			
-			if(artwork.leftBids() < i) {
-				ending.add(artwork);
+
+			if (artwork.leftBids() < i) {
+				if(!ending.contains(artwork)) {
+					ending.add(artwork);
+
+				}
+				System.out.println("added");
 			}
-			
-			
+
 		}
 		
-		
+		return ending;
+
 	}
 
 	public ArrayList<Artwork> getNewArtworks() {
 		return newArtworks;
 	}
 
-	public void setNewArtworks(ArrayList<Artwork> newArtworks) {
-		this.newArtworks = newArtworks;
-	}
 
 	public ArrayList<Bid> getNewBids() {
 		return newBids;
 	}
 
-	public void setNewBids(ArrayList<Bid> newBids) {
-		this.newBids = newBids;
-	}
+
 
 	public ArrayList<Artwork> getEnding() {
 		return ending;
 	}
 
-	public void setEnding(ArrayList<Artwork> ending) {
-		this.ending = ending;
-	}
-	
 
 }
