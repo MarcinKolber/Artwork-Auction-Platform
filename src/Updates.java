@@ -14,7 +14,8 @@ public class Updates {
 	private static Date date;
 	private static User user;
 
-	public Updates(User user) {
+	public Updates(User user1) {
+		user = user1;
 		ending = new ArrayList<Artwork>();
 		newArtworks = new ArrayList<Artwork>();
 		newBids = new ArrayList<Bid>();
@@ -26,7 +27,7 @@ public class Updates {
 			addArtworks();
 			addBids();
 			addUsers();
-
+			newBids();
 		}
 	}
 
@@ -34,11 +35,18 @@ public class Updates {
 		ArrayList<Bid> newBids = new ArrayList<>();
 
 		ArrayList<Bid> allBids = FileReader.getBids();
+		System.out.println(user.getFullName());
 		ArrayList<Bid> userBids = user.getPlacedBids();
+		System.out.println(userBids.size()+"asdasdasd");
 
 		for (Bid bid : allBids) {
 
-			if (userBids.contains(bid) && bid.getBidDate().after(date) && bid.getBidder() != user) {
+			System.out.println(bid.getBidDate()+"dsaas");
+
+			Artwork a = bid.getArtwork();
+			
+			if (user.getBiddedArtworks().contains(a) && bid.getBidDate().after(date) && bid.getBidder() != user) {
+				System.out.println("asddddd");
 
 				newBids.add(bid);
 
@@ -154,4 +162,14 @@ public class Updates {
 		Updates.users = users;
 	}
 
+	public static Date getDate() {
+		return date;
+	}
+
+	public static void setDate(Date date) {
+		Updates.date = date;
+	}
+
+	
+	
 }

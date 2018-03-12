@@ -1,2 +1,10 @@
 sculpture,marcin,The thinker,333.0,Mar 10 2018 21:58:35 PM
 painting,marcin,The Old Guitarist,3333.0,Mar 11 2018 01:40:54 AM
+sculpture,marcin,Cloud gate,330000.0,Mar 11 2019 22:45:27 PM
+painting,marcin,Dogs Playing poker,11111.0,Mar 10 2018 22:02:55 PM
+painting,marcin,Dogs Playing poker,11111.0,Mar 10 2019 22:02:55 PM
+painting,marcin,Dogs Playing poker,11111.0,Mar 10 2020 22:02:55 PM
+sculpture,marcin,Cheeta Flight ,4214.0,Mar 11 2020 01:19:51 AM
+painting,marcin,The Old Guitarist,123.0,Mar 11 2019 01:34:55 AM
+sculpture,marcin,Cloud gate,9999999.0,Mar 11 2019 01:39:28 AM
+sculpture,marcin,Cloud gate,200000.0,Mar 11 2019 22:45:27 PM

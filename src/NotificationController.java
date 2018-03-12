@@ -100,10 +100,11 @@ public class NotificationController {
 		update = new Updates(LoginController.getUser());
 		NewUsersController.setUsers(Updates.getUsers());
 
+		NewBidController.setBids(Updates.newBids());
 		NotificationField[] notifications = new NotificationField[6];
 
 		int newArtsCount = update.getNewArtworks().size();
-		int newBidsCount = update.getNewBids().size();
+		int newBidsCount = Updates.newBids().size();
 		int endingNumber = Updates.endingAuctions(5).size();
 
 
@@ -172,7 +173,7 @@ public class NotificationController {
 				stage.show();
 			}
 			
-			if(i==5) {
+			if(i==5) { 
 				scene = new Scene(FXMLLoader.load(getClass().getResource("EndingAuctions.fxml")));
 				Stage stage = new Stage();
 				stage.setScene(scene);

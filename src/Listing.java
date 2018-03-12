@@ -46,7 +46,12 @@ public class Listing extends VBox {
 				e1.printStackTrace();
 			}
 		});
+		
+		
 
+		
+		setOnMouseEntered(e-> {this.setStyle("-fx-background-color: rgb(0,0, 20,0.1);");});
+		setOnMouseExited(e-> {this.setStyle("-fx-background-color: rgb(0,0, 20,0);");});
 	}
 
 	public void displayInWindow() throws IOException {

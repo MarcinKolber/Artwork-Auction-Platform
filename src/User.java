@@ -34,6 +34,7 @@ public class User {
 	private ArrayList<Date> logins;
 	private ArrayList<CustomGallery> customGalleries;
 	private Date accountCreationDate;
+	private ArrayList<Artwork> biddedArtworks;
 
 	/**
 	 * Constructor for a new User object.
@@ -53,6 +54,7 @@ public class User {
 	 */
 	public User(String username, String fname, String lname, String address, String postcode, long phonenumber) {
 		accountCreationDate = new Date();
+		biddedArtworks = new ArrayList<>();
 		setUsername(username);
 		setFirstName(fname);
 		setLastName(lname);
@@ -95,6 +97,7 @@ public class User {
 	 */
 	public User(String username, String fname, String lname, String address, String postcode, long phonenumber,
 			int index) {
+		biddedArtworks = new ArrayList<>();
 		customImage = false;
 		imgView = new ImageView();
 		logins = new ArrayList<>();
@@ -460,6 +463,20 @@ public class User {
 	public void addBid(Bid b) {
 
 		placedBids.add(b);
+		
+		if(!biddedArtworks.contains(b.getArtwork())) {
+			biddedArtworks.add(b.getArtwork());
+		}
+	}
+	
+	
+
+	public ArrayList<Artwork> getBiddedArtworks() {
+		return biddedArtworks;
+	}
+
+	public void setBiddedArtworks(ArrayList<Artwork> biddedArtworks) {
+		this.biddedArtworks = biddedArtworks;
 	}
 
 	/**
