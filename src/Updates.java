@@ -5,10 +5,11 @@ public class Updates {
 
 	private static ArrayList<Artwork> newArtworks;
 	private static ArrayList<Artwork> wonArtworks;
-	private  static ArrayList<Artwork> lostArtworks;
+	private static ArrayList<Artwork> lostArtworks;
 
-	private  static ArrayList<Bid> newBids;
-	private  static ArrayList<Artwork> ending;
+	private static ArrayList<Bid> newBids;
+	private static ArrayList<Artwork> ending;
+	private static ArrayList<User> users;
 
 	private static Date date;
 	private static User user;
@@ -24,8 +25,19 @@ public class Updates {
 
 			addArtworks();
 			addBids();
-
+			addUsers();
 		}
+	}
+
+	public static void addUsers() {
+		users = new ArrayList<>();
+
+		for (User user : FileReader.getUsers()) {
+			if (user.getAccountCreationDate().after(date)) {
+				users.add(user);
+			}
+		}
+
 	}
 
 	public static void addArtworks() {
@@ -81,7 +93,7 @@ public class Updates {
 			Artwork artwork = b.getArtwork();
 
 			if (artwork.leftBids() < i) {
-				if(!ending.contains(artwork)) {
+				if (!ending.contains(artwork)) {
 					ending.add(artwork);
 
 				}
@@ -89,7 +101,7 @@ public class Updates {
 			}
 
 		}
-		
+
 		return ending;
 
 	}
@@ -98,16 +110,28 @@ public class Updates {
 		return newArtworks;
 	}
 
-
 	public ArrayList<Bid> getNewBids() {
 		return newBids;
 	}
-
-
 
 	public ArrayList<Artwork> getEnding() {
 		return ending;
 	}
 
+	public static User getUser() {
+		return user;
+	}
+
+	public static void setUser(User user) {
+		Updates.user = user;
+	}
+
+	public static ArrayList<User> getUsers() {
+		return users;
+	}
+
+	public static void setUsers(ArrayList<User> users) {
+		Updates.users = users;
+	}
 
 }

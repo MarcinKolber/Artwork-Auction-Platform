@@ -48,7 +48,7 @@ public class LoginController {
 		System.out.println("User of name " + username + " is logging in");
 
 		User userA = FileReader.getUser(username);
-		FileReader.readGalleries(userA);
+		//FileReader.readGalleries(userA);
 		// Checks if user is in memory then logs in if it is
 		if (userA != null) {
 			try {

@@ -108,11 +108,14 @@ public class NotificationController {
 
 		NotificationDisplayController.setArts(update.getNewArtworks());
 		
+		System.out.println(Updates.getUsers().size());
 
+		int newUsers1 = Updates.getUsers().size();
+		
 		NotificationField newArt = new NotificationField(one, canvas1, newArts, newArtsCount);
 		NotificationField bidded = new NotificationField(previouslyBidded, canBid, prevNo,newBidsCount);
 		NotificationField wonAuctions = new NotificationField(won, canWon, wonNo);
-		NotificationField users = new NotificationField(newUsers, newUsersCan, newUsersCount);
+		NotificationField users = new NotificationField(newUsers, newUsersCan, newUsersCount, newUsers1);
 		NotificationField lostArt = new NotificationField(lostAuc, lostCan, lost);
 		NotificationField closeAuc = new NotificationField(close, closeCan, closeLabel, endingNumber);
 		
@@ -120,7 +123,8 @@ public class NotificationController {
 		newArts.setText(newArtsCount + "");
 		prevNo.setText(newBidsCount +"");
 		closeLabel.setText(endingNumber +"");
-		
+		 newUsersCount.setText(newUsers1 +"");
+
 
 		notifications[0] = newArt;
 		notifications[1] = bidded;
@@ -135,7 +139,6 @@ public class NotificationController {
 		notifications[3].getVbox().setOnMouseClicked(e-> openNewWindow(3));
 		notifications[4].getVbox().setOnMouseClicked(e-> openNewWindow(4));		
 		notifications[5].getVbox().setOnMouseClicked(e-> openNewWindow(5));
-
 
 
 		

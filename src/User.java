@@ -1,5 +1,6 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +33,7 @@ public class User {
 	private ArrayList<Bid> wonBids; // ArrayList of the artworks the user has won
 	private ArrayList<Date> logins;
 	private ArrayList<CustomGallery> customGalleries;
+	private Date accountCreationDate;
 
 	/**
 	 * Constructor for a new User object.
@@ -50,6 +52,7 @@ public class User {
 	 *            - phonenumber of the user.
 	 */
 	public User(String username, String fname, String lname, String address, String postcode, long phonenumber) {
+		accountCreationDate = new Date();
 		setUsername(username);
 		setFirstName(fname);
 		setLastName(lname);
@@ -107,6 +110,7 @@ public class User {
 		this.avatarIndex = index;
 		this.wonBids = new ArrayList<>();
 		customGalleries = new ArrayList<>();
+		accountCreationDate = new Date();
 
 		if (index < 100) {
 			try {
@@ -351,8 +355,13 @@ public class User {
 	 * @return String - textFileOutput.
 	 */
 	public String getTextFileOutput() {
+		
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+		String d = dateFormatter.format(accountCreationDate);
+		
 		String output = this.username + "," + this.firstName + "," + this.lastName + "," + this.address + ","
-				+ this.phonenumber + "," + this.avatarIndex + "," + this.postcode;
+				+ this.phonenumber + "," + this.avatarIndex + "," + this.postcode+"\n"+d;
 		return output;
 	}
 
@@ -550,5 +559,15 @@ public class User {
 		
 		return null;
 	}
+
+	public Date getAccountCreationDate() {
+		return accountCreationDate;
+	}
+
+	public void setAccountCreationDate(Date accountCreationDate) {
+		this.accountCreationDate = accountCreationDate;
+	}
+	
+	
 	
 }

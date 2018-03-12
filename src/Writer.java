@@ -25,7 +25,7 @@ public class Writer {
 	 *             - if user cannot be saved
 	 */
 	public static void writeUserFile(User user) throws IOException {
-		String path = "customGalleries//" + user.getUsername() + ".txt";
+		String path = "userFiles//users//" + user.getUsername() + ".txt";
 		try {
 			PrintWriter writer = new PrintWriter(path, "UTF-8");
 			writer.println(user.getTextFileOutput());
@@ -34,14 +34,6 @@ public class Writer {
 			throw new IOException("error writing to file of user " + user.getUsername());
 		}
 
-		String path1 = "userFiles//" + user.getUsername() + "_log" + ".txt";
-		try {
-			PrintWriter writer = new PrintWriter(path1, "UTF-8");
-			writer.print("");
-			writer.close();
-		} catch (IOException e) {
-			throw new IOException("error writing to file log of user " + user.getUsername());
-		}
 	}
 
 	public static void createCustomGallery(User user, CustomGallery gallery) throws IOException {
