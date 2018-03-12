@@ -15,14 +15,19 @@ public class UserView extends VBox {
 	private User user;
 	private ImageView imgView;
 
-	public void initialize() {
+	public UserView(User user) {
 
+		imgView = new ImageView();
+		this.user = user;
+		imgView.setImage(user.getImage());
 		imgView.setFitWidth(150);
 		imgView.setFitHeight(150);
 		this.setPadding(new Insets(10, 10, 10, 10));
 
 		Label username = new Label(user.getUsername() + "");
-		getChildren().addAll(imgView, username);
+		Label date = new Label(user.getAccountCreationDate()+ "");
+
+		getChildren().addAll(imgView, username, date);
 
 		setOnMouseClicked(e -> displayInWindow());
 	}

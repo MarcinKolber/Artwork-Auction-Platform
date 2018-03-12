@@ -26,7 +26,27 @@ public class Updates {
 			addArtworks();
 			addBids();
 			addUsers();
+
 		}
+	}
+
+	public static ArrayList<Bid> newBids() {
+		ArrayList<Bid> newBids = new ArrayList<>();
+
+		ArrayList<Bid> allBids = FileReader.getBids();
+		ArrayList<Bid> userBids = user.getPlacedBids();
+
+		for (Bid bid : allBids) {
+
+			if (userBids.contains(bid) && bid.getBidDate().after(date) && bid.getBidder() != user) {
+
+				newBids.add(bid);
+
+			}
+
+		}
+
+		return newBids;
 	}
 
 	public static void addUsers() {

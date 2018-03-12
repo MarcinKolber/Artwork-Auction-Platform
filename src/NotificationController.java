@@ -98,6 +98,7 @@ public class NotificationController {
 
 	public void initialize() {
 		update = new Updates(LoginController.getUser());
+		NewUsersController.setUsers(Updates.getUsers());
 
 		NotificationField[] notifications = new NotificationField[6];
 
@@ -107,7 +108,6 @@ public class NotificationController {
 
 
 		NotificationDisplayController.setArts(update.getNewArtworks());
-		
 		System.out.println(Updates.getUsers().size());
 
 		int newUsers1 = Updates.getUsers().size();
@@ -158,6 +158,14 @@ public class NotificationController {
 			
 			if(i==1) {
 				scene = new Scene(FXMLLoader.load(getClass().getResource("NewBids.fxml")));
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
+			}
+			
+			if(i==3) {
+				scene = new Scene(FXMLLoader.load(getClass().getResource("NewUsers.fxml")));
 				Stage stage = new Stage();
 				stage.setScene(scene);
 				stage.setResizable(false);
