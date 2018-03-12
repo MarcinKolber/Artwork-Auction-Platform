@@ -56,7 +56,6 @@ public class GalleryController {
 
 	public void displayGallery(CustomGallery cg) {
 		display.getChildren().clear();
-		System.out.println("llllll");
 		for(Artwork art : cg.getArtwork()) {
 			Listing listing = new Listing(art);
 			display.getChildren().add(listing);

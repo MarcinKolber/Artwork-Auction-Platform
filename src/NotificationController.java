@@ -106,18 +106,20 @@ public class NotificationController {
 		int newArtsCount = update.getNewArtworks().size();
 		int newBidsCount = Updates.newBids().size();
 		int endingNumber = Updates.endingAuctions(5).size();
+		int lostCount = Updates.lost().size();
+		int wonCount = Updates.won().size();
 
 
 		NotificationDisplayController.setArts(update.getNewArtworks());
 		System.out.println(Updates.getUsers().size());
 
 		int newUsers1 = Updates.getUsers().size();
-		
+		lost.setText(lostCount+"");
 		NotificationField newArt = new NotificationField(one, canvas1, newArts, newArtsCount);
 		NotificationField bidded = new NotificationField(previouslyBidded, canBid, prevNo,newBidsCount);
-		NotificationField wonAuctions = new NotificationField(won, canWon, wonNo);
+		NotificationField wonAuctions = new NotificationField(won, canWon, wonNo, wonCount);
 		NotificationField users = new NotificationField(newUsers, newUsersCan, newUsersCount, newUsers1);
-		NotificationField lostArt = new NotificationField(lostAuc, lostCan, lost);
+		NotificationField lostArt = new NotificationField(lostAuc, lostCan, lost, lostCount);
 		NotificationField closeAuc = new NotificationField(close, closeCan, closeLabel, endingNumber);
 		
 
@@ -126,6 +128,7 @@ public class NotificationController {
 		closeLabel.setText(endingNumber +"");
 		 newUsersCount.setText(newUsers1 +"");
 
+		 wonNo.setText(wonCount +"");
 
 		notifications[0] = newArt;
 		notifications[1] = bidded;
@@ -165,8 +168,25 @@ public class NotificationController {
 				stage.show();
 			}
 			
+			if(i==2) {
+				scene = new Scene(FXMLLoader.load(getClass().getResource("Won.fxml")));
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
+			}
+			
+			
 			if(i==3) {
 				scene = new Scene(FXMLLoader.load(getClass().getResource("NewUsers.fxml")));
+				Stage stage = new Stage();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
+			}
+			
+			if(i==4) {
+				scene = new Scene(FXMLLoader.load(getClass().getResource("Lost.fxml")));
 				Stage stage = new Stage();
 				stage.setScene(scene);
 				stage.setResizable(false);
@@ -192,7 +212,6 @@ public class NotificationController {
 
 		try {
 			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/Searching.fxml"));
-			//mainSection.getChildren().setAll(bp);
 
 		} catch (IOException e) {
 			e.printStackTrace();

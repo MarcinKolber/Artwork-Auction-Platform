@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="969.0" style="-fx-background-color: rgb(0,20, 70,0.9);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewBidController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="969.0" style="-fx-background-color: rgb(0,20, 70,0.9);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WonController">
    <top>
       <VBox prefHeight="69.0" prefWidth="753.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_CENTER" prefHeight="35.0" prefWidth="1149.0" text="New bids on previously bidded artworks from" textFill="WHITE">
+            <Label alignment="TOP_CENTER" prefHeight="35.0" prefWidth="1149.0" text="Won auctions since the last login" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -21,7 +21,8 @@
                   <Font size="16.0" />
                </font>
             </Label>
-         </children></VBox>
+         </children>
+      </VBox>
    </top>
    <bottom>
       <VBox prefHeight="67.0" prefWidth="753.0" BorderPane.alignment="CENTER" />

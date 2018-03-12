@@ -37,14 +37,14 @@ public class Updates {
 		ArrayList<Bid> allBids = FileReader.getBids();
 		System.out.println(user.getFullName());
 		ArrayList<Bid> userBids = user.getPlacedBids();
-		System.out.println(userBids.size()+"asdasdasd");
+		System.out.println(userBids.size() + "asdasdasd");
 
 		for (Bid bid : allBids) {
 
-			System.out.println(bid.getBidDate()+"dsaas");
+			System.out.println(bid.getBidDate() + "dsaas");
 
 			Artwork a = bid.getArtwork();
-			
+
 			if (user.getBiddedArtworks().contains(a) && bid.getBidDate().after(date) && bid.getBidder() != user) {
 				System.out.println("asddddd");
 
@@ -134,6 +134,37 @@ public class Updates {
 
 	}
 
+	public static ArrayList<Artwork> lost() {
+		ArrayList<Artwork> lostArtworks = new ArrayList<>();
+
+		ArrayList<Artwork> biddedArtworks = LoginController.getUser().getBiddedArtworks();
+
+		for (Artwork artwork : biddedArtworks) {
+
+			if(artwork.isBidIsOver() && !artwork.getWinnerName().equals(LoginController.getUser().getUsername())) {
+				lostArtworks.add(artwork);
+			}
+		}
+
+		return lostArtworks;
+	}
+	
+	
+	public static ArrayList<Artwork> won() {
+		ArrayList<Artwork> wonArtworks = new ArrayList<>();
+
+		ArrayList<Artwork> biddedArtworks = LoginController.getUser().getBiddedArtworks();
+
+		for (Artwork artwork : biddedArtworks) {
+
+			if(artwork.isBidIsOver() && artwork.getWinnerName().equals(LoginController.getUser().getUsername())) {
+				wonArtworks.add(artwork);
+			}
+		}
+
+		return wonArtworks;
+	}
+
 	public ArrayList<Artwork> getNewArtworks() {
 		return newArtworks;
 	}
@@ -170,6 +201,4 @@ public class Updates {
 		Updates.date = date;
 	}
 
-	
-	
 }
