@@ -16,6 +16,7 @@ public class FileReader {
 	private static ArrayList<Sculpture> sculptures; // arrayList of Sculpture objects
 	private static ArrayList<Painting> paintings; // arrayList of Painting objects
 	private static ArrayList<Bid> bids; // arrayList of Bid objects
+	private static ArrayList<CustomGallery> galleries;
 
 	static {
 		bids = new ArrayList<Bid>();
@@ -819,4 +820,15 @@ public class FileReader {
 
 		return galleries;
 	}
+
+	public static ArrayList<CustomGallery> getGalleries() {
+		return galleries;
+	}
+
+	public static void setGalleries(ArrayList<CustomGallery> galleries) {
+		FileReader.galleries = galleries;
+	}
+	
+	
+	
 }

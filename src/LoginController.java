@@ -59,6 +59,8 @@ public class LoginController {
 			}
 			System.out.println("Logging in was successful");
 			user = userA;
+			
+			FileReader.setGalleries(FileReader.readGalleries(userA));
 			FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("MainGUI.fxml"));
 			try {
 				BorderPane login = (BorderPane) fxmlL.load();

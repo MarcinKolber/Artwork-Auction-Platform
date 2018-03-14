@@ -45,7 +45,13 @@ public class SearchingController {
 	private CheckBox author;
 
 	@FXML
+	private CheckBox priceRange;
+
+	@FXML
 	private TextField priceFrom;
+
+	@FXML
+	private TextField priceTo;
 
 	@FXML
 	private Button refresh;
@@ -54,8 +60,12 @@ public class SearchingController {
 	private ArrayList<Artwork> arts;
 
 	private ArrayList<User> usersList;
+	private double minimum;
+	private double maximum;
 
 	public void initialize() {
+		minimum = Double.MIN_VALUE;
+		maximum = Double.MAX_VALUE;
 		usersList = FileReader.getUsers();
 		tg = new ToggleGroup();
 
@@ -67,13 +77,13 @@ public class SearchingController {
 		refresh();
 		users.setOnAction(e -> refresh());
 		artworks.setOnAction(e -> refresh());
-		
-		if(users.isSelected()) {
+
+		if (users.isSelected()) {
 			sculptures.setDisable(true);
 			paintings.setDisable(true);
 			descriptions.setDisable(true);
 			author.setDisable(true);
-		
+
 		}
 
 		sculptures.setSelected(true);
@@ -82,18 +92,56 @@ public class SearchingController {
 		paintings.setOnAction(e -> refresh());
 		descriptions.setOnAction(e -> refresh());
 		author.setOnAction(e -> refresh());
-		refresh.setOnAction(e -> refresh());
+		
+		refresh.setOnAction(e -> {
+			getMinMax();
+			refresh();
+		});
+		
+		priceRange.setOnAction(e -> {
+			getMinMax();
+			refresh();
+		});
+
+	}
+
+	public void getMinMax() {
+
+		if (priceRange.isSelected()) {
+			double min = Double.MIN_VALUE;
+			double max = Double.MAX_VALUE;
+
+			if (priceRange.isSelected()) {
+				try {
+					int minPrice = Integer.parseInt(priceFrom.getText());
+					int maxPrice = Integer.parseInt(priceTo.getText());
+
+					minimum = minPrice;
+					maximum = maxPrice;
+					System.out.println(min);
+					System.out.println(max);
+
+				} catch (Exception e) {
+					minimum = Double.MIN_VALUE;
+					maximum = Double.MAX_VALUE;
+				}
+			}
+		} else {
+			
+			minimum = Double.MIN_VALUE;
+			maximum = Double.MAX_VALUE;
+		}
 
 	}
 
 	public void refresh() {
-		
-		if(users.isSelected()) {
+
+		if (users.isSelected()) {
 			sculptures.setDisable(true);
 			paintings.setDisable(true);
 			descriptions.setDisable(true);
 			author.setDisable(true);
-		
+
 		} else {
 			sculptures.setDisable(false);
 			paintings.setDisable(false);
@@ -136,8 +184,6 @@ public class SearchingController {
 
 		} else {
 
-			ArrayList<Listing> found = new ArrayList<>();
-
 			if (!descriptions.isSelected() && !author.isSelected()) { // none selected
 
 				String userInput = searchingTextField.getText();
@@ -147,7 +193,18 @@ public class SearchingController {
 					if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())) {
 						Listing l = new Listing(artwork);
 						l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
-						s.getChildren().add(l);
+						System.out.println("min " + minimum);
+						System.out.println("max " + maximum);
+
+						if (sculptures.isSelected() && artwork instanceof Sculpture
+								&& artwork.getHighestBidAmount() > minimum && artwork.getHighestBidAmount() <= maximum) {
+							s.getChildren().add(l);
+
+						} else if (paintings.isSelected() && artwork instanceof Painting
+								&& artwork.getHighestBidAmount() > minimum && artwork.getHighestBidAmount() <= maximum) {
+							s.getChildren().add(l);
+
+						}
 
 					}
 				}
@@ -156,6 +213,22 @@ public class SearchingController {
 					@Override
 					public void handle(KeyEvent event) {
 						String userInput = searchingTextField.getText();
+
+						double min = Double.MIN_VALUE;
+						double max = Double.MAX_VALUE;
+
+						if (priceRange.isSelected()) {
+							try {
+								double minPrice = Double.parseDouble(priceFrom.getText());
+								double maxPrice = Double.parseDouble(priceTo.getText());
+
+								min = minPrice;
+								max = maxPrice;
+
+							} catch (Exception e) {
+
+							}
+						}
 						if (userInput.length() > 0) {
 							s.getChildren().clear();
 
@@ -164,8 +237,17 @@ public class SearchingController {
 									Listing l = new Listing(artwork);
 									l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
 
-									s.getChildren().add(l);
-									found.add(l);
+									if (sculptures.isSelected() && artwork instanceof Sculpture
+											&& artwork.getHighestBidAmount() >= minimum
+											&& artwork.getHighestBidAmount() <= maximum) {
+										s.getChildren().add(l);
+
+									} else if (paintings.isSelected() && artwork instanceof Painting
+											&& artwork.getHighestBidAmount() >= minimum
+											&& artwork.getHighestBidAmount() <= maximum) {
+										s.getChildren().add(l);
+
+									}
 
 								}
 							}
@@ -197,8 +279,17 @@ public class SearchingController {
 								l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
 							}
 
-							s.getChildren().add(l);
-							found.add(l);
+							if (sculptures.isSelected() && artwork instanceof Sculpture
+									&& artwork.getHighestBidAmount() >= minimum
+									&& artwork.getHighestBidAmount() <= maximum) {
+								s.getChildren().add(l);
+
+							} else if (paintings.isSelected() && artwork instanceof Painting
+									&& artwork.getHighestBidAmount() >= minimum
+									&& artwork.getHighestBidAmount() <= maximum) {
+								s.getChildren().add(l);
+
+							}
 
 						}
 					}
@@ -210,6 +301,22 @@ public class SearchingController {
 					public void handle(KeyEvent event) {
 
 						String userInput = searchingTextField.getText();
+
+						double min = Double.MIN_VALUE;
+						double max = Double.MAX_VALUE;
+
+						if (priceRange.isSelected()) {
+							try {
+								double minPrice = Double.parseDouble(priceFrom.getText());
+								double maxPrice = Double.parseDouble(priceTo.getText());
+
+								min = minPrice;
+								max = maxPrice;
+
+							} catch (Exception e) {
+
+							}
+						}
 
 						if (!userInput.trim().isEmpty() && userInput.length() > 2) {
 							s.getChildren().clear();
@@ -224,8 +331,18 @@ public class SearchingController {
 									} else {
 										l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
 									}
-									s.getChildren().add(l);
-									found.add(l);
+
+									if (sculptures.isSelected() && artwork instanceof Sculpture
+											&& artwork.getHighestBidAmount() >= minimum
+											&& artwork.getHighestBidAmount() <= maximum) {
+										s.getChildren().add(l);
+
+									} else if (paintings.isSelected() && artwork instanceof Painting
+											&& artwork.getHighestBidAmount() >= minimum
+											&& artwork.getHighestBidAmount() <= maximum) {
+										s.getChildren().add(l);
+
+									}
 
 								}
 							}
@@ -240,7 +357,7 @@ public class SearchingController {
 
 				String userInput = searchingTextField.getText();
 
-				if (userInput.trim().length() > 1) {
+				if (userInput.trim().length() > 0) {
 					for (Artwork artwork : arts) {
 						if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 								|| artwork.getCreator().toLowerCase().contains(userInput.toLowerCase())) {
@@ -253,17 +370,31 @@ public class SearchingController {
 								l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
 							}
 
-							s.getChildren().add(l);
+							if (sculptures.isSelected() && artwork instanceof Sculpture
+									&& artwork.getHighestBidAmount() >= minimum
+									&& artwork.getHighestBidAmount() <= maximum) {
+								s.getChildren().add(l);
 
+							} else if (paintings.isSelected() && artwork instanceof Painting
+									&& artwork.getHighestBidAmount() >= minimum
+									&& artwork.getHighestBidAmount() <= maximum) {
+								s.getChildren().add(l);
+
+							}
 						}
 					}
 				}
 
 				searchingTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
 					@Override
 					public void handle(KeyEvent event) {
 						String userInput = searchingTextField.getText();
-						if (userInput.trim().length() > 1) {
+
+						double min = Double.MIN_VALUE;
+						double max = Double.MAX_VALUE;
+
+						if (userInput.trim().length() > 0) {
 
 							s.getChildren().clear();
 
@@ -279,8 +410,17 @@ public class SearchingController {
 										l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
 									}
 
-									s.getChildren().add(l);
-									found.add(l);
+									if (sculptures.isSelected() && artwork instanceof Sculpture
+											&& artwork.getHighestBidAmount() >= minimum
+											&& artwork.getHighestBidAmount() <= maximum) {
+										s.getChildren().add(l);
+
+									} else if (paintings.isSelected() && artwork instanceof Painting
+											&& artwork.getHighestBidAmount() >= minimum
+											&& artwork.getHighestBidAmount() <= maximum) {
+										s.getChildren().add(l);
+
+									}
 
 								}
 							}
@@ -293,7 +433,7 @@ public class SearchingController {
 
 				String userInput = searchingTextField.getText();
 
-				if (userInput.trim().length() > 1) {
+				if (userInput.trim().length() > 0) {
 					for (Artwork artwork : arts) {
 						if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 								|| artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())
@@ -311,9 +451,17 @@ public class SearchingController {
 								l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
 							}
 
-							s.getChildren().add(l);
-							found.add(l);
+							if (sculptures.isSelected() && artwork instanceof Sculpture
+									&& artwork.getHighestBidAmount() >= minimum
+									&& artwork.getHighestBidAmount() <= maximum) {
+								s.getChildren().add(l);
 
+							} else if (paintings.isSelected() && artwork instanceof Painting
+									&& artwork.getHighestBidAmount() >= minimum
+									&& artwork.getHighestBidAmount() <= maximum) {
+								s.getChildren().add(l);
+
+							}
 						}
 					}
 				}
@@ -322,6 +470,10 @@ public class SearchingController {
 					public void handle(KeyEvent event) {
 
 						String userInput = searchingTextField.getText();
+
+						double min = Double.MIN_VALUE;
+						double max = Double.MAX_VALUE;
+
 						s.getChildren().clear();
 
 						if (userInput.trim().length() > 1) {
@@ -340,10 +492,20 @@ public class SearchingController {
 
 									else {
 										l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+
 									}
 
-									s.getChildren().add(l);
-									found.add(l);
+									if (sculptures.isSelected() && artwork instanceof Sculpture
+											&& artwork.getHighestBidAmount() >= minimum
+											&& artwork.getHighestBidAmount() <= maximum) {
+										s.getChildren().add(l);
+
+									} else if (paintings.isSelected() && artwork instanceof Painting
+											&& artwork.getHighestBidAmount() >= minimum
+											&& artwork.getHighestBidAmount() <= maximum) {
+										s.getChildren().add(l);
+
+									}
 
 								}
 							}

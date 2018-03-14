@@ -8,11 +8,15 @@ public class CustomGallery {
 	private String description;
 	private int numberOfPaintings;
 	private int numberOfSculptures;
-	
+	private int currentPaintings;
+	private int currentSculptures;
+
 	public CustomGallery(String name, User user, String description, int paintings, int sculptures) {
 		this.name = name;
 		this.user = user;
-		artwork = new ArrayList<>();
+		this.currentPaintings = 0;
+		this.currentSculptures= 0;
+		this.artwork = new ArrayList<>();
 		this.description = description;
 		this.numberOfPaintings = paintings;
 		this.numberOfSculptures = sculptures;
@@ -41,19 +45,29 @@ public class CustomGallery {
 	public void setArtwork(ArrayList<Artwork> artwork) {
 		this.artwork = artwork;
 	}
-	
+
 	public String getTextFileOutput() {
-		String output = name+"#"+user.getUsername() +"#"+description+"#"+numberOfPaintings+"#"+numberOfSculptures+"#";
-		
+		String output = name + "#" + user.getUsername() + "#" + description + "#" + numberOfPaintings + "#"
+				+ numberOfSculptures + "#";
+
 		return output;
 	}
-	
+
 	public void addArtwork(Artwork artwork1) {
-		if(!artwork.contains(artwork1)) {
-			artwork.add(artwork1);
+		if (!artwork.contains(artwork1)) {
+
+			if (artwork1 instanceof Painting && currentPaintings<numberOfPaintings) {
+				currentPaintings++;
+				artwork.add(artwork1);
+			} else if (artwork1 instanceof Sculpture && currentSculptures < numberOfSculptures) {
+				currentSculptures++;
+				artwork.add(artwork1);
+
+			}
+
+			
 
 		}
 	}
-	
-	
+
 }

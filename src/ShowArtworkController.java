@@ -186,6 +186,7 @@ public class ShowArtworkController {
 		Writer.addArtworkToGallery(LoginController.getUser(), artwork,
 				LoginController.getUser().getCustomGallery(track.getValue()));
 		
+		LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
 		
 		
 		Alert alert = new Alert(AlertType.INFORMATION);

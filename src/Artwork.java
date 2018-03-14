@@ -197,6 +197,7 @@ public class Artwork {
 		currentHighestBid = bid.getBidder().getUsername();
 		
 
+		highestBidAmount = highestBid;
 		if(bidsOnItem.size() == bidsAllowed) {
 			bidIsOver = true;
 			bid.setWinningBid(true);
@@ -209,7 +210,7 @@ public class Artwork {
 	 * @return double - value of highest bid.
 	 */
 	public double getHighestBidAmount() {
-		return highestBid;
+		return highestBidAmount;
 	}
 
 	/**
@@ -327,6 +328,8 @@ public class Artwork {
 		
 		return winnerName;
 	}	
+	
+	
 	
 
 }

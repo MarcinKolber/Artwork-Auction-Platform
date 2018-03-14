@@ -59,7 +59,6 @@ public class GalleryController {
 		for(Artwork art : cg.getArtwork()) {
 			Listing listing = new Listing(art);
 			display.getChildren().add(listing);
-			System.out.println("l1dsaasdlllll");
 
 			
 		}
