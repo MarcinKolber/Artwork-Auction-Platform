@@ -19,7 +19,6 @@ public class GalleryButton extends Button {
 		int b = rnd.nextInt(255);
 		setStyle("-fx-background-color: rgb(" + 0 + "," + g + "," + b + ",0.2); -fx-font-size: 1.5em; ");
 
-
 		
 	}
 

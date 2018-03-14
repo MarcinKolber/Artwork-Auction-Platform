@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -27,6 +28,10 @@ import javafx.stage.Stage;
  * @author Marcin Created on 22/11/2017
  */
 public class GUIController {
+	
+
+    @FXML
+    private VBox updates;
 
 	@FXML
 	private Label nickname;
@@ -166,7 +171,17 @@ public class GUIController {
 		logOut.setOnAction(e -> exit());
 
 		customGalleries.setOnAction(e -> openGalleries());
+		updatesButtons();
 	}
+	
+	
+	public void updatesButtons() {
+		
+		MenuButton notifications = new MenuButton("Notifications", "Dashboard.fxml");
+		updates.getChildren().add(notifications);
+	}
+	
+	
 
 	public void openGalleries() {
 		FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/Gallery.fxml"));

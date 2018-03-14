@@ -8,3 +8,4 @@ sculpture,marcin,Cheeta Flight ,4214.0,Mar 11 2020 01:19:51 AM
 painting,marcin,The Old Guitarist,123.0,Mar 11 2019 01:34:55 AM
 sculpture,marcin,Cloud gate,9999999.0,Mar 11 2019 01:39:28 AM
 sculpture,marcin,Cloud gate,200000.0,Mar 11 2019 22:45:27 PM
+painting,marcin,test1,120.0,Mar 14  2018 17:24:05 PM

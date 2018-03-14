@@ -68,6 +68,7 @@ public class User {
 		this.customImage = false;
 		this.imgView = new ImageView();
 		logins = new ArrayList<>();
+		artWon = new ArrayList<>();
 		customGalleries = new ArrayList<>();
 		try {
 			this.image = new Image(new FileInputStream("avatars/avatar" + avatarIndex + ".png"));
@@ -114,6 +115,8 @@ public class User {
 		this.wonBids = new ArrayList<>();
 		customGalleries = new ArrayList<>();
 		accountCreationDate = new Date();
+		artWon = new ArrayList<>();
+
 
 		if (index < 100) {
 			try {
@@ -585,6 +588,9 @@ public class User {
 		this.accountCreationDate = accountCreationDate;
 	}
 	
+	public void addToWonArtworks(Artwork artwork) {
+		
+	}
 	
 	
 }

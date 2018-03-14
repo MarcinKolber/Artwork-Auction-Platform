@@ -125,6 +125,9 @@ public class FileReader {
 	 */
 	public static void addSculpture(Sculpture sculpture) {
 		sculptures.add(sculpture);
+		artworks.add(sculpture);
+		
+
 	}
 
 	/**
@@ -135,6 +138,7 @@ public class FileReader {
 	 */
 	public static void addPainting(Painting painting) {
 		paintings.add(painting);
+		artworks.add(painting);
 	}
 
 	/**

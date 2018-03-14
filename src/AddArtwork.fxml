@@ -10,26 +10,36 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="774.0" prefWidth="1008.0" style="-fx-background-color: rgb(26, 40, 61, 0.9);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddArtworkController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="1008.0" style="-fx-background-color: rgb(26, 40, 61, 0.9);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddArtworkController">
    <center>
-      <VBox prefHeight="774.0" prefWidth="525.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="611.0" prefWidth="253.0" spacing="5.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
          <children>
-            <Label alignment="TOP_CENTER" prefHeight="141.0" prefWidth="261.0" text="Add a new artwork" textFill="WHITE">
+            <Label alignment="TOP_CENTER" prefHeight="141.0" prefWidth="261.0" text="Add a new artwork" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="30.0" top="30.0" />
                </VBox.margin>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="RED" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
             <Label text="Width (in cm)" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <VBox.margin>
                   <Insets />
@@ -42,7 +52,7 @@
             </TextField>
             <Label text="Height (in cm)" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <VBox.margin>
                   <Insets />
@@ -55,7 +65,7 @@
             </TextField>
             <Label text="Depth (in cm)" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <VBox.margin>
                   <Insets />
@@ -68,7 +78,7 @@
             </TextField>
             <Label text="Material" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <VBox.margin>
                   <Insets />
@@ -113,22 +123,22 @@
             </RadioButton>
             <Label text="Title" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </padding>
             </Label>
             <TextField fx:id="title" />
             <Label text="Name of creator" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </padding>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -137,10 +147,10 @@
             <TextField fx:id="creator" />
             <Label text="Year of creation" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </padding>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -149,10 +159,10 @@
             <TextField fx:id="creationYear" />
             <Label text="Description" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </padding>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -161,10 +171,10 @@
             <TextArea fx:id="description" prefHeight="66.0" prefWidth="258.0" />
             <Label text="Bids limit" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </padding>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -173,10 +183,10 @@
             <TextField fx:id="bidLimit" />
             <Label text="Reserve price" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </padding>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -193,14 +203,14 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="694.0" prefWidth="409.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="468.0" prefWidth="461.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="TOP_CENTER" prefHeight="36.0" prefWidth="407.0" text="Add images" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets />
                </VBox.margin>
             </Label>
             <Label text="Choose up to 4 images" textFill="WHITE" />
@@ -211,8 +221,8 @@
             </Button>
             <HBox prefHeight="184.0" prefWidth="329.0" spacing="15.0">
                <children>
-                  <ImageView fx:id="pic1" fitHeight="196.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="pic2" fitHeight="196.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pic1" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pic2" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -220,8 +230,8 @@
             </HBox>
             <HBox prefHeight="184.0" prefWidth="393.0" spacing="15.0">
                <children>
-                  <ImageView fx:id="pic3" fitHeight="196.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="pic4" fitHeight="196.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pic3" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pic4" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -230,10 +240,10 @@
             <VBox prefHeight="200.0" prefWidth="100.0" />
          </children>
          <padding>
-            <Insets left="50.0" right="30.0" />
+            <Insets left="50.0" right="30.0" top="70.0" />
          </padding>
          <BorderPane.margin>
-            <Insets top="80.0" />
+            <Insets top="30.0" />
          </BorderPane.margin>
       </VBox>
    </right>

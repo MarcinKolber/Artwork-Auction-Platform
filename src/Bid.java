@@ -153,7 +153,7 @@ public class Bid {
 	public String getTextFileOutput() {
 		
 		Date date = bidDate;
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd yyyy HH:mm:ss a");
 
 		String d = dateFormatter.format(date);
 		

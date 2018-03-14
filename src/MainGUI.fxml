@@ -21,7 +21,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
    <left>
       <VBox prefHeight="575.0" prefWidth="191.0" spacing="2.0" style="-fx-background-color: rgb(26, 40, 61);" BorderPane.alignment="CENTER">
          <children>
@@ -172,7 +172,21 @@
                         <Label text="It is simplier than you think! Just press a button Create a new artwork above and enter details. Don't forget to add images in order to attract more people. " textFill="WHITE" wrapText="true" />
                      </children>
                   </VBox>
-               </left></BorderPane>
+               </left>
+               <center>
+                  <VBox fx:id="updates" prefHeight="399.0" prefWidth="272.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="See what's new in Artatawe" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </VBox>
+               </center></BorderPane>
          </center>
          <BorderPane.margin>
             <Insets />

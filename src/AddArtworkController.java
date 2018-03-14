@@ -277,6 +277,7 @@ public class AddArtworkController {
 				copyPictures(titleA);
 				painting.resolveImage();
 				FileReader.addPainting(painting);
+				
 			} catch (IOException e) {
 				
 				e.printStackTrace();
