@@ -13,7 +13,12 @@ public class Listing extends VBox {
 	private Artwork artwork;
 	private ImageView imgView;
 	private Label description;
-
+	Label remaining;
+	Label year;
+	Label date;
+	Label creator;
+	Label highestBid;
+	Label title;
 	private int width;
 
 	public Listing(Artwork artwork) {
@@ -27,16 +32,19 @@ public class Listing extends VBox {
 		description = new Label();
 
 		imgView.setImage(artwork.getImage());
-		Label title = new Label(artwork.getTitle());
-		Label highestBid = new Label("Current bid: " + artwork.getHighestBidAmount());
-		Label creator = new Label("Creator " + artwork.getCreator());
-		Label year = new Label("Year: " + artwork.getCreationYear());
-		Label date = new Label("Added: " + artwork.getDateAdded());
-		Label remaining = new Label("Remaining bids: " + artwork.leftBids());
+		title = new Label("Title: " + artwork.getTitle());
+		highestBid = new Label("Current bid: " + artwork.getHighestBidAmount());
+		creator = new Label("Creator " + artwork.getCreator());
+		year = new Label("Year: " + artwork.getCreationYear());
+		date = new Label("Added: " + artwork.getDateAdded());
+		remaining = new Label("Remaining bids: " + artwork.leftBids());
+		description = new Label(artwork.getDescription());
+		description.setWrapText(true);
+
 		this.setMinWidth(width);
 		this.setSpacing(2);
 
-		getChildren().addAll(imgView, title, highestBid, creator, year, date, remaining);
+		getChildren().addAll(imgView, title, highestBid, creator, year, date, remaining, description);
 
 		setOnMouseClicked(e -> {
 			try {
@@ -46,20 +54,19 @@ public class Listing extends VBox {
 				e1.printStackTrace();
 			}
 		});
-		
-		
 
-		
-		setOnMouseEntered(e-> {this.setStyle("-fx-background-color: rgb(0,0, 20,0.1);");});
-		setOnMouseExited(e-> {this.setStyle("-fx-background-color: rgb(0,0, 20,0);");});
+		setOnMouseEntered(e -> {
+			this.setStyle("-fx-background-color: rgb(0,0, 20,0.1);");
+		});
+		setOnMouseExited(e -> {
+			this.setStyle("-fx-background-color: rgb(0,0, 20,0);");
+		});
 	}
 
 	public void displayInWindow() throws IOException {
 		ShowArtworkController.setArtwork(artwork);
 		Scene scene;
 
-		
-		
 		scene = new Scene(FXMLLoader.load(getClass().getResource("ShowArtwork.fxml")));
 		Stage stage = new Stage();
 		stage.setScene(scene);
@@ -74,5 +81,76 @@ public class Listing extends VBox {
 	public void setArtwork(Artwork artwork) {
 		this.artwork = artwork;
 	}
+
+	public ImageView getImgView() {
+		return imgView;
+	}
+
+	public void setImgView(ImageView imgView) {
+		this.imgView = imgView;
+	}
+
+	public Label getDescription() {
+		return description;
+	}
+
+	public void setDescription(Label description) {
+		this.description = description;
+	}
+
+	public Label getRemaining() {
+		return remaining;
+	}
+
+	public void setRemaining(Label remaining) {
+		this.remaining = remaining;
+	}
+
+	public Label getYear() {
+		return year;
+	}
+
+	public void setYear(Label year) {
+		this.year = year;
+	}
+
+	public Label getDate() {
+		return date;
+	}
+
+	public void setDate(Label date) {
+		this.date = date;
+	}
+
+	public Label getCreator() {
+		return creator;
+	}
+
+	public void setCreator(Label creator) {
+		this.creator = creator;
+	}
+
+	public Label getHighestBid() {
+		return highestBid;
+	}
+
+	public void setHighestBid(Label highestBid) {
+		this.highestBid = highestBid;
+	}
+
+	public Label getTitle() {
+		return title;
+	}
+
+	public void setTitle(Label title) {
+		this.title = title;
+	}
+
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	
+	
 
 }
