@@ -23,7 +23,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController">
    <left>
-      <VBox prefHeight="575.0" prefWidth="191.0" spacing="2.0" style="-fx-background-color: rgb(26, 40, 61);" BorderPane.alignment="CENTER">
+      <VBox prefHeight="575.0" prefWidth="191.0" spacing="2.0" style="-fx-background-color: rgb(0, 0, 31);" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="logOut" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Log out" />
             <ImageView fx:id="avatar" fitHeight="112.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true">
@@ -43,7 +43,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Hyperlink fx:id="mainPage" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Main page" textFill="WHITE">
+            <Hyperlink fx:id="mainPage" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Main page" textFill="#dd7d7d">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -51,7 +51,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Hyperlink>
-            <Hyperlink fx:id="searchingB" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Searching" textFill="WHITE">
+            <Hyperlink fx:id="searchingB" prefHeight="35.0" prefWidth="124.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Searching" textFill="#dd7d7d">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -81,12 +81,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="sales" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Sales" textFill="WHITE">
+            <Hyperlink fx:id="sales" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Sales" textFill="#dd7d7d">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="customGalleries" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Custom galleries" textFill="WHITE">
+            <Hyperlink fx:id="customGalleries" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: rgb(18, 95, 222  ,0);" text="Custom galleries" textFill="#dd7d7d">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -121,7 +121,7 @@
    <center>
       <BorderPane style="-fx-background-color: rgb(26, 40, 61, 0.7);" BorderPane.alignment="CENTER">
          <top>
-            <HBox minWidth="90.0" prefHeight="41.0" prefWidth="888.0" spacing="10.0" style="-fx-background-color: rgb(26, 40, 61, 0.7);" BorderPane.alignment="CENTER">
+            <HBox minWidth="90.0" prefHeight="41.0" prefWidth="888.0" spacing="10.0" style="-fx-background-color: rgb(0, 0, 31, 0.6);" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
@@ -142,10 +142,18 @@
                <top>
                   <VBox prefHeight="132.0" prefWidth="436.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label text="Welcome to Artatawe!" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="43.0" prefWidth="597.0" text="Welcome to Artatawe!" textAlignment="CENTER">
                            <font>
                               <Font size="29.0" />
                            </font>
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="#7c83ffd6" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
                         </Label>
                         <Label fx:id="user1" text="User" textFill="WHITE">
                            <font>
@@ -174,13 +182,50 @@
                   </VBox>
                </left>
                <center>
-                  <VBox fx:id="updates" prefHeight="399.0" prefWidth="272.0" BorderPane.alignment="CENTER">
+                  <VBox fx:id="updates" prefHeight="399.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label text="See what's new in Artatawe" textFill="WHITE">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <Label text="We have made several changes to Artatawe since the last version" textFill="WHITE" wrapText="true">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin></Label>
+                        <HBox fx:id="notificationBox" prefHeight="58.0" prefWidth="287.0" spacing="10.0">
+                           <children>
+                              <Button minWidth="90.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Notifications" textFill="WHITE" />
+                              <Label prefHeight="65.0" prefWidth="187.0" text="A new panel notifying user about new events since the last login." textFill="WHITE" wrapText="true" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="7.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="searchingBox" prefHeight="58.0" prefWidth="287.0" spacing="10.0">
+                           <children>
+                              <Button minWidth="90.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Advanced searching" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label prefHeight="65.0" prefWidth="187.0" text="Searching mechanism allowing user to find artworks by entering partial information." textFill="WHITE" wrapText="true" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="7.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="salesBox" prefHeight="58.0" prefWidth="287.0" spacing="10.0">
+                           <children>
+                              <Button minWidth="90.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Sales statistics" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label prefHeight="58.0" prefWidth="187.0" text="A graphical representation of sale performance." textFill="WHITE" wrapText="true" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="7.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="galleriesBox" prefHeight="56.0" prefWidth="287.0" spacing="10.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Custom galleries" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label prefHeight="50.0" prefWidth="187.0" text="Custom galleries for tracking auctions." textFill="WHITE" wrapText="true" />
+                           </children>
+                        </HBox>
                      </children>
                      <padding>
                         <Insets left="50.0" />
@@ -194,7 +239,7 @@
       </BorderPane>
    </center>
    <right>
-      <VBox prefHeight="575.0" prefWidth="246.0" spacing="10.0" style="-fx-background-color: rgb(26, 40, 61, 1);" BorderPane.alignment="CENTER">
+      <VBox prefHeight="575.0" prefWidth="246.0" spacing="10.0" style="-fx-background-color: rgb(0, 0, 31) rgb(0, 0, 31);" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="TOP" prefHeight="38.0" prefWidth="228.0" text="Searching" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <font>
@@ -212,6 +257,7 @@
             <CheckBox fx:id="sculptureSelect" mnemonicParsing="false" text="Sculptures" textFill="WHITE" />
             <CheckBox fx:id="paintingSelect" mnemonicParsing="false" text="Paintings" textFill="WHITE" />
             <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="234.0" text="Search" />
+            <Button fx:id="advanced" mnemonicParsing="false" prefHeight="25.0" prefWidth="230.0" text="Advanced searching" />
             <ListView fx:id="searchList" prefHeight="309.0" prefWidth="234.0">
                <VBox.margin>
                   <Insets />

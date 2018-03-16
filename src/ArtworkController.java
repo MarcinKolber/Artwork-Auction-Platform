@@ -22,21 +22,20 @@ import javafx.stage.Stage;
 
 /**
  * This is the GUI class for displaying artwork
- * @author Daniel
- * Created on 5/12/2017
+ * 
+ * @author Daniel Created on 5/12/2017
  */
 
 public class ArtworkController {
 
-    @FXML
-    private ChoiceBox<String> track;
+	@FXML
+	private ChoiceBox<String> track;
 
-    @FXML
-    private Button addToCustomGallery;
-	
-    @FXML
-    private Label description;
-	
+	@FXML
+	private Button addToCustomGallery;
+
+	@FXML
+	private Label description;
 
 	@FXML
 	private Button back; // button to return to browsing
@@ -112,40 +111,35 @@ public class ArtworkController {
 
 	private static Painting currentPainting; // displayed painting
 	private static Sculpture currentSculpture; // displayed sculpture
-	
 
 	/**
 	 * Initialises the view of an artwork
 	 */
 	public void initialize() {
-		
-		
-		ObservableList<String> options = 
-			    FXCollections.observableArrayList(
-			    		LoginController.getUser().customGalleriesToString()
-			    );
+
+		ObservableList<String> options = FXCollections
+				.observableArrayList(LoginController.getUser().customGalleriesToString());
 		track.setItems(options);
-		
 
 		// If painting is displayed, update the page
 		if (currentPainting != null) {
 			initializePainting(); // initialises the painting display
-			
+
 			// If there are any bids on the painting, get the amount of the highest bid
 			if (currentPainting.getNumberOfBids() > 0) {
 				currentPrice.setText(currentPainting.getHighestBidAmount() + "");
 			} else { // Otherwise, display the reserve price
 				currentPrice.setText(currentPainting.getReservePrice() + "");
 			}
-			
+
 			categoryA.setText("Painting"); // set the label for category to "Painting"
 
 		}
-		
+
 		// If painting is displayed, update the page
 		if (currentSculpture != null) {
 			initializeSculpture(); // initialises the painting display
-			
+
 			// If there are any bids on the sculpture, get the amount of the highest bid
 			if (currentSculpture.getNumberOfBids() > 0) {
 				currentPrice.setText(currentSculpture.getHighestBidAmount() + "");
@@ -153,7 +147,7 @@ public class ArtworkController {
 				currentPrice.setText(currentSculpture.getReservePrice() + "");
 
 			}
-			
+
 			categoryA.setText("Sculpture"); // set the label for category to "Sculpture"
 
 		}
@@ -166,37 +160,33 @@ public class ArtworkController {
 
 		// Return to browsing page
 		back.setOnAction(e -> backToBrowsing());
-		
-		
-		addToCustomGallery.setOnAction(e-> addToCustomGallery());
+
+		addToCustomGallery.setOnAction(e -> addToCustomGallery());
 
 	}
-	
-	
-	
+
 	public void addToCustomGallery() {
-		
-		if(currentPainting != null) {
-			Writer.addArtworkToGallery(LoginController.getUser(), currentPainting, 
+
+		if (currentPainting != null) {
+			Writer.addArtworkToGallery(LoginController.getUser(), currentPainting,
 					LoginController.getUser().getCustomGallery(track.getValue()));
 
 		}
-		
-		if(currentSculpture != null) {
+
+		if (currentSculpture != null) {
 			Writer.addArtworkToGallery(LoginController.getUser(), currentSculpture,
 					LoginController.getUser().getCustomGallery(currentSculpture.getTitle()));
 
 		}
 	}
-	
 
 	/**
 	 * Method to set the page back to browsing
 	 */
 	public void backToBrowsing() {
 		BorderPane bp;
-		
-		// Try to load an FXML file with browsing 
+
+		// Try to load an FXML file with browsing
 		try {
 			bp = FXMLLoader.load(getClass().getResource("MainDashboard.fxml"));
 			mainSection.getChildren().setAll(bp);
@@ -220,18 +210,18 @@ public class ArtworkController {
 				user = currentSculpture.getOwner();
 			}
 		} else if (currentPainting != null) {
-			if(currentPainting.getOwner() != null){
+			if (currentPainting.getOwner() != null) {
 				user = currentPainting.getOwner();
-			}	
+			}
 		}
-		
+
 		// Passes the reference to the owner to the window displaying user
 		UserDisplayController.setUser(user);
 
 		// Loads the window for a user
 		FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/UserDisplay.fxml"));
-		
-		//  Try to display the user
+
+		// Try to display the user
 		try {
 			Parent root = fxmlL.load();
 
@@ -255,7 +245,7 @@ public class ArtworkController {
 	public void initializePainting() {
 		// Looks for the image
 		currentPainting.resolveImage();
-		
+
 		// Sets all information about the painting
 		titleA.setText(currentPainting.getTitle());
 		widthA.setText(currentPainting.getWidth() + "");
@@ -267,7 +257,7 @@ public class ArtworkController {
 		mainPic.setImage(currentPainting.getImage());
 		sellerA.setText(currentPainting.getOwner().getUsername());
 		description.setText(currentPainting.getDescription());
-		
+
 		// Gets the owner of the painting
 		User owner = currentPainting.getOwner();
 
@@ -281,7 +271,7 @@ public class ArtworkController {
 	 * Initialises the sculpture
 	 */
 	public void initializeSculpture() {
-		
+
 		// Loads images of sculpture
 		currentSculpture.resolveImage();
 		currentSculpture.resolveAdditionalImages();
@@ -300,7 +290,7 @@ public class ArtworkController {
 		for (int i = 0; i < additionalImages.size(); i++) {
 			imageViews.get(i).setImage((additionalImages.get(i)));
 		}
-		
+
 		// Display information about sculpture
 		mainPic.setImage(currentSculpture.getImage());
 		titleA.setText(currentSculpture.getTitle());
@@ -335,15 +325,15 @@ public class ArtworkController {
 		String type = "";
 		Bid bid = null;
 
-		//  Error checking for bid
+		// Error checking for bid
 		if (currentSculpture != null) {
 			type = "sculpture";
 			String amountStr = bidAmount.getText(); // gets the amount of bid
 			try { // try to parse the amount to a double
 				double amount = Double.parseDouble(amountStr);
 				Date date = new Date();
-				
-				// Initialises a new bid  object
+
+				// Initialises a new bid object
 				bid = new Bid(type, LoginController.getUser(), amount, currentSculpture, date);
 
 				// Checks if bid is acceptable
@@ -452,16 +442,20 @@ public class ArtworkController {
 
 	/**
 	 * Sets the sculpture
-	 * @param sculpture sculpture to be displayed
+	 * 
+	 * @param sculpture
+	 *            sculpture to be displayed
 	 */
 	public static void setCurrentSculpture(Sculpture sculpture) {
 		currentPainting = null;
 		currentSculpture = sculpture;
 	}
-	
+
 	/**
 	 * Sets the painting
-	 * @param painting painting to display
+	 * 
+	 * @param painting
+	 *            painting to display
 	 */
 	public static void setCurrentPainting(Painting painting) {
 		currentPainting = painting;

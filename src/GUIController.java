@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,10 +31,9 @@ import javafx.stage.Stage;
  * @author Marcin Created on 22/11/2017
  */
 public class GUIController {
-	
 
-    @FXML
-    private VBox updates;
+	@FXML
+	private VBox updates;
 
 	@FXML
 	private Label nickname;
@@ -128,15 +130,51 @@ public class GUIController {
 	private Button logOut;
 
 	@FXML
+	private Button advanced;
+
+	@FXML
 	private Hyperlink customGalleries;
+
+	@FXML
+	private HBox notificationBox;
+
+	@FXML
+	private HBox searchingBox;
+
+	@FXML
+	private HBox salesBox;
+
+	@FXML
+	private HBox galleriesBox;
+
+	private ArrayList<HBox> hBoxes;
+
+	private String searchingContent;
 
 	/**
 	 * Initialises the main elements of GUI
 	 */
 	@SuppressWarnings("deprecation")
 	public void initialize() {
+
+		hBoxes = new ArrayList<>();
+		hBoxes.add(notificationBox);
+		hBoxes.add(searchingBox);
+		hBoxes.add(salesBox);
+		hBoxes.add(galleriesBox);
+
+		for (HBox box : hBoxes) {
+			box.setOnMouseEntered(e -> box.setStyle("fx-background-color: rgb(126, 40, 61, 0.9);"));
+			box.setOnMouseExited(e -> box.setStyle("-fx-background-color: rgb(26, 40, 61, 0.1);"));
+
+		}
+
+		notificationBox.setOnMouseClicked(e -> displayMainDashboard());
+		searchingBox.setOnMouseClicked(e -> advancedSearching());
+		salesBox.setOnMouseClicked(e -> openSalesTab());
+		galleriesBox.setOnMouseClicked(e -> openGalleries());
+
 		avatar.setImage(LoginController.getUser().getImage());
-		searching.setDisable(true);
 		paintingSelect.setSelected(true);
 		sculptureSelect.setSelected(true);
 		artworkSelect.setSelected(true);
@@ -161,7 +199,7 @@ public class GUIController {
 		myBidsLink.setOnAction(e -> displayMyBids());
 		dashboardLink.setOnAction(e -> displayMainDashboard());
 
-		nickname.setText("  "+LoginController.getUser().getUsername());
+		nickname.setText("  " + LoginController.getUser().getUsername());
 		searchingB.setOnAction(e -> openSearchTab());
 		sales.setOnAction(e -> openSalesTab());
 		searchButton.setOnAction(e -> handleSearch());
@@ -171,17 +209,35 @@ public class GUIController {
 		logOut.setOnAction(e -> exit());
 
 		customGalleries.setOnAction(e -> openGalleries());
-		updatesButtons();
+		advanced.setOnAction(e -> advancedSearching());
+
+		searching.setOnKeyReleased(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				String input = searching.getText();
+				searchingContent = input;
+				handleSearch();
+
+			}
+
+		});
 	}
-	
-	
-	public void updatesButtons() {
-		
-		MenuButton notifications = new MenuButton("Notifications", "Dashboard.fxml");
-		updates.getChildren().add(notifications);
+
+	public void changeBoxesColor() {
+
 	}
-	
-	
+
+	public void advancedSearching() {
+		BorderPane bp; // Border Pane to load the new BorderPane in
+
+		try {
+			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/Searching.fxml"));
+			mainSection.getChildren().setAll(bp);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void openGalleries() {
 		FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/Gallery.fxml"));
@@ -286,11 +342,19 @@ public class GUIController {
 		ArrayList<String> artworks = new ArrayList<>();
 
 		for (Sculpture sculptureA : FileReader.getSculptures()) {
-			sculptures.add(sculptureA.getTitle());
+			String s = searching.getText();
+			if (sculptureA.getTitle().toLowerCase().contains(s.toLowerCase())) {
+				sculptures.add(sculptureA.getTitle());
+
+			}
 		}
 
 		for (Painting paintingA : FileReader.getPaintings()) {
-			paintings.add(paintingA.getTitle());
+			String s = searching.getText();
+			if (paintingA.getTitle().toLowerCase().contains(s.toLowerCase())) {
+				paintings.add(paintingA.getTitle());
+			}
+
 		}
 
 		if (sculptureSelect.isSelected() && !paintingSelect.isSelected()) {
@@ -325,38 +389,34 @@ public class GUIController {
 
 		try {
 
-			if (FileReader.getUser(s) != null) {
-				User user = FileReader.getUser(s);
-				UserDisplayController.setUser(user);
+			if (userSelect.isSelected()) {
+				if (FileReader.getUser(s) != null) {
+					User user = FileReader.getUser(s);
+					UserDisplayController.setUser(user);
 
-				FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/UserDisplay.fxml"));
-				try {
-					Parent root = fxmlL.load();
+					FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/UserDisplay.fxml"));
+					try {
+						Parent root = fxmlL.load();
 
-					Scene scene = new Scene(root, 450, 300);
+						Scene scene = new Scene(root, 450, 300);
 
-					Stage stage = new Stage();
-					stage.setScene(scene);
-					stage.initModality(Modality.APPLICATION_MODAL);
+						Stage stage = new Stage();
+						stage.setScene(scene);
+						stage.initModality(Modality.APPLICATION_MODAL);
 
-					stage.setTitle(user.getUsername());
-					stage.show();
+						stage.setTitle(user.getUsername());
+						stage.show();
 
-				} catch (IOException e) {
-					e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 
 			} else {
-				if (FileReader.getSculpture(s) != null) {
-					ArtworkController.setCurrentSculpture(FileReader.getSculpture(s));
-				}
 
-				if (FileReader.getPainting(s) != null) {
-					ArtworkController.setCurrentPainting(FileReader.getPainting(s));
-				}
+				Listing l = new Listing(FileReader.getArtwork(s));
 
-				bp = (BorderPane) FXMLLoader.load(getClass().getResource("/ArtworkView.fxml"));
-				mainSection.getChildren().setAll(bp);
+				l.displayInWindow();
 			}
 
 		} catch (IOException e) {
@@ -372,7 +432,10 @@ public class GUIController {
 		ArrayList<String> users = new ArrayList<>();
 
 		for (User user : FileReader.getUsers()) {
-			users.add(user.getUsername());
+			if (user.getUsername().toLowerCase().contains(searchingContent.toLowerCase())) {
+				users.add(user.getUsername());
+
+			}
 		}
 
 		observableList = FXCollections.observableArrayList(users);

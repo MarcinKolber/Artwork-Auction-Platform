@@ -1,9 +1,12 @@
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -48,6 +52,9 @@ public class SalesController {
 	@FXML
 	private Button generateButton;
 
+	@FXML
+	private ChoiceBox<Integer> year;
+
 	private ArrayList<Artwork> userArtworks;
 
 	private ArrayList<Artwork> soldArtworks;
@@ -60,8 +67,36 @@ public class SalesController {
 
 	private Date from;
 	private Date until;
+	private int yearNo;
+	private ArrayList<Integer> years;
 
 	public void initialize() {
+
+		years = new ArrayList<>();
+		
+		for(int i = 0; i<10; i++) {
+			years.add(i+2010);
+		}
+		
+		year.setItems(FXCollections.observableArrayList(years));
+
+		year.getSelectionModel().select(8);
+		yearNo = year.getSelectionModel().getSelectedItem();
+		LocalDate minDate = LocalDate.MIN;
+
+		LocalDate maxDate = LocalDate.MAX;
+
+		dateFrom.setValue((LocalDate.of(yearNo, 1, 1)));
+		dateTo.setValue((LocalDate.of(yearNo, 12, 31)));
+
+		Date date = new Date();
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+		String d = dateFormatter.format(date);
+		from = LoginController.getUser().getAccountCreationDate();
+
+		until = new Date();
+
 		tg = new ToggleGroup();
 
 		barchart.setToggleGroup(tg);
@@ -91,44 +126,78 @@ public class SalesController {
 		ref.setOnAction(e -> ref());
 		generateButton.setOnAction(e -> ref());
 
+		year.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+				yearNo = years.get((int) number2);
+
+				dateFrom.setValue((LocalDate.of(yearNo, 1, 1)));
+				dateTo.setValue((LocalDate.of(yearNo, 12, 31)));
+				ref();
+			}
+		});
+		ref();
+
 	}
 
 	public void ref() {
 		System.out.println("asassa");
 
-		LocalDate date = dateFrom.getValue();
+		dateFrom.setValue((LocalDate.of(yearNo, 1, 1)));
+		dateTo.setValue((LocalDate.of(yearNo, 12, 31)));
+
+		LocalDate date1 = dateFrom.getValue();
 
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+		LocalDate date2 = dateTo.getValue();
+
+		Date date3 = Date.from(date1.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		Date date4 = Date.from(date2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+		from = date3;
+		until = date4;
+
+		System.out.println(date3);
+		System.out.println(date4);
 
 		if (piechart.isSelected()) {
 			chartArea.getChildren().clear();
 			chartArea.getChildren().add(getPieChart());
 		} else if (barchart.isSelected()) {
+			int pickedYear = year.getSelectionModel().getSelectedItem();
+
+			dateFrom.setDisable(true);
+			dateTo.setDisable(true);
 			chartArea.getChildren().clear();
-			chartArea.getChildren().add(getBarChart());
+			chartArea.getChildren().add(getBarChart(pickedYear));
 
 		} else if (linechart.isSelected()) {
+			int pickedYear = year.getSelectionModel().getSelectedItem();
+
+			dateFrom.setDisable(true);
+			dateTo.setDisable(true);
+
 			chartArea.getChildren().clear();
-			chartArea.getChildren().add(getLineChart(2018));
+			chartArea.getChildren().add(getLineChart(pickedYear));
 
 		}
 
 	}
 
-	public BarChart<String, Number> getBarChart() {
+	public BarChart<String, Number> getBarChart(int year) {
 
 		final CategoryAxis xAxis = new CategoryAxis();
 		final NumberAxis yAxis = new NumberAxis();
 
 		xAxis.setLabel("Month");
 		yAxis.setLabel("Amount");
-		
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("Paintings");    
-        
-        XYChart.Series series2 = new XYChart.Series();
-        series2.setName("Sculptures");   
 
+		XYChart.Series series1 = new XYChart.Series();
+		series1.setName("Paintings");
+
+		XYChart.Series series2 = new XYChart.Series();
+		series2.setName("Sculptures");
 
 		final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
 
@@ -153,27 +222,26 @@ public class SalesController {
 
 		for (Artwork a : soldArtworks) {
 
-			int month = a.getDateAdded().getMonth();
+			if (a.getDateAdded().after(from) && a.getDateAdded().before(until)) {
+				int month = a.getDateAdded().getMonth();
 
-			if (a instanceof Painting) {
-				months[month].addPaintingsProfit(a.getHighestBidAmount());
-				System.out.println(a.getHighestBidAmount());
-			} else if (a instanceof Sculpture) {
-				months[month].addSculpturesProfit(a.getHighestBidAmount());
-				System.out.println(a.getHighestBidAmount());
+				if (a instanceof Painting) {
+					months[month].addPaintingsProfit(a.getHighestBidAmount());
+					System.out.println(a.getHighestBidAmount());
+				} else if (a instanceof Sculpture) {
+					months[month].addSculpturesProfit(a.getHighestBidAmount());
+					System.out.println(a.getHighestBidAmount());
 
+				}
 			}
 		}
-		
-		for(Month m: months) {
-	        series1.getData().add(new XYChart.Data(m.getName(), m.getPaintingsProfit()));
-	        series2.getData().add(new XYChart.Data(m.getName(), m.getSculptureProfit()));
+		for (Month m : months) {
+			series1.getData().add(new XYChart.Data(m.getName(), m.getPaintingsProfit()));
+			series2.getData().add(new XYChart.Data(m.getName(), m.getSculptureProfit()));
 
 		}
 
-		
-		
-        bc.getData().addAll(series1, series2);
+		bc.getData().addAll(series1, series2);
 
 		return bc;
 	}
@@ -185,11 +253,14 @@ public class SalesController {
 		double paintingVal = 0;
 
 		for (Artwork art : soldArtworks) {
-			if (art instanceof Sculpture) {
-				sculptureVal += art.getHighestBidAmount();
-			} else if (art instanceof Painting) {
-				paintingVal += art.getHighestBidAmount();
+			if (art.getDateAdded().after(from) && art.getDateAdded().before(until)) {
 
+				if (art instanceof Sculpture) {
+					sculptureVal += art.getHighestBidAmount();
+				} else if (art instanceof Painting) {
+					paintingVal += art.getHighestBidAmount();
+
+				}
 			}
 
 		}
@@ -233,15 +304,18 @@ public class SalesController {
 
 		for (Artwork a : soldArtworks) {
 
-			int month = a.getDateAdded().getMonth();
+			if (a.getDateAdded().after(from) && a.getDateAdded().before(until)) {
 
-			if (a instanceof Painting) {
-				months[month].addPaintingsProfit(a.getHighestBidAmount());
-				System.out.println(a.getHighestBidAmount());
-			} else if (a instanceof Sculpture) {
-				months[month].addSculpturesProfit(a.getHighestBidAmount());
-				System.out.println(a.getHighestBidAmount());
+				int month = a.getDateAdded().getMonth();
 
+				if (a instanceof Painting) {
+					months[month].addPaintingsProfit(a.getHighestBidAmount());
+					System.out.println(a.getHighestBidAmount());
+				} else if (a instanceof Sculpture) {
+					months[month].addSculpturesProfit(a.getHighestBidAmount());
+					System.out.println(a.getHighestBidAmount());
+
+				}
 			}
 		}
 
