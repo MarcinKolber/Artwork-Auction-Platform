@@ -115,14 +115,67 @@ public class SalesController {
 
 	}
 
-	public BarChart getBarChart() {
+	public BarChart<String, Number> getBarChart() {
 
 		final CategoryAxis xAxis = new CategoryAxis();
 		final NumberAxis yAxis = new NumberAxis();
 
+		xAxis.setLabel("Month");
+		yAxis.setLabel("Amount");
+		
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("Paintings");    
+        
+        XYChart.Series series2 = new XYChart.Series();
+        series2.setName("Sculptures");   
+
+
 		final BarChart<String, Number> bc = new BarChart<String, Number>(xAxis, yAxis);
 
-		return null;
+		Month[] months = new Month[12];
+		months[0] = new Month("January", 1);
+		months[1] = new Month("February", 2);
+		months[2] = new Month("March", 3);
+		months[3] = new Month("April", 4);
+		months[4] = new Month("May", 5);
+		months[5] = new Month("June", 6);
+		months[6] = new Month("July", 7);
+		months[7] = new Month("August", 8);
+		months[8] = new Month("September", 9);
+		months[9] = new Month("October", 10);
+		months[10] = new Month("November", 11);
+		months[11] = new Month("December", 12);
+
+		Date date = new Date();
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+		String d = dateFormatter.format(date);
+
+		for (Artwork a : soldArtworks) {
+
+			int month = a.getDateAdded().getMonth();
+
+			if (a instanceof Painting) {
+				months[month].addPaintingsProfit(a.getHighestBidAmount());
+				System.out.println(a.getHighestBidAmount());
+			} else if (a instanceof Sculpture) {
+				months[month].addSculpturesProfit(a.getHighestBidAmount());
+				System.out.println(a.getHighestBidAmount());
+
+			}
+		}
+		
+		for(Month m: months) {
+	        series1.getData().add(new XYChart.Data(m.getName(), m.getPaintingsProfit()));
+	        series2.getData().add(new XYChart.Data(m.getName(), m.getSculptureProfit()));
+
+		}
+
+		
+		
+        bc.getData().addAll(series1, series2);
+
+		return bc;
 	}
 
 	public PieChart getPieChart() {
