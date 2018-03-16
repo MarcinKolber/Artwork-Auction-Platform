@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="969.0" style="-fx-background-color: rgb(0,20, 70,0.9);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NotificationDisplayController">
+   <top>
+      <VBox prefHeight="69.0" prefWidth="753.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_CENTER" prefHeight="38.0" prefWidth="969.0" text="New auctions since the last login" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="lastLogin" alignment="TOP_CENTER" prefHeight="38.0" prefWidth="969.0" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children></VBox>
+   </top>
+   <bottom>
+      <VBox prefHeight="67.0" prefWidth="753.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <VBox prefHeight="480.0" prefWidth="169.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="24.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Label text="New artworks" textFill="WHITE" />
+                  <Label fx:id="newArts" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox prefHeight="24.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Label text="New sculptures" textFill="WHITE" />
+                  <Label fx:id="newSc" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox prefHeight="24.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Label text="New paintings" textFill="WHITE" />
+                  <Label fx:id="newPaint" text="Label" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox prefHeight="24.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <Label text="Display:" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="24.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <CheckBox fx:id="sculpturesCheckbox" mnemonicParsing="false" text="Sculptures" textFill="WHITE" />
+                  <CheckBox fx:id="paintingCheckbox" mnemonicParsing="false" text="Paintings" textFill="WHITE" />
+               </children>
+            </HBox>
+         </children></VBox>
+   </left>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <FlowPane fx:id="main" prefHeight="497.0" prefWidth="771.0" />
+         </content>
+      </ScrollPane>
+   </center>
+   <padding>
+      <Insets left="20.0" top="20.0" />
+   </padding>
+</BorderPane>

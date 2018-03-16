@@ -64,40 +64,47 @@ public class SearchingController {
 	private double maximum;
 
 	public void initialize() {
+		//initialising maximum and minimum values
 		minimum = Double.MIN_VALUE;
 		maximum = Double.MAX_VALUE;
+
+		//getting list of users
 		usersList = FileReader.getUsers();
 		tg = new ToggleGroup();
 
+		//adding artworks and users to toggle group
 		artworks.setToggleGroup(tg);
 		users.setToggleGroup(tg);
-		artworks.setSelected(true);
-		arts = FileReader.getArtworks();
 
-		refresh();
-		users.setOnAction(e -> refresh());
-		artworks.setOnAction(e -> refresh());
+		artworks.setSelected(true); //selecting artworks by default
+		sculptures.setSelected(true); //select sculptures by default
+		paintings.setSelected(true); //select paintings by default
 
-		if (users.isSelected()) {
-			sculptures.setDisable(true);
-			paintings.setDisable(true);
-			descriptions.setDisable(true);
-			author.setDisable(true);
+		arts = FileReader.getArtworks(); //getting the artwork files
+
+		refresh(); //refreshing the search
+		users.setOnAction(e -> refresh()); //refresh when users is toggled
+		artworks.setOnAction(e -> refresh()); //refresh when artworks is toggled
+		sculptures.setOnAction(e -> refresh()); //refresh when sculptures is toggled
+		paintings.setOnAction(e -> refresh()); //refresh when paintings is toggled
+		descriptions.setOnAction(e -> refresh()); //refresh when descriptions is toggled
+		author.setOnAction(e -> refresh()); //refresh when author is toggled
+
+		if (users.isSelected()) { //if users is selected
+			sculptures.setDisable(true); //disable sculptures
+			paintings.setDisable(true); //disable paintings
+			descriptions.setDisable(true); //disable descriptions
+			author.setDisable(true); //disable author
 
 		}
 
-		sculptures.setSelected(true);
-		paintings.setSelected(true);
-		sculptures.setOnAction(e -> refresh());
-		paintings.setOnAction(e -> refresh());
-		descriptions.setOnAction(e -> refresh());
-		author.setOnAction(e -> refresh());
-		
+		//when refreshed, get the new min and max values
 		refresh.setOnAction(e -> {
 			getMinMax();
 			refresh();
 		});
-		
+
+		//when price change is changed, get the new min and max values
 		priceRange.setOnAction(e -> {
 			getMinMax();
 			refresh();
@@ -105,59 +112,65 @@ public class SearchingController {
 
 	}
 
+	/**
+	 * Method to get the min and max vlues
+	 */
 	public void getMinMax() {
 
-		if (priceRange.isSelected()) {
+		if (priceRange.isSelected()) { //if the price range is enabled
 			double min = Double.MIN_VALUE;
 			double max = Double.MAX_VALUE;
 
 			if (priceRange.isSelected()) {
 				try {
-					int minPrice = Integer.parseInt(priceFrom.getText());
-					int maxPrice = Integer.parseInt(priceTo.getText());
-
+					int minPrice = Integer.parseInt(priceFrom.getText()); //get the min price
+					int maxPrice = Integer.parseInt(priceTo.getText()); //get the max price
+					//set the min and max values
 					minimum = minPrice;
 					maximum = maxPrice;
+					//print out the values
 					System.out.println(min);
 					System.out.println(max);
 
-				} catch (Exception e) {
+				} catch (Exception e) { //if something goes wrong, set the min and max to default values
 					minimum = Double.MIN_VALUE;
 					maximum = Double.MAX_VALUE;
 				}
 			}
-		} else {
-			
+		} else { //if price range is disabled, set the min and max to default values
 			minimum = Double.MIN_VALUE;
 			maximum = Double.MAX_VALUE;
 		}
 
 	}
 
+	/**
+	 * Method to refresh the search
+	 */
 	public void refresh() {
 
-		if (users.isSelected()) {
+		if (users.isSelected()) { //if users are enabled, disable everything but users
 			sculptures.setDisable(true);
 			paintings.setDisable(true);
 			descriptions.setDisable(true);
 			author.setDisable(true);
 
-		} else {
+		} else { //if users is not enabled, enable everything else
 			sculptures.setDisable(false);
 			paintings.setDisable(false);
 			descriptions.setDisable(false);
 			author.setDisable(false);
 		}
 
-		if (users.isSelected()) {
+		if (users.isSelected()) { //if users is selected
 
-			String input = searchingTextField.getText();
-			s.getChildren().clear();
+			String input = searchingTextField.getText(); //get the string from text box
+			s.getChildren().clear(); //clear the current users displayed
 
-			for (User user : usersList) {
+			for (User user : usersList) { //for each user in users
 				if (user.getUsername().toLowerCase().contains(input.toLowerCase())) {
-					UserView uv = new UserView(user);
-					s.getChildren().add(uv);
+					UserView uv = new UserView(user); //create a new user view
+					s.getChildren().add(uv); //add the user to the display
 
 				}
 			}
@@ -182,8 +195,8 @@ public class SearchingController {
 
 			});
 
-		} else {
-
+		} else{
+	//TODO COMMENT THIS
 			if (!descriptions.isSelected() && !author.isSelected()) { // none selected
 
 				String userInput = searchingTextField.getText();
