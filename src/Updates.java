@@ -228,7 +228,7 @@ public class Updates {
 
 	/**
 	 * Method to set the last log in date
-	 * @param date 
+	 * @param date
 	 */
 	public static void setDate(Date date) {
 		Updates.date = date;

@@ -31,19 +31,12 @@ public class NotificationDisplayController {
     private static ArrayList<Artwork> arts = new ArrayList<>();
     
     public void initialize() {
-    	
-
     	lastLogin.setText(Updates.getDate()+"");
-    	
-    	
-    	
-    	
+
     	for(Artwork ar: arts) {
         	Listing l1 = new Listing(ar);
         	main.getChildren().add(l1);
     	}
-    	
-
 
     	paintingCheckbox.setOnAction(e-> {
     		filter();
@@ -52,8 +45,6 @@ public class NotificationDisplayController {
     	sculpturesCheckbox.setOnAction(e-> {
     		filter();
     	});
-
-    	
     }
 
     public void filter() {
@@ -90,7 +81,5 @@ public class NotificationDisplayController {
 	public static void setArts(ArrayList<Artwork> arts1) {
 		arts = arts1;
 	}
-    
-    
 
 }
