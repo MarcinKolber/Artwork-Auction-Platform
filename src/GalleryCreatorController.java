@@ -39,8 +39,8 @@ public class GalleryCreatorController {
     
     
     public void initialize() {
-    	paintingSlider.setMax(20);
-    	sculpturesSlider.setMax(20);
+    	paintingSlider.setMax(20); //set the paintingSlider max to 20
+    	sculpturesSlider.setMax(20); //set the sculptureSlider max to 20
     	
     	addGallery.setOnAction(e-> addGallery());
     	
@@ -67,31 +67,35 @@ public class GalleryCreatorController {
 
     	
     }
-    
-    public void addGallery() {
-    	String gTitle = title.getText();
-    	String gdDescription = description.getText();
-    	int paintings = (int) paintingSlider.getValue();
-    	int sculptures = (int) sculpturesSlider.getValue();
 
-    	
+	/**
+	 * Method to add a new gallery
+	 */
+	public void addGallery() {
+    	String gTitle = title.getText(); //storing the title of the gallery
+    	String gdDescription = description.getText(); //storing the description of the gallery
+    	int paintings = (int) paintingSlider.getValue(); //storing the number of painting for the gallery
+    	int sculptures = (int) sculpturesSlider.getValue(); //storing the number of sculptures for the gallery
+
+    	//creating the gallery
     	CustomGallery cg = new CustomGallery(gTitle, LoginController.getUser(), gdDescription, paintings, sculptures);
     	
     	
     	try {
+    		//writing the gallery to the text file
 			Writer.createCustomGallery( LoginController.getUser(), cg);
-			
+
+			//alerting the user that the gallery was successfully made
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setHeaderText("Gallery has been created");
 			alert.setContentText("You can start adding elements to it");
 			alert.showAndWait();
-			
-			
+
 			addGallery.getScene().getWindow().hide();
 			
 			
-		} catch (IOException e) {
-			Alert alert = new Alert(AlertType.ERROR);
+		} catch (IOException e) { //if something went wrong creating the gallery
+			Alert alert = new Alert(AlertType.ERROR); //alert the user it could not be created
 			alert.setHeaderText("Gallery could not be created");
 			alert.setContentText("Make sure all fields are filled");
 			alert.showAndWait();			

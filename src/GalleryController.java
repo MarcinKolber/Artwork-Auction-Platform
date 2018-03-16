@@ -39,9 +39,6 @@ public class GalleryController {
 
 		ArrayList<GalleryButton> galleryButtons = new ArrayList<GalleryButton>();
 		
-		
-		
-
 		vbox1.getChildren().clear();
 		for(CustomGallery g : galleries) {
 			GalleryButton gb = new GalleryButton(g);
