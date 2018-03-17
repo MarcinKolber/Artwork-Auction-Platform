@@ -181,6 +181,7 @@ public class ShowArtworkController {
 	}
 
 	public void addToCustomGallery() {
+<<<<<<< HEAD
 
 		CustomGallery cg = LoginController.getUser().getCustomGallery(track.getValue());
 
@@ -201,6 +202,18 @@ public class ShowArtworkController {
 			alert.showAndWait();
 		}
 
+=======
+		Writer.addArtworkToGallery(LoginController.getUser(), artwork,
+				LoginController.getUser().getCustomGallery(track.getValue()));
+		
+		LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Added");
+		alert.setHeaderText("Added to a custom gallery");
+		alert.setContentText("Thank you!");
+		alert.showAndWait();
+>>>>>>> branch 'master' of https://github.com/ElMarko1/CS-235-Assignment-2.git
 	}
 
 	public void showUser() {

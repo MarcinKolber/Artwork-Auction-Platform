@@ -43,25 +43,17 @@ public class GalleryCreatorController {
     	sculpturesSlider.setMax(20); //set the sculptureSlider max to 20
     	
     	addGallery.setOnAction(e-> addGallery());
-    	
-    	
+
     	paintingSlider.valueProperty().addListener(new ChangeListener<Object>() {
     		@Override
 			public void changed(ObservableValue<?> arg0, Object arg1, Object arg2) {
-				
     			paintVal.setText((int)paintingSlider.getValue()+"");
-
-    			
 			}
 		});
-    	
     	sculpturesSlider.valueProperty().addListener(new ChangeListener<Object>() {
     		@Override
 			public void changed(ObservableValue<?> arg0, Object arg1, Object arg2) {
-				
     			sculpturesVal.setText((int)sculpturesSlider.getValue()+"");
-
-    			
 			}
 		});
 
@@ -79,8 +71,7 @@ public class GalleryCreatorController {
 
     	//creating the gallery
     	CustomGallery cg = new CustomGallery(gTitle, LoginController.getUser(), gdDescription, paintings, sculptures);
-    	
-    	
+
     	try {
     		//writing the gallery to the text file
 			Writer.createCustomGallery( LoginController.getUser(), cg);
@@ -92,10 +83,15 @@ public class GalleryCreatorController {
 			alert.showAndWait();
 
 			addGallery.getScene().getWindow().hide();
+<<<<<<< HEAD
 			
 			
 			
 		} catch (IOException e) { //if something went wrong creating the gallery
+=======
+		}
+		catch(IOException e){ //if something went wrong creating the gallery
+>>>>>>> branch 'master' of https://github.com/ElMarko1/CS-235-Assignment-2.git
 			Alert alert = new Alert(AlertType.ERROR); //alert the user it could not be created
 			alert.setHeaderText("Gallery could not be created");
 			alert.setContentText("Make sure all fields are filled");

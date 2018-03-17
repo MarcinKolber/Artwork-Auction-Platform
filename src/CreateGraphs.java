@@ -8,6 +8,10 @@ import javafx.stage.Stage;
 
 public class CreateGraphs
 {
+    /**
+     * Method to make a graph
+     * @param user
+     */
     public void makeGraph(User user)
     {
         final CategoryAxis xAxis = new CategoryAxis();
