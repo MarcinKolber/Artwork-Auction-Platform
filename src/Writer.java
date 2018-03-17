@@ -36,11 +36,16 @@ public class Writer {
 
 	}
 
+	/**
+	 * Method to write a custom gallery text file
+	 * @param user - user of the custom gallery
+	 * @param gallery - the custom gallery
+	 * @throws IOException
+	 */
 	public static void createCustomGallery(User user, CustomGallery gallery) throws IOException {
 		File file = new File("customGalleries//" + user.getUsername() + "//");
 		file.mkdir();
 		String path = "customGalleries//" + user.getUsername() + "//" + gallery.getName() + ".txt";
-
 		try {
 			PrintWriter writer = new PrintWriter(path, "UTF-8");
 			writer.println(gallery.getTextFileOutput());
@@ -50,8 +55,13 @@ public class Writer {
 		}
 
 	}
-	
-	
+
+	/**
+	 * Method to add an artwork to a custom gallery
+	 * @param user - user of the custom gallery
+	 * @param artwork - artwork to be added
+	 * @param gallery - gallery which the artwork is being added to
+	 */
 	public static void addArtworkToGallery(User user, Artwork artwork, CustomGallery gallery) {
 		File file = new File("customGalleries//" + user.getUsername()+"//" + gallery.getName()+".txt");
 		PrintWriter writer;
@@ -67,6 +77,11 @@ public class Writer {
 	
 	}
 
+	/**
+	 * Method to write a text file containing the users last log in date
+ 	 * @param user
+	 * @throws IOException
+	 */
 	public static void addLogin(User user) throws IOException {
 		String path = "userFiles//" + user.getUsername() + ".txt";
 		try {

@@ -181,22 +181,16 @@ public class ShowArtworkController {
 	}
 
 	public void addToCustomGallery() {
-		
-
 		Writer.addArtworkToGallery(LoginController.getUser(), artwork,
 				LoginController.getUser().getCustomGallery(track.getValue()));
 		
 		LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
-		
-		
+
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Added");
 		alert.setHeaderText("Added to a custom gallery");
 		alert.setContentText("Thank you!");
 		alert.showAndWait();
-		
-
-
 	}
 
 	public void showUser() {

@@ -268,24 +268,22 @@ public class GUIController {
 	 */
 	public void openSalesTab() {
 		BorderPane bp; // Border Pane to load the new BorderPane in
-
 		try {
 			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/Sales.fxml"));
 			mainSection.getChildren().setAll(bp);
-
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void openMainTab() {
 		BorderPane bp; // Border Pane to load the new BorderPane in
-
 		try {
 			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/MainPage.fxml"));
 			mainSection.getChildren().setAll(bp);
-
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -295,12 +293,11 @@ public class GUIController {
 	 */
 	public void openSearchTab() {
 		BorderPane bp; // Border Pane to load the new BorderPane in
-
 		try {
 			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/Searching.fxml"));
 			mainSection.getChildren().setAll(bp);
-
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -310,12 +307,11 @@ public class GUIController {
 	 */
 	public void displayMyBids() {
 		BorderPane bp; // Border Pane to load the new BorderPane in
-
 		try {
 			bp = (BorderPane) FXMLLoader.load(getClass().getResource("/MyBids.fxml"));
 			mainSection.getChildren().setAll(bp);
-
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -324,13 +320,11 @@ public class GUIController {
 	 * Method to filter by artwork or users
 	 */
 	public void handleSearch() {
-
 		if (artworkSelect.isSelected()) {
 			displayArtworks();
 		} else if (userSelect.isSelected()) {
 			displayUsers();
 		}
-
 	}
 
 	/**
@@ -345,7 +339,6 @@ public class GUIController {
 			String s = searching.getText();
 			if (sculptureA.getTitle().toLowerCase().contains(s.toLowerCase())) {
 				sculptures.add(sculptureA.getTitle());
-
 			}
 		}
 
@@ -354,7 +347,6 @@ public class GUIController {
 			if (paintingA.getTitle().toLowerCase().contains(s.toLowerCase())) {
 				paintings.add(paintingA.getTitle());
 			}
-
 		}
 
 		if (sculptureSelect.isSelected() && !paintingSelect.isSelected()) {
@@ -368,15 +360,11 @@ public class GUIController {
 			for (String scul : sculptures) {
 				artworks.add(scul);
 			}
-
 			observableList = FXCollections.observableArrayList(artworks);
 		} else {
 			observableList = FXCollections.observableArrayList(new ArrayList<String>());
-
 		}
-
 		searchList.setItems(observableList);
-
 	}
 
 	/**
@@ -384,11 +372,8 @@ public class GUIController {
 	 */
 	public void getSearchSelection() {
 		String s = searchList.getSelectionModel().getSelectedItem();
-
 		BorderPane bp; // Border Pane to load the new BorderPane in
-
 		try {
-
 			if (userSelect.isSelected()) {
 				if (FileReader.getUser(s) != null) {
 					User user = FileReader.getUser(s);
@@ -397,28 +382,20 @@ public class GUIController {
 					FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/UserDisplay.fxml"));
 					try {
 						Parent root = fxmlL.load();
-
 						Scene scene = new Scene(root, 450, 300);
-
 						Stage stage = new Stage();
 						stage.setScene(scene);
 						stage.initModality(Modality.APPLICATION_MODAL);
-
 						stage.setTitle(user.getUsername());
 						stage.show();
-
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
-
 			} else {
-
 				Listing l = new Listing(FileReader.getArtwork(s));
-
 				l.displayInWindow();
 			}
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -430,30 +407,23 @@ public class GUIController {
 	 */
 	public void displayUsers() {
 		ArrayList<String> users = new ArrayList<>();
-
 		for (User user : FileReader.getUsers()) {
 			if (user.getUsername().toLowerCase().contains(searchingContent.toLowerCase())) {
 				users.add(user.getUsername());
-
 			}
 		}
-
 		observableList = FXCollections.observableArrayList(users);
 		searchList.setItems(observableList);
-
 	}
 
 	/**
 	 * Switches Scene into one that contains list of auctions made by the user
 	 */
 	public void showMyAuctions() {
-
 		BorderPane bp; // Border Pane to load the new BorderPane in
-
 		try {
 			bp = (BorderPane) FXMLLoader.load(getClass().getResource("MyAuctions.fxml"));
 			mainSection.getChildren().setAll(bp);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -501,12 +471,10 @@ public class GUIController {
 	 * Displays the users information
 	 */
 	public void userSettings() {
-
 		BorderPane bp;
 		try {
 			bp = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
 			mainSection.getChildren().setAll(bp);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -517,12 +485,10 @@ public class GUIController {
 	 * Displays the main page
 	 */
 	public void displayMainDashboard() {
-
 		BorderPane bp;
 		try {
 			bp = FXMLLoader.load(getClass().getResource("MainDashboard.fxml"));
 			mainSection.getChildren().setAll(bp);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -532,12 +498,10 @@ public class GUIController {
 	 * Show the favourite users settings
 	 */
 	public void userSettings1() {
-
 		BorderPane bp;
 		try {
 			bp = FXMLLoader.load(getClass().getResource("FavouriteUsers.fxml"));
 			mainSection.getChildren().setAll(bp);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
