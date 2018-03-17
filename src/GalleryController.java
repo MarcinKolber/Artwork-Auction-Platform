@@ -1,4 +1,6 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -16,6 +20,11 @@ import javafx.stage.WindowEvent;
 
 public class GalleryController {
 
+
+    @FXML
+    private Label selected;
+
+	
 	@FXML
 	private FlowPane listGalleries;
 
@@ -28,36 +37,74 @@ public class GalleryController {
 	@FXML
 	private VBox vbox1;
 
+	private ArrayList<CustomGallery> galleries;
+
 	public void initialize() {
 
 		Random rnd = new Random();
 
 		createNewGallery.setOnAction(e -> galleryCreator());
 
-		ArrayList<CustomGallery> galleries = FileReader.readGalleries(LoginController.getUser());
+		galleries = FileReader.readGalleries(LoginController.getUser());
 		System.out.println("The size is " + galleries.size());
 
 		ArrayList<GalleryButton> galleryButtons = new ArrayList<GalleryButton>();
-		
+
 		vbox1.getChildren().clear();
-		for(CustomGallery g : galleries) {
+		for (CustomGallery g : galleries) {
 			GalleryButton gb = new GalleryButton(g);
+			
+			
 			galleryButtons.add(gb);
 			vbox1.getChildren().add(gb);
-			gb.setOnAction(e-> displayGallery(gb.getCustomGallery()));
-			
+
+	
+
+			gb.setOnAction(e -> displayGallery(gb.getCustomGallery()));
+
 		}
-		
 
 	}
 
 	public void displayGallery(CustomGallery cg) {
-		display.getChildren().clear();
-		for(Artwork art : cg.getArtwork()) {
-			Listing listing = new Listing(art);
-			display.getChildren().add(listing);
+		selected.setText(cg.getName());
 
+		display.getChildren().clear();
+		for (Artwork art : cg.getArtwork()) {
+			Listing listing = new Listing(art);
 			
+			listing.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+
+					if (event.isControlDown()) {
+						System.out.println("delete");
+						try {
+							Writer.removeFromGallery(cg, listing.getArtwork());
+						} catch (FileNotFoundException | UnsupportedEncodingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						display.getChildren().remove(listing);
+
+					} else {
+
+						try {
+							listing.displayInWindow();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+					}
+
+				}
+			});
+			
+			display.getChildren().add(listing);
+			
+		
+
 		}
 	}
 
@@ -82,11 +129,16 @@ public class GalleryController {
 				}
 			});
 
-			stage.show();
+			stage.showAndWait();
+
+			initialize();
 
 		} catch (IOException e) { // catch an exception if file cannot be loaded
 			e.printStackTrace();
 		}
 
 	}
+	
+
+
 }

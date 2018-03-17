@@ -1,11 +1,13 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -45,15 +47,15 @@ public class Writer {
 			PrintWriter writer = new PrintWriter(path, "UTF-8");
 			writer.println(gallery.getTextFileOutput());
 			writer.close();
+			gallery.setPath(path);
 		} catch (IOException e) {
 			throw new IOException("error writing to file of user " + user.getUsername());
 		}
 
 	}
-	
-	
+
 	public static void addArtworkToGallery(User user, Artwork artwork, CustomGallery gallery) {
-		File file = new File("customGalleries//" + user.getUsername()+"//" + gallery.getName()+".txt");
+		File file = new File("customGalleries//" + user.getUsername() + "//" + gallery.getName() + ".txt");
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(new FileWriter(file, true));
@@ -64,7 +66,6 @@ public class Writer {
 			e.printStackTrace();
 		}
 
-	
 	}
 
 	public static void addLogin(User user) throws IOException {
@@ -204,5 +205,42 @@ public class Writer {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public static boolean removeFromGallery(CustomGallery customGallery, Artwork removed) throws FileNotFoundException, UnsupportedEncodingException {
+
+		final File ORIGINAL = new File(customGallery.getPath());
+		final File TEMP_FILE = new File(customGallery.getPath()+"1.txt");
+
+		
+
+
+		String toRemove = removed.getTitle();
+		String line = "";
+
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(ORIGINAL));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(TEMP_FILE));
+
+			while ((line = reader.readLine()) != null) {
+				if (null != line && !line.equalsIgnoreCase(toRemove)) {
+					writer.write(line + System.getProperty("line.separator"));
+					
+				}
+			}
+			
+			writer.close();
+			reader.close();
+			ORIGINAL.delete();
+			boolean successful = TEMP_FILE.renameTo(ORIGINAL);
+
+
+			return successful;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 }

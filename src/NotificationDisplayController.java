@@ -25,6 +25,10 @@ public class NotificationDisplayController {
 
     @FXML
     private CheckBox paintingCheckbox;
+    
+    private int numberOfArtworks;
+    private int numberOfSculptures;
+    private int numberOfPaintings;
 
     @FXML
     private FlowPane main;
@@ -32,10 +36,20 @@ public class NotificationDisplayController {
     
     public void initialize() {
     	lastLogin.setText(Updates.getDate()+"");
-
+    	
+    	numberOfArtworks = 0;
+    	numberOfSculptures = 0;
+    	numberOfPaintings = 0;
+    	
     	for(Artwork ar: arts) {
         	Listing l1 = new Listing(ar);
         	main.getChildren().add(l1);
+        	numberOfArtworks++;
+        	if(ar instanceof Painting) {
+        		numberOfPaintings++;
+        	} else if (ar instanceof Sculpture) {
+        		numberOfSculptures++;
+        	}
     	}
 
     	paintingCheckbox.setOnAction(e-> {
@@ -45,6 +59,11 @@ public class NotificationDisplayController {
     	sculpturesCheckbox.setOnAction(e-> {
     		filter();
     	});
+    	
+    	newSc.setText(numberOfSculptures+"");
+    	newPaint.setText(numberOfPaintings+"");
+    	newArts.setText(numberOfArtworks+"");
+    	
     }
 
     public void filter() {

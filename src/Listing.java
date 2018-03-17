@@ -13,12 +13,13 @@ public class Listing extends VBox {
 	private Artwork artwork;
 	private ImageView imgView;
 	private Label description;
-	Label remaining;
-	Label year;
-	Label date;
-	Label creator;
-	Label highestBid;
-	Label title;
+	private Label remaining;
+	private Label year;
+	private Label date;
+	private Label creator;
+	private Label highestBid;
+	private Label title;
+	private Label ended;
 	private int width;
 
 	public Listing(Artwork artwork) {
@@ -39,12 +40,22 @@ public class Listing extends VBox {
 		date = new Label("Added: " + artwork.getDateAdded());
 		remaining = new Label("Remaining bids: " + artwork.leftBids());
 		description = new Label(artwork.getDescription());
+
 		description.setWrapText(true);
 
 		this.setMinWidth(width);
 		this.setSpacing(2);
+		if (artwork.isBidIsOver()) {
+			ended = new Label("ENDED");
+			ended.setStyle("-fx-background-color: rgb(200,0, 20,0.5); ");
 
-		getChildren().addAll(imgView, title, highestBid, creator, year, date, remaining, description);
+		} else {
+			ended = new Label("ACTIVE");
+			ended.setStyle("-fx-background-color: rgb(0,200, 20,0.5); ");
+
+		}
+
+		getChildren().addAll(imgView, title, highestBid, creator, year, date, remaining, description, ended);
 
 		setOnMouseClicked(e -> {
 			try {
@@ -146,11 +157,8 @@ public class Listing extends VBox {
 		this.title = title;
 	}
 
-
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
-	
 
 }

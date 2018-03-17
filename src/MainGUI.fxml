@@ -157,12 +157,12 @@
                         </Label>
                         <Label fx:id="user1" text="User" textFill="WHITE">
                            <font>
-                              <Font size="29.0" />
+                              <Font size="22.0" />
                            </font>
                         </Label>
                         <Label fx:id="today" text="Today is" textFill="WHITE">
                            <font>
-                              <Font size="29.0" />
+                              <Font size="22.0" />
                            </font>
                         </Label>
                      </children>

@@ -94,6 +94,7 @@ public class GalleryCreatorController {
 			addGallery.getScene().getWindow().hide();
 			
 			
+			
 		} catch (IOException e) { //if something went wrong creating the gallery
 			Alert alert = new Alert(AlertType.ERROR); //alert the user it could not be created
 			alert.setHeaderText("Gallery could not be created");

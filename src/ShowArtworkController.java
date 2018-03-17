@@ -176,26 +176,30 @@ public class ShowArtworkController {
 		addToFav.setOnAction(e -> showUser());
 		placeBid.setOnAction(e -> addBid());
 
-		addToCustomGallery.setOnAction(e-> addToCustomGallery());
+		addToCustomGallery.setOnAction(e -> addToCustomGallery());
 
 	}
 
 	public void addToCustomGallery() {
-		
 
-		Writer.addArtworkToGallery(LoginController.getUser(), artwork,
-				LoginController.getUser().getCustomGallery(track.getValue()));
-		
-		LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
-		
-		
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Added");
-		alert.setHeaderText("Added to a custom gallery");
-		alert.setContentText("Thank you!");
-		alert.showAndWait();
-		
+		CustomGallery cg = LoginController.getUser().getCustomGallery(track.getValue());
 
+		if (cg.hasArtwork(artwork)) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("An artwork is already in the gallery");
+			alert.showAndWait();
+		} else {
+			Writer.addArtworkToGallery(LoginController.getUser(), artwork, cg);
+
+			LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Added");
+			alert.setHeaderText("Added to a custom gallery");
+			alert.setContentText("Thank you!");
+			alert.showAndWait();
+		}
 
 	}
 
@@ -293,6 +297,5 @@ public class ShowArtworkController {
 		}
 
 	}
-
 
 }

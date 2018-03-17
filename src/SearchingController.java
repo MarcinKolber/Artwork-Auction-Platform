@@ -95,7 +95,9 @@ public class SearchingController {
 			paintings.setDisable(true); //disable paintings
 			descriptions.setDisable(true); //disable descriptions
 			author.setDisable(true); //disable author
-
+			priceRange.setDisable(true);
+			priceFrom.setDisable(true);
+			priceTo.setDisable(true);
 		}
 
 		//when refreshed, get the new min and max values
@@ -179,7 +181,7 @@ public class SearchingController {
 				@Override
 				public void handle(KeyEvent event) {
 					String input = searchingTextField.getText();
-					if (input.length() > 0) {
+					
 						s.getChildren().clear();
 
 						for (User user : usersList) {
@@ -189,7 +191,7 @@ public class SearchingController {
 
 							}
 						}
-					}
+					
 
 				}
 
@@ -205,7 +207,7 @@ public class SearchingController {
 				for (Artwork artwork : arts) {
 					if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())) {
 						Listing l = new Listing(artwork);
-						l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+						l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 						System.out.println("min " + minimum);
 						System.out.println("max " + maximum);
 
@@ -242,13 +244,13 @@ public class SearchingController {
 
 							}
 						}
-						if (userInput.length() > 0) {
+						
 							s.getChildren().clear();
 
 							for (Artwork artwork : arts) {
 								if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())) {
 									Listing l = new Listing(artwork);
-									l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+									l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 									if (sculptures.isSelected() && artwork instanceof Sculpture
 											&& artwork.getHighestBidAmount() >= minimum
@@ -264,7 +266,7 @@ public class SearchingController {
 
 								}
 							}
-						}
+						
 
 					}
 
@@ -278,7 +280,7 @@ public class SearchingController {
 				System.out.println("Case two");
 				String userInput = searchingTextField.getText();
 
-				if (!userInput.trim().isEmpty() && userInput.length() > 2) {
+				if (!userInput.trim().isEmpty()) {
 					s.getChildren().clear();
 					for (Artwork artwork : arts) {
 						if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
@@ -286,10 +288,10 @@ public class SearchingController {
 							Listing l = new Listing(artwork);
 
 							if (artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())) {
-								l.getDescription().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+								l.getDescription().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 							} else {
-								l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+								l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 							}
 
 							if (sculptures.isSelected() && artwork instanceof Sculpture
@@ -331,7 +333,7 @@ public class SearchingController {
 							}
 						}
 
-						if (!userInput.trim().isEmpty() && userInput.length() > 2) {
+						if (!userInput.trim().isEmpty()) {
 							s.getChildren().clear();
 							for (Artwork artwork : arts) {
 								if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
@@ -339,10 +341,10 @@ public class SearchingController {
 									Listing l = new Listing(artwork);
 
 									if (artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())) {
-										l.getDescription().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+										l.getDescription().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 									} else {
-										l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+										l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 									}
 
 									if (sculptures.isSelected() && artwork instanceof Sculpture
@@ -370,17 +372,17 @@ public class SearchingController {
 
 				String userInput = searchingTextField.getText();
 
-				if (userInput.trim().length() > 0) {
+				
 					for (Artwork artwork : arts) {
 						if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 								|| artwork.getCreator().toLowerCase().contains(userInput.toLowerCase())) {
 							Listing l = new Listing(artwork);
 
 							if ((artwork.getCreator().toLowerCase().contains(userInput.toLowerCase()))) {
-								l.getCreator().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+								l.getCreator().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 							} else {
-								l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+								l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 							}
 
 							if (sculptures.isSelected() && artwork instanceof Sculpture
@@ -396,7 +398,7 @@ public class SearchingController {
 							}
 						}
 					}
-				}
+				
 
 				searchingTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
@@ -407,7 +409,7 @@ public class SearchingController {
 						double min = Double.MIN_VALUE;
 						double max = Double.MAX_VALUE;
 
-						if (userInput.trim().length() > 0) {
+						
 
 							s.getChildren().clear();
 
@@ -417,10 +419,10 @@ public class SearchingController {
 									Listing l = new Listing(artwork);
 
 									if ((artwork.getCreator().toLowerCase().contains(userInput.toLowerCase()))) {
-										l.getCreator().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+										l.getCreator().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 									} else {
-										l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+										l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 									}
 
 									if (sculptures.isSelected() && artwork instanceof Sculpture
@@ -436,7 +438,7 @@ public class SearchingController {
 									}
 
 								}
-							}
+							
 
 						}
 					}
@@ -446,7 +448,6 @@ public class SearchingController {
 
 				String userInput = searchingTextField.getText();
 
-				if (userInput.trim().length() > 0) {
 					for (Artwork artwork : arts) {
 						if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 								|| artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())
@@ -454,14 +455,14 @@ public class SearchingController {
 							Listing l = new Listing(artwork);
 
 							if ((artwork.getDescription().toLowerCase().contains(userInput.toLowerCase()))) {
-								l.getDescription().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+								l.getDescription().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 							} else if (artwork.getCreator().toLowerCase().contains(userInput.toLowerCase())) {
-								l.getCreator().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+								l.getCreator().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 							}
 
 							else {
-								l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+								l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 							}
 
 							if (sculptures.isSelected() && artwork instanceof Sculpture
@@ -477,7 +478,7 @@ public class SearchingController {
 							}
 						}
 					}
-				}
+				
 				searchingTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
 					@Override
 					public void handle(KeyEvent event) {
@@ -489,7 +490,7 @@ public class SearchingController {
 
 						s.getChildren().clear();
 
-						if (userInput.trim().length() > 1) {
+						
 							for (Artwork artwork : arts) {
 								if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 										|| artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())
@@ -497,14 +498,14 @@ public class SearchingController {
 									Listing l = new Listing(artwork);
 
 									if ((artwork.getDescription().toLowerCase().contains(userInput.toLowerCase()))) {
-										l.getDescription().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+										l.getDescription().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 									} else if (artwork.getCreator().toLowerCase().contains(userInput.toLowerCase())) {
-										l.getCreator().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+										l.getCreator().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 									}
 
 									else {
-										l.getTitle().setStyle("-fx-background-color: rgb(255,0, 20,0.5);");
+										l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 									}
 
@@ -521,7 +522,7 @@ public class SearchingController {
 									}
 
 								}
-							}
+							
 						}
 					}
 

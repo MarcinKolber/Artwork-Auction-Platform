@@ -73,11 +73,11 @@ public class SalesController {
 	public void initialize() {
 
 		years = new ArrayList<>();
-		
-		for(int i = 0; i<10; i++) {
-			years.add(i+2010);
+
+		for (int i = 0; i < 10; i++) {
+			years.add(i + 2010);
 		}
-		
+
 		year.setItems(FXCollections.observableArrayList(years));
 
 		year.getSelectionModel().select(8);
@@ -141,15 +141,15 @@ public class SalesController {
 	}
 
 	public void ref() {
-		System.out.println("asassa");
 
-		dateFrom.setValue((LocalDate.of(yearNo, 1, 1)));
-		dateTo.setValue((LocalDate.of(yearNo, 12, 31)));
+		if(!piechart.isSelected()) {
+
+			dateFrom.setValue((LocalDate.of(yearNo, 1, 1)));
+			dateTo.setValue((LocalDate.of(yearNo, 12, 31)));
+		}
+		
 
 		LocalDate date1 = dateFrom.getValue();
-
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
-
 		LocalDate date2 = dateTo.getValue();
 
 		Date date3 = Date.from(date1.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -163,6 +163,8 @@ public class SalesController {
 
 		if (piechart.isSelected()) {
 			chartArea.getChildren().clear();
+			dateFrom.setDisable(false);
+			dateTo.setDisable(false);
 			chartArea.getChildren().add(getPieChart());
 		} else if (barchart.isSelected()) {
 			int pickedYear = year.getSelectionModel().getSelectedItem();
@@ -248,12 +250,20 @@ public class SalesController {
 
 	public PieChart getPieChart() {
 
+		LocalDate date1 = dateFrom.getValue();
+
+		LocalDate date2 = dateTo.getValue();
+
+		Date date3 = Date.from(date1.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		Date date4 = Date.from(date2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		
+		
 		double sculptureVal = 0;
 
 		double paintingVal = 0;
 
 		for (Artwork art : soldArtworks) {
-			if (art.getDateAdded().after(from) && art.getDateAdded().before(until)) {
+			if (art.getDateAdded().after(date3) && art.getDateAdded().before(date4)) {
 
 				if (art instanceof Sculpture) {
 					sculptureVal += art.getHighestBidAmount();

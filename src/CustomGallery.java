@@ -10,12 +10,13 @@ public class CustomGallery {
 	private int numberOfSculptures;
 	private int currentPaintings;
 	private int currentSculptures;
+	private String path;
 
 	public CustomGallery(String name, User user, String description, int paintings, int sculptures) {
 		this.name = name;
 		this.user = user;
 		this.currentPaintings = 0;
-		this.currentSculptures= 0;
+		this.currentSculptures = 0;
 		this.artwork = new ArrayList<>();
 		this.description = description;
 		this.numberOfPaintings = paintings;
@@ -56,7 +57,7 @@ public class CustomGallery {
 	public void addArtwork(Artwork artwork1) {
 		if (!artwork.contains(artwork1)) {
 
-			if (artwork1 instanceof Painting && currentPaintings<numberOfPaintings) {
+			if (artwork1 instanceof Painting && currentPaintings < numberOfPaintings) {
 				currentPaintings++;
 				artwork.add(artwork1);
 			} else if (artwork1 instanceof Sculpture && currentSculptures < numberOfSculptures) {
@@ -65,8 +66,22 @@ public class CustomGallery {
 
 			}
 
-			
+		}
+	}
 
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public boolean hasArtwork(Artwork artwork1) {
+		if (artwork.contains(artwork1)) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

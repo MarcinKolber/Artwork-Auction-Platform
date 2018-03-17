@@ -782,37 +782,44 @@ public class FileReader {
 			System.out.println(user.getUsername());
 			File[] listOfFiles = new File("customGalleries//" + user.getUsername() + "//").listFiles();
 			for (File e : listOfFiles) {
-				System.out.println(e.getName());
-				System.out.println("executed once");
+				
+				try {
+					System.out.println(e.getName());
+					System.out.println("executed once");
 
-				Scanner in = new Scanner(e);
+					Scanner in = new Scanner(e);
 
-				in.useDelimiter("#");
-				String name = in.next();
-				String username1 = in.next();
-				String des = in.next();
-				String paint = in.next();
-				String sculp = in.next();
-				System.out.println(paint + sculp);
+					in.useDelimiter("#");
+					String name = in.next();
+					String username1 = in.next();
+					String des = in.next();
+					String paint = in.next();
+					String sculp = in.next();
+					System.out.println(paint + sculp);
 
-				int numberOfPaintings = Integer.parseInt(paint);
+					int numberOfPaintings = Integer.parseInt(paint);
 
-				int numberOfSculptures = Integer.parseInt(sculp);
+					int numberOfSculptures = Integer.parseInt(sculp);
 
-				CustomGallery ng = new CustomGallery(name, user, username1, numberOfPaintings, numberOfSculptures);
-				galleries.add(ng);
-				in.close();
+					CustomGallery ng = new CustomGallery(name, user, username1, numberOfPaintings, numberOfSculptures);
+					ng.setPath(e.getPath());
+					galleries.add(ng);
+					in.close();
 
-				Scanner in1 = new Scanner(e);
+					Scanner in1 = new Scanner(e);
 
-				in1.nextLine();
+					in1.nextLine();
 
-				while (in1.hasNextLine()) {
-					String line = in1.nextLine();
-					Artwork art = FileReader.getArtwork(line);
-					ng.addArtwork(art);
+					while (in1.hasNextLine()) {
+						String line = in1.nextLine();
+						Artwork art = FileReader.getArtwork(line);
+						ng.addArtwork(art);
+					}
+					in1.close();
+				} catch (Exception e1) {
+					System.out.println("error loading a file");
 				}
-				in1.close();
+				
 
 			}
 		} catch (Exception e) {

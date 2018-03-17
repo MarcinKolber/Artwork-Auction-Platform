@@ -13,18 +13,19 @@ public class BidView extends VBox {
 
 	private Bid bid;
 	private ImageView imgView;
-	
+	private Artwork artwork;
 	
 	public BidView (Bid bid1) {
 		this.bid = bid1;
+		artwork = bid.getArtwork();
 		imgView = new ImageView();
 		Image img = bid.getArtwork().getImage();
 		
 		imgView.setImage(img);
-		Label amount = new Label(bid.getAmount()+"");
-		Label bidder = new Label(bid.getBidder().getUsername());
-		Label time = new Label(bid.getBidDate()+"");
-		Label remaining = new Label(bid.getArtwork().leftBids()+"");
+		Label amount = new Label("Amount "+bid.getAmount()+"");
+		Label bidder = new Label("Placed by "+ bid.getBidder().getUsername());
+		Label time = new Label("Time "+ bid.getBidDate()+"");
+		Label remaining = new Label("Remaining bids "+ bid.getArtwork().leftBids()+"");
 
 		this.setSpacing(2);
 
@@ -38,13 +39,20 @@ public class BidView extends VBox {
 
 		setOnMouseEntered(e-> {this.setStyle("-fx-background-color: rgb(0,0, 20,0.1);");});
 		setOnMouseExited(e-> {this.setStyle("-fx-background-color: rgb(0,0, 20,0);");});
-		
+		setOnMouseClicked(e-> {
+			try {
+				displayInWindow();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		
 	}
 	
 	
 	public void displayInWindow() throws IOException {
-		//ShowArtworkController.setArtwork(artwork);
+		ShowArtworkController.setArtwork(artwork);
 		Scene scene;
 
 		
