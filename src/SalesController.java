@@ -25,32 +25,30 @@ import javafx.scene.layout.VBox;
 
 public class SalesController {
 
-	@FXML
-	private RadioButton weekly;
 
-	@FXML
-	private RadioButton monthly;
+    @FXML
+    private VBox chartArea;
 
-	@FXML
-	private DatePicker dateFrom;
+    @FXML
+    private DatePicker dateFrom;
 
-	@FXML
-	private DatePicker dateTo;
 
-	@FXML
-	private VBox chartArea;
+    @FXML
+    private DatePicker dateTo;
 
-	@FXML
-	private RadioButton barchart;
 
-	@FXML
-	private RadioButton piechart;
+    @FXML
+    private RadioButton barchart;
 
-	@FXML
-	private RadioButton linechart;
+    @FXML
+    private RadioButton piechart;
 
-	@FXML
-	private Button generateButton;
+    @FXML
+    private RadioButton linechart;
+
+    @FXML
+    private Button generateButton;
+
 
 	@FXML
 	private ChoiceBox<Integer> year;
@@ -103,10 +101,6 @@ public class SalesController {
 		piechart.setToggleGroup(tg);
 		linechart.setToggleGroup(tg);
 
-		weekly.setToggleGroup(tg1);
-		monthly.setToggleGroup(tg1);
-
-		monthly.setSelected(true);
 		piechart.setSelected(true);
 
 		soldArtworks = new ArrayList<>();
