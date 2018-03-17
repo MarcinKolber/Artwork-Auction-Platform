@@ -169,7 +169,7 @@ public class GUIController {
 
 		}
 
-		notificationBox.setOnMouseClicked(e -> displayMainDashboard());
+		notificationBox.setOnMouseClicked(e ->  openMainTab());
 		searchingBox.setOnMouseClicked(e -> advancedSearching());
 		salesBox.setOnMouseClicked(e -> openSalesTab());
 		galleriesBox.setOnMouseClicked(e -> openGalleries());
@@ -287,6 +287,10 @@ public class GUIController {
 			e.printStackTrace();
 		}
 	}
+	
+
+
+	
 
 	/**
 	 * Method to display a searching tab

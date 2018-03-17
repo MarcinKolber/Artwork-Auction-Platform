@@ -27,7 +27,7 @@ public class Bid {
 	 * @param bidder user who made the bid
 	 * @param artwork which artwork bid was on
 	 * @param bidDate date of bid
-	 * @param amount how much the bid is worth in £'s
+	 * @param amount how much the bid is worth in British pounds
 	 */
 	public Bid(String typeOfArtwork, User bidder, double amount, Artwork artwork, Date bidDate) {
 

@@ -59,15 +59,12 @@ public class Writer {
 
 	}
 
-<<<<<<< HEAD
-=======
 	/**
 	 * Method to add an artwork to a custom gallery
 	 * @param user - user of the custom gallery
 	 * @param artwork - artwork to be added
 	 * @param gallery - gallery which the artwork is being added to
 	 */
->>>>>>> branch 'master' of https://github.com/ElMarko1/CS-235-Assignment-2.git
 	public static void addArtworkToGallery(User user, Artwork artwork, CustomGallery gallery) {
 		File file = new File("customGalleries//" + user.getUsername() + "//" + gallery.getName() + ".txt");
 		PrintWriter writer;
