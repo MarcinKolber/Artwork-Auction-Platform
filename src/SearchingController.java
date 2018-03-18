@@ -206,7 +206,7 @@ public class SearchingController {
 
 				for (Artwork artwork : arts) {
 					if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())) {
-						Listing l = new Listing(artwork);
+						AuctionView l = new AuctionView(artwork);
 						l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 						System.out.println("min " + minimum);
 						System.out.println("max " + maximum);
@@ -249,7 +249,7 @@ public class SearchingController {
 
 							for (Artwork artwork : arts) {
 								if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())) {
-									Listing l = new Listing(artwork);
+									AuctionView l = new AuctionView(artwork);
 									l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
 
 									if (sculptures.isSelected() && artwork instanceof Sculpture
@@ -285,7 +285,7 @@ public class SearchingController {
 					for (Artwork artwork : arts) {
 						if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 								|| artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())) {
-							Listing l = new Listing(artwork);
+							AuctionView l = new AuctionView(artwork);
 
 							if (artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())) {
 								l.getDescription().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
@@ -338,7 +338,7 @@ public class SearchingController {
 							for (Artwork artwork : arts) {
 								if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 										|| artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())) {
-									Listing l = new Listing(artwork);
+									AuctionView l = new AuctionView(artwork);
 
 									if (artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())) {
 										l.getDescription().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
@@ -376,7 +376,7 @@ public class SearchingController {
 					for (Artwork artwork : arts) {
 						if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 								|| artwork.getCreator().toLowerCase().contains(userInput.toLowerCase())) {
-							Listing l = new Listing(artwork);
+							AuctionView l = new AuctionView(artwork);
 
 							if ((artwork.getCreator().toLowerCase().contains(userInput.toLowerCase()))) {
 								l.getCreator().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
@@ -416,7 +416,7 @@ public class SearchingController {
 							for (Artwork artwork : arts) {
 								if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 										|| artwork.getCreator().toLowerCase().contains(userInput.toLowerCase())) {
-									Listing l = new Listing(artwork);
+									AuctionView l = new AuctionView(artwork);
 
 									if ((artwork.getCreator().toLowerCase().contains(userInput.toLowerCase()))) {
 										l.getCreator().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
@@ -452,7 +452,7 @@ public class SearchingController {
 						if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 								|| artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())
 								|| artwork.getCreator().toLowerCase().contains(userInput.toLowerCase())) {
-							Listing l = new Listing(artwork);
+							AuctionView l = new AuctionView(artwork);
 
 							if ((artwork.getDescription().toLowerCase().contains(userInput.toLowerCase()))) {
 								l.getDescription().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
@@ -495,7 +495,7 @@ public class SearchingController {
 								if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())
 										|| artwork.getDescription().toLowerCase().contains(userInput.toLowerCase())
 										|| artwork.getCreator().toLowerCase().contains(userInput.toLowerCase())) {
-									Listing l = new Listing(artwork);
+									AuctionView l = new AuctionView(artwork);
 
 									if ((artwork.getDescription().toLowerCase().contains(userInput.toLowerCase()))) {
 										l.getDescription().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");

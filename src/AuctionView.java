@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Listing extends VBox {
+public class AuctionView extends VBox {
 
 	private Artwork artwork;
 	private ImageView imgView;
@@ -22,7 +22,7 @@ public class Listing extends VBox {
 	private Label ended;
 	private int width;
 
-	public Listing(Artwork artwork) {
+	public AuctionView(Artwork artwork) {
 		width = 200;
 		this.artwork = artwork;
 		imgView = new ImageView();

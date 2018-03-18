@@ -26,11 +26,11 @@ public class WonController {
 		date.setText(Updates.getDate()+"");
 
 		// Intialises a list of artwork views
-		ArrayList<Listing> listings = new ArrayList<>();
+		ArrayList<AuctionView> listings = new ArrayList<>();
 		
 		// Adds artworks to a list to be displayed
 		for(Artwork artwork: won) {
-			Listing listing = new Listing(artwork);
+			AuctionView listing = new AuctionView(artwork);
 			listings.add(listing);
 		}
 		

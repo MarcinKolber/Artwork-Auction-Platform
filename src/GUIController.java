@@ -397,7 +397,7 @@ public class GUIController {
 					}
 				}
 			} else {
-				Listing l = new Listing(FileReader.getArtwork(s));
+				AuctionView l = new AuctionView(FileReader.getArtwork(s));
 				l.displayInWindow();
 			}
 		} catch (IOException e) {
