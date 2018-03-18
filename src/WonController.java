@@ -4,13 +4,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 
+/**
+ * A controller to display won artworks
+ * @author 869527
+ *
+ */
 public class WonController {
 
     @FXML
-    private Label date;
+    private Label date; // a label to display a date of last login
 
     @FXML
-    private FlowPane main;
+    private FlowPane main; // a container with won artworks
     
     public void initialize() {
     	
