@@ -152,45 +152,47 @@ public class AuctionView extends VBox {
 	}
 
 
+	/**
+	 * Gets a label with a year of creation
+	 * @return year of artworks creation
+	 */
 	public Label getYear() {
 		return year;
 	}
 
-	public void setYear(Label year) {
-		this.year = year;
-	}
-
+	/**
+	 * Returns a date when artwork was added
+	 * @return date when artwork was added
+	 */
 	public Label getDate() {
 		return date;
 	}
 
-	public void setDate(Label date) {
-		this.date = date;
-	}
-
+	/**
+	 * Label with a creator of the artwork
+	 * @return  creator of the artwork
+	 */
 	public Label getCreator() {
 		return creator;
 	}
 
-	public void setCreator(Label creator) {
-		this.creator = creator;
-	}
-
+	/**
+	 * Label with a highest bid
+	 * @return highest bid
+	 */
 	public Label getHighestBid() {
 		return highestBid;
 	}
 
-	public void setHighestBid(Label highestBid) {
-		this.highestBid = highestBid;
-	}
-
+	/**
+	 * Returns a label with a title of the artwork
+	 * @return label with a title
+	 */
 	public Label getTitle() {
 		return title;
 	}
 
-	public void setTitle(Label title) {
-		this.title = title;
-	}
+
 
 
 
