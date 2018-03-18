@@ -225,7 +225,4 @@ public class NotificationController {
 		this.update = update;
 	}
 	
-	
-	
-
 }
