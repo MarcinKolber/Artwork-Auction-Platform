@@ -95,11 +95,7 @@ public class GalleryController {
 					}
 				}
 			});
-			
 			display.getChildren().add(listing);
-			
-		
-
 		}
 	}
 

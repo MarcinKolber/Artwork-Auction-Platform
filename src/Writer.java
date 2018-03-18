@@ -13,7 +13,7 @@ import java.util.Date;
 
 /**
  * This class writes information in the system to memory
- * 
+ *
  * @author Daniel Created on 5/12/2017
  */
 public class Writer {

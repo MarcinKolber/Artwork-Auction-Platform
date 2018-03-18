@@ -3,7 +3,6 @@ import java.util.ArrayList;
 /**
  * A class to represent a custom gallery made by an user to hold references to
  * artworks
- * 
  * @author Ayden Ballard - 905438
  *
  */
@@ -17,21 +16,15 @@ public class CustomGallery {
 	private int numberOfSculptures; // limit of sculptures
 	private int currentPaintings; // number of paintings held in the gallery
 	private int currentSculptures; // number of sculptures held in the gallery
-	private String path; // path of
+	private String path; //file path of the custom gallery
 
 	/**
 	 * A constructor of a custom gallery
-	 * 
-	 * @param name
-	 *            name of the gallery
-	 * @param user
-	 *            user that has the gallery
-	 * @param description
-	 *            description of the gallery
-	 * @param paintings
-	 *            number of paintings allowed
-	 * @param sculptures
-	 *            number of sculptures allowed
+	 * @param name - name of the gallery
+	 * @param user - user that has the gallery
+	 * @param description - description of the gallery
+	 * @param paintings - number of paintings allowed
+	 * @param sculptures - number of sculptures allowed
 	 */
 	public CustomGallery(String name, User user, String description, int paintings, int sculptures) {
 		this.name = name;
@@ -46,20 +39,17 @@ public class CustomGallery {
 
 	/**
 	 * Deletes an artwork from a gallery
-	 * 
-	 * @param toDelete
-	 *            artwork to be deleted
+	 * @param toDelete - artwork to be deleted
 	 */
 	public void deleteArtwork(Artwork toDelete) {
-		if (artworks.contains(toDelete)) {
-
+		if (artworks.contains(toDelete)){
 			// Remove an artwork from an array list
 			artworks.remove(toDelete);
-
 			// Decrement a corresponding counter
-			if (toDelete instanceof Sculpture) {
+			if (toDelete instanceof Sculpture){
 				currentSculptures--;
-			} else if (toDelete instanceof Painting) {
+			}
+			else if(toDelete instanceof Painting){
 				currentPaintings--;
 			}
 		}
@@ -68,38 +58,33 @@ public class CustomGallery {
 
 	/**
 	 * Adds artwork to the custom gallery
-	 * 
-	 * @param artwork
-	 *            artwork to be added
+	 * @param artwork - artwork to be added
 	 * @return confirmation of success or failure of the addition
 	 */
 	public boolean addArtwork(Artwork artwork) {
-
 		// Checks if an artwork is already in the gallery
 		if (!artworks.contains(artwork)) {
-
 			// If limit has not been reached, add an artwork to a gallery and increment a
 			// corresponding counter
-			if (artwork instanceof Painting && currentPaintings < numberOfPaintings) {
+			if(artwork instanceof Painting && currentPaintings < numberOfPaintings){
 				currentPaintings++;
 				artworks.add(artwork);
 				return true;
-			} else if (artwork instanceof Sculpture && currentSculptures < numberOfSculptures) {
+			}
+			else if(artwork instanceof Sculpture && currentSculptures < numberOfSculptures){
 				currentSculptures++;
 				artworks.add(artwork);
 				return true;
-
-			} else {
+			}
+			else{
 				return false;
 			}
-
 		}
 		return false;
 	}
 
 	/**
 	 * Returns a creator of the gallery
-	 * 
 	 * @return user that created the gallery
 	 */
 	public User getUser() {
@@ -108,9 +93,7 @@ public class CustomGallery {
 
 	/**
 	 * Sets an owner of the gallery
-	 * 
-	 * @param user
-	 *            owner of the gallery
+	 * @param user - owner of the gallery
 	 */
 	public void setUser(User user) {
 		this.user = user;
@@ -118,7 +101,6 @@ public class CustomGallery {
 
 	/**
 	 * Returns a name of the gallery
-	 * 
 	 * @return name of the gallery
 	 */
 	public String getName() {
@@ -127,9 +109,7 @@ public class CustomGallery {
 
 	/**
 	 * Sets a name of the gallery
-	 * 
-	 * @param name
-	 *            name of the gallery
+	 * @param name - name of the gallery
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -137,7 +117,6 @@ public class CustomGallery {
 
 	/**
 	 * Returns a list of artworks
-	 * 
 	 * @return list of artworks in a gallery
 	 */
 	public ArrayList<Artwork> getArtworks() {
@@ -146,7 +125,6 @@ public class CustomGallery {
 
 	/**
 	 * Sets a list of artworks in a gallery
-	 * 
 	 * @param artwork
 	 */
 	public void setArtworks(ArrayList<Artwork> artwork) {
@@ -155,13 +133,11 @@ public class CustomGallery {
 
 	/**
 	 * Returns a string used when creating a gallery
-	 * 
 	 * @return string to be saved in a file
 	 */
 	public String getTextFileOutput() {
 		String output = name + "#" + user.getUsername() + "#" + description + "#" + numberOfPaintings + "#"
 				+ numberOfSculptures + "#";
-
 		return output;
 	}
 
@@ -187,9 +163,10 @@ public class CustomGallery {
 	 * @return true if an artwork has been in the gallery, false otherwise
 	 */
 	public boolean hasArtwork(Artwork artwork) {
-		if (artworks.contains(artwork)) {
+		if(artworks.contains(artwork)){
 			return true;
-		} else {
+		}
+		else{
 			return false;
 		}
 	}
