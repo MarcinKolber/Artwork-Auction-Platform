@@ -26,11 +26,12 @@ public class AuctionView extends VBox {
 	private Label title;		// title of the artwork
 	private Label ended;		// label that says whether an auction if active or finished 
 	
-	private final int IMG_WIDTH = 150;
-	private final int IMG_HEIGHT = 150;
-	private final int PADDING = 10;
-	private final int VIEW_WIDTH = 200;
-	private final int SPACING = 2;
+	/* Dimensions  */
+	private final int IMG_WIDTH = 150; 	// width of an image 
+	private final int IMG_HEIGHT = 150;	// height of an image
+	private final int PADDING = 10;		// padding of the view
+	private final int VIEW_WIDTH = 200;	// width of the view
+	private final int SPACING = 2;		// spacing between elements
 
 	
 	/**
