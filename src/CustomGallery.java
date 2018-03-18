@@ -13,20 +13,25 @@ public class CustomGallery {
 	private String name; // name of the gallery
 	private ArrayList<Artwork> artworks; // list of artworks contained in the gallery
 	private String description; // description of a gallery
-	private int numberOfPaintings;	// limit of paintings
+	private int numberOfPaintings; // limit of paintings
 	private int numberOfSculptures; // limit of sculptures
 	private int currentPaintings; // number of paintings held in the gallery
 	private int currentSculptures; // number of sculptures held in the gallery
-	private String path;
+	private String path; // path of
 
 	/**
 	 * A constructor of a custom gallery
 	 * 
-	 * @param name name of the gallery
+	 * @param name
+	 *            name of the gallery
 	 * @param user
+	 *            user that has the gallery
 	 * @param description
+	 *            description of the gallery
 	 * @param paintings
+	 *            number of paintings allowed
 	 * @param sculptures
+	 *            number of sculptures allowed
 	 */
 	public CustomGallery(String name, User user, String description, int paintings, int sculptures) {
 		this.name = name;
@@ -39,10 +44,19 @@ public class CustomGallery {
 		this.numberOfSculptures = sculptures;
 	}
 
+	/**
+	 * Deletes an artwork from a gallery
+	 * 
+	 * @param toDelete
+	 *            artwork to be deleted
+	 */
 	public void deleteArtwork(Artwork toDelete) {
 		if (artworks.contains(toDelete)) {
+
+			// Remove an artwork from an array list
 			artworks.remove(toDelete);
 
+			// Decrement a corresponding counter
 			if (toDelete instanceof Sculpture) {
 				currentSculptures--;
 			} else if (toDelete instanceof Painting) {
@@ -52,47 +66,27 @@ public class CustomGallery {
 
 	}
 
-	public User getUser() {
-		return user;
-	}
+	/**
+	 * Adds artwork to the custom gallery
+	 * 
+	 * @param artwork
+	 *            artwork to be added
+	 * @return confirmation of success or failure of the addition
+	 */
+	public boolean addArtwork(Artwork artwork) {
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+		// Checks if an artwork is already in the gallery
+		if (!artworks.contains(artwork)) {
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public ArrayList<Artwork> getArtwork() {
-		return artworks;
-	}
-
-	public void setArtwork(ArrayList<Artwork> artwork) {
-		this.artworks = artwork;
-	}
-
-	public String getTextFileOutput() {
-		String output = name + "#" + user.getUsername() + "#" + description + "#" + numberOfPaintings + "#"
-				+ numberOfSculptures + "#";
-
-		return output;
-	}
-
-	public boolean addArtwork(Artwork artwork1) {
-		if (!artworks.contains(artwork1)) {
-
-			if (artwork1 instanceof Painting && currentPaintings < numberOfPaintings) {
+			// If limit has not been reached, add an artwork to a gallery and increment a
+			// corresponding counter
+			if (artwork instanceof Painting && currentPaintings < numberOfPaintings) {
 				currentPaintings++;
-				artworks.add(artwork1);
+				artworks.add(artwork);
 				return true;
-			} else if (artwork1 instanceof Sculpture && currentSculptures < numberOfSculptures) {
+			} else if (artwork instanceof Sculpture && currentSculptures < numberOfSculptures) {
 				currentSculptures++;
-				artworks.add(artwork1);
+				artworks.add(artwork);
 				return true;
 
 			} else {
@@ -103,16 +97,97 @@ public class CustomGallery {
 		return false;
 	}
 
+	/**
+	 * Returns a creator of the gallery
+	 * 
+	 * @return user that created the gallery
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * Sets an owner of the gallery
+	 * 
+	 * @param user
+	 *            owner of the gallery
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	/**
+	 * Returns a name of the gallery
+	 * 
+	 * @return name of the gallery
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets a name of the gallery
+	 * 
+	 * @param name
+	 *            name of the gallery
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Returns a list of artworks
+	 * 
+	 * @return list of artworks in a gallery
+	 */
+	public ArrayList<Artwork> getArtworks() {
+		return artworks;
+	}
+
+	/**
+	 * Sets a list of artworks in a gallery
+	 * 
+	 * @param artwork
+	 */
+	public void setArtworks(ArrayList<Artwork> artwork) {
+		this.artworks = artwork;
+	}
+
+	/**
+	 * Returns a string used when creating a gallery
+	 * 
+	 * @return string to be saved in a file
+	 */
+	public String getTextFileOutput() {
+		String output = name + "#" + user.getUsername() + "#" + description + "#" + numberOfPaintings + "#"
+				+ numberOfSculptures + "#";
+
+		return output;
+	}
+
+	/**
+	 * Returns a path to a text file 
+	 * @return path to the file with saved gallery
+	 */
 	public String getPath() {
 		return path;
 	}
 
+	/**
+	 * Sets a path to a text file with a gallery
+	 * @param path
+	 */
 	public void setPath(String path) {
 		this.path = path;
 	}
 
-	public boolean hasArtwork(Artwork artwork1) {
-		if (artworks.contains(artwork1)) {
+	/**
+	 * Checks if an artwork is already in the gallery
+	 * @param artwork artwork to be checked for
+	 * @return true if an artwork has been in the gallery, false otherwise
+	 */
+	public boolean hasArtwork(Artwork artwork) {
+		if (artworks.contains(artwork)) {
 			return true;
 		} else {
 			return false;

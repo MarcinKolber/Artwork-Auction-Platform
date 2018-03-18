@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -126,7 +125,7 @@ public class NotificationController {
 		newArts.setText(newArtsCount + "");
 		prevNo.setText(newBidsCount +"");
 		closeLabel.setText(endingNumber +"");
-		 newUsersCount.setText(newUsers1 +"");
+		newUsersCount.setText(newUsers1 +"");
 
 		 wonNo.setText(wonCount +"");
 

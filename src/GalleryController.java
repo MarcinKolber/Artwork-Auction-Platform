@@ -70,7 +70,7 @@ public class GalleryController {
 		selected.setText(cg.getName());
 
 		display.getChildren().clear();
-		for (Artwork art : cg.getArtwork()) {
+		for (Artwork art : cg.getArtworks()) {
 			Listing listing = new Listing(art);
 			
 			listing.setOnMouseClicked(new EventHandler<MouseEvent>() {
