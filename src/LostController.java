@@ -31,11 +31,11 @@ public class LostController {
 		date.setText(Updates.getDate()+"");
 		
 		// Creates a list of auctions
-		ArrayList<Listing> listings = new ArrayList<>();
+		ArrayList<AuctionView> listings = new ArrayList<>();
 		
 		// Loop through artworks and add them to a list of auctions
 		for(Artwork artwork: artworks) {
-			Listing listing = new Listing(artwork);
+			AuctionView listing = new AuctionView(artwork);
 			listings.add(listing);
 		}
 		

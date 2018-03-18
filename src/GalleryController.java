@@ -69,7 +69,7 @@ public class GalleryController {
 		selected.setText(cg.getName());
 		display.getChildren().clear();
 		for (Artwork art : cg.getArtworks()) {
-			Listing listing = new Listing(art);
+			AuctionView listing = new AuctionView(art);
 			listing.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {

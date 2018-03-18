@@ -42,7 +42,7 @@ public class NotificationDisplayController {
     	numberOfPaintings = 0;
     	
     	for(Artwork ar: arts) {
-        	Listing l1 = new Listing(ar);
+    		AuctionView l1 = new AuctionView(ar);
         	main.getChildren().add(l1);
         	numberOfArtworks++;
         	if(ar instanceof Painting) {
@@ -87,7 +87,7 @@ public class NotificationDisplayController {
     	}
     	
     	for(Artwork ar: display) {
-        	Listing l1 = new Listing(ar);
+    		AuctionView l1 = new AuctionView(ar);
         	main.getChildren().add(l1);
     	}
     	

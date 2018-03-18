@@ -43,10 +43,10 @@ public class EndingAuctionsController {
 		ArrayList<Artwork> ending = Updates.endingAuctions(sliderValue);
 
 		// 
-		ArrayList<Listing> listings = new ArrayList<>();
+		ArrayList<AuctionView> listings = new ArrayList<>();
 
 		for (Artwork a : ending) {
-			Listing l = new Listing(a);
+			AuctionView l = new AuctionView(a);
 			listings.add(l);
 		}
 
@@ -67,11 +67,11 @@ public class EndingAuctionsController {
 
 	public void refresh() {
 		ArrayList<Artwork> ending = Updates.endingAuctions(sliderValue);
-		ArrayList<Listing> listings = new ArrayList<>();
+		ArrayList<AuctionView> listings = new ArrayList<>();
 
 		main.getChildren().clear();
 		for (Artwork a : ending) {
-			Listing l = new Listing(a);
+			AuctionView l = new AuctionView(a);
 			listings.add(l);
 		}
 
