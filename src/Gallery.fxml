@@ -83,11 +83,7 @@
                   <FlowPane fx:id="display" prefHeight="379.0" prefWidth="530.0" />
                </content>
             </ScrollPane>
-            <HBox prefHeight="31.0" prefWidth="611.0">
-               <children>
-                  <Button mnemonicParsing="false" text="Remove" />
-               </children>
-            </HBox>
+            <HBox prefHeight="31.0" prefWidth="611.0" />
          </children></VBox>
    </center>
    <right>
