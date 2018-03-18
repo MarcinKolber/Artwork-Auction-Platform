@@ -11,25 +11,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GalleryCreatorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="560.0" style="-fx-background-color: rgb(44, 46, 61);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GalleryCreatorController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
    </left>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_CENTER" prefHeight="39.0" prefWidth="374.0" text="Create a new gallery">
+            <Label alignment="TOP_CENTER" prefHeight="39.0" prefWidth="374.0" text="Create a new gallery" textFill="WHITE">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <Label text="Title">
+            <Label text="Name" textFill="WHITE">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
             </Label>
             <TextField fx:id="title" />
-            <Label text="Description">
+            <Label text="Description" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -43,16 +43,16 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Max paintings" />
+                        <Label text="Max paintings" textFill="WHITE" />
                         <Slider fx:id="paintingSlider" />
-                        <Label fx:id="paintVal" text="0" />
+                        <Label fx:id="paintVal" text="0" textFill="WHITE" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Max sculptures" />
+                        <Label text="Max sculptures" textFill="WHITE" />
                         <Slider fx:id="sculpturesSlider" />
-                        <Label fx:id="sculpturesVal" text="0" />
+                        <Label fx:id="sculpturesVal" text="0" textFill="WHITE" />
                      </children>
                   </VBox>
                </children>
@@ -62,6 +62,6 @@
       </VBox>
    </center>
    <right>
-      <VBox prefHeight="400.0" prefWidth="152.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="400.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

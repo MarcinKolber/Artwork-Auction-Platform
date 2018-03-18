@@ -1,3 +1,8 @@
+/**
+ * Class to display custom galleries
+ * @author Ayden Ballard - 905438
+ */
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -24,7 +29,6 @@ public class GalleryController {
     @FXML
     private Label selected;
 
-	
 	@FXML
 	private FlowPane listGalleries;
 
@@ -39,65 +43,56 @@ public class GalleryController {
 
 	private ArrayList<CustomGallery> galleries;
 
+	/**
+	 * Method to initialize the gallery window and adding the
+	 * galleries to the window
+	 */
 	public void initialize() {
-
-		Random rnd = new Random();
-
 		createNewGallery.setOnAction(e -> galleryCreator());
-
 		galleries = FileReader.readGalleries(LoginController.getUser());
 		System.out.println("The size is " + galleries.size());
-
 		ArrayList<GalleryButton> galleryButtons = new ArrayList<GalleryButton>();
-
 		vbox1.getChildren().clear();
 		for (CustomGallery g : galleries) {
 			GalleryButton gb = new GalleryButton(g);
-			
-			
 			galleryButtons.add(gb);
 			vbox1.getChildren().add(gb);
-
-	
-
 			gb.setOnAction(e -> displayGallery(gb.getCustomGallery()));
-
 		}
-
 	}
 
+	/**
+	 * Method to display the custom gallery
+	 * @param cg - CustomGallery
+	 */
 	public void displayGallery(CustomGallery cg) {
 		selected.setText(cg.getName());
-
 		display.getChildren().clear();
 		for (Artwork art : cg.getArtworks()) {
 			Listing listing = new Listing(art);
-			
 			listing.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-
 					if (event.isControlDown()) {
 						System.out.println("delete");
-						try {
+						try{
 							Writer.removeFromGallery(cg, listing.getArtwork());
 							cg.deleteArtwork(art);
-						} catch (FileNotFoundException | UnsupportedEncodingException e) {
+						}
+						catch(FileNotFoundException | UnsupportedEncodingException e) {
 							e.printStackTrace();
 						}
 						display.getChildren().remove(listing);
-
-					} else {
-
-						try {
+					}
+					else{
+						try{
 							listing.displayInWindow();
-						} catch (IOException e) {
+						}
+						catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						
 					}
-
 				}
 			});
 			
@@ -108,21 +103,21 @@ public class GalleryController {
 		}
 	}
 
+	/**
+	 * Method to display a window that is responsible for creating galleries
+	 */
 	public void galleryCreator() {
 		FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/GalleryCreator.fxml"));
 
 		// Try to display the user
 		try {
 			Parent root = fxmlL.load();
-
 			Scene scene = new Scene(root);
-
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.initModality(Modality.APPLICATION_MODAL);
 
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-
 				@Override
 				public void handle(WindowEvent paramT) {
 					initialize();
@@ -130,10 +125,9 @@ public class GalleryController {
 			});
 
 			stage.showAndWait();
-
 			initialize();
-
-		} catch (IOException e) { // catch an exception if file cannot be loaded
+		}
+		catch (IOException e) { // catch an exception if file cannot be loaded
 			e.printStackTrace();
 		}
 

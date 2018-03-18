@@ -20,37 +20,37 @@
                 <children>
                    <VBox prefHeight="216.0" prefWidth="154.0">
                       <children>
-                         <Label text="Username">
+                         <Label text="Username" textFill="WHITE">
                             <font>
                                <Font name="System Bold" size="16.0" />
                             </font>
                          </Label>
-                         <Label text="First name">
+                         <Label text="First name" textFill="WHITE">
                             <font>
                                <Font name="System Bold" size="16.0" />
                             </font>
                          </Label>
-                         <Label text="Last name">
+                         <Label text="Last name" textFill="WHITE">
                             <font>
                                <Font name="System Bold" size="16.0" />
                             </font>
                          </Label>
-                         <Label text="Full name">
+                         <Label text="Full name" textFill="WHITE">
                             <font>
                                <Font name="System Bold" size="16.0" />
                             </font>
                          </Label>
-                         <Label text="Address">
+                         <Label text="Address" textFill="WHITE">
                             <font>
                                <Font name="System Bold" size="16.0" />
                             </font>
                          </Label>
-                         <Label text="Postcode">
+                         <Label text="Postcode" textFill="WHITE">
                             <font>
                                <Font name="System Bold" size="16.0" />
                             </font>
                          </Label>
-                         <Label text="Phone number">
+                         <Label text="Phone number" textFill="WHITE">
                             <font>
                                <Font name="System Bold" size="16.0" />
                             </font>
@@ -117,7 +117,10 @@
    <right>
       <VBox fx:id="logins" prefHeight="360.0" prefWidth="302.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="List of logins:" />
+            <Label text="List of logins:" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
             <ListView fx:id="list" prefHeight="342.0" prefWidth="302.0" />
          </children>
       </VBox>
