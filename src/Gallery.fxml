@@ -12,7 +12,11 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="900.0" style="-fx-background-color: rgb(44, 46, 61);" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GalleryController">
    <bottom>
-      <VBox prefHeight="59.0" prefWidth="870.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="59.0" prefWidth="870.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Click on an auction to display it in a window." textFill="WHITE" />
+            <Label text="To delete an artwork from gallery, hold Ctrl down and click on an artwork which you want to delete." textFill="WHITE" />
+         </children></VBox>
    </bottom>
    <top>
       <VBox prefHeight="47.0" prefWidth="900.0" BorderPane.alignment="CENTER">

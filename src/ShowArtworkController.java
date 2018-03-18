@@ -189,21 +189,31 @@ public class ShowArtworkController {
 			alert.setTitle("Error");
 			alert.setHeaderText("An artwork is already in the gallery");
 			alert.showAndWait();
+		
 		} else {
 			Writer.addArtworkToGallery(LoginController.getUser(), artwork, cg);
 
-			LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
+			boolean success = LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
+			
+			if(success) {
+				
+				Writer.addArtworkToGallery(LoginController.getUser(), artwork,
+						LoginController.getUser().getCustomGallery(track.getValue()));
 
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Added");
-			alert.setHeaderText("Added to a custom gallery");
-			alert.setContentText("Thank you!");
-			alert.showAndWait();
+				LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Added");
+				alert.setHeaderText("Added to a custom gallery");
+				alert.setContentText("Thank you!");
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText("Limit has been reached");
+				alert.showAndWait();
+			}
 
-			Writer.addArtworkToGallery(LoginController.getUser(), artwork,
-					LoginController.getUser().getCustomGallery(track.getValue()));
-
-			LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
+		
 		}
 
 

@@ -4,7 +4,7 @@ public class CustomGallery {
 
 	private User user;
 	private String name;
-	private ArrayList<Artwork> artwork;
+	private ArrayList<Artwork> artworks;
 	private String description;
 	private int numberOfPaintings;
 	private int numberOfSculptures;
@@ -17,10 +17,23 @@ public class CustomGallery {
 		this.user = user;
 		this.currentPaintings = 0;
 		this.currentSculptures = 0;
-		this.artwork = new ArrayList<>();
+		this.artworks = new ArrayList<>();
 		this.description = description;
 		this.numberOfPaintings = paintings;
 		this.numberOfSculptures = sculptures;
+	}
+
+	public void deleteArtwork(Artwork toDelete) {
+		if (artworks.contains(toDelete)) {
+			artworks.remove(toDelete);
+
+			if (toDelete instanceof Sculpture) {
+				currentSculptures--;
+			} else if (toDelete instanceof Painting) {
+				currentPaintings--;
+			}
+		}
+
 	}
 
 	public User getUser() {
@@ -40,11 +53,11 @@ public class CustomGallery {
 	}
 
 	public ArrayList<Artwork> getArtwork() {
-		return artwork;
+		return artworks;
 	}
 
 	public void setArtwork(ArrayList<Artwork> artwork) {
-		this.artwork = artwork;
+		this.artworks = artwork;
 	}
 
 	public String getTextFileOutput() {
@@ -54,19 +67,24 @@ public class CustomGallery {
 		return output;
 	}
 
-	public void addArtwork(Artwork artwork1) {
-		if (!artwork.contains(artwork1)) {
+	public boolean addArtwork(Artwork artwork1) {
+		if (!artworks.contains(artwork1)) {
 
 			if (artwork1 instanceof Painting && currentPaintings < numberOfPaintings) {
 				currentPaintings++;
-				artwork.add(artwork1);
+				artworks.add(artwork1);
+				return true;
 			} else if (artwork1 instanceof Sculpture && currentSculptures < numberOfSculptures) {
 				currentSculptures++;
-				artwork.add(artwork1);
+				artworks.add(artwork1);
+				return true;
 
+			} else {
+				return false;
 			}
 
 		}
+		return false;
 	}
 
 	public String getPath() {
@@ -78,7 +96,7 @@ public class CustomGallery {
 	}
 
 	public boolean hasArtwork(Artwork artwork1) {
-		if (artwork.contains(artwork1)) {
+		if (artworks.contains(artwork1)) {
 			return true;
 		} else {
 			return false;

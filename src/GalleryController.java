@@ -81,8 +81,8 @@ public class GalleryController {
 						System.out.println("delete");
 						try {
 							Writer.removeFromGallery(cg, listing.getArtwork());
+							cg.deleteArtwork(art);
 						} catch (FileNotFoundException | UnsupportedEncodingException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						display.getChildren().remove(listing);
