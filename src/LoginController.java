@@ -48,19 +48,23 @@ public class LoginController {
 		System.out.println("User of name " + username + " is logging in");
 
 		User userA = FileReader.getUser(username);
-		//FileReader.readGalleries(userA);
+
+
 		// Checks if user is in memory then logs in if it is
 		if (userA != null) {
 			try {
 				Writer.addLogin(userA);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+			} catch (IOException e1) {		
 				e1.printStackTrace();
 			}
 			System.out.println("Logging in was successful");
 			user = userA;
-			
-			FileReader.setGalleries(FileReader.readGalleries(userA));
+			try {
+				
+				FileReader.setGalleries(FileReader.readGalleries(userA));
+			} catch (Exception e) {
+				System.out.println("No custom galleries found");
+			}
 			FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("MainGUI.fxml"));
 			try {
 				BorderPane login = (BorderPane) fxmlL.load();

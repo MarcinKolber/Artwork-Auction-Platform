@@ -9,14 +9,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+/**
+ * This class is used to diplay a user.
+ */
 public class UserView extends VBox {
 
-	private User user;
-	private ImageView imgView;
+	private User user; //The user being displayed
+	private ImageView imgView; //Image holder for the user image.
 
+	/**
+	 * Method to set the user that is being diplayed.
+	 * @param User - the desired user.
+	 */
 	public UserView(User user) {
-
+		//Sets the image and imageView
 		imgView = new ImageView();
 		this.user = user;
 		imgView.setImage(user.getImage());
@@ -32,6 +38,9 @@ public class UserView extends VBox {
 		setOnMouseClicked(e -> displayInWindow());
 	}
 
+	/**
+	 * Creates the new frame for displaying a user.
+	 */
 	public void displayInWindow() {
 
 		UserDisplayController.setUser(user);

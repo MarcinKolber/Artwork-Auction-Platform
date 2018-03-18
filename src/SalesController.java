@@ -23,49 +23,55 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
+/**
+ * This class is used to create sales based graphs for analysis.
+ */
 public class SalesController {
 
     @FXML
-    private VBox chartArea;
+    private VBox chartArea; //A panel to show the chart
 
     @FXML
-    private DatePicker dateFrom;
-
-
-    @FXML
-    private DatePicker dateTo;
+    private DatePicker dateFrom; //Allows user to pick a start date for analysis
 
 
     @FXML
-    private RadioButton barchart;
+    private DatePicker dateTo; //Allows user to pick an end date for analysis
+
 
     @FXML
-    private RadioButton piechart;
+    private RadioButton barchart; //Allows user to pick a bar chart
 
     @FXML
-    private RadioButton linechart;
+    private RadioButton piechart; //Allows user to pick a pie chart
 
     @FXML
-    private Button generateButton;
+    private RadioButton linechart; //Allows user to pick a line chart
+
+    @FXML
+    private Button generateButton; //Allows user to create the chart
 
 	@FXML
-	private ChoiceBox<Integer> year;
+	private ChoiceBox<Integer> year; //Allows user to pick a year to analyse sales of
 
-	private ArrayList<Artwork> userArtworks;
+	private ArrayList<Artwork> userArtworks; //Storage for user artworks
 
-	private ArrayList<Artwork> soldArtworks;
+	private ArrayList<Artwork> soldArtworks; //Storage for sold artworks
 
 	@FXML
-	private Button ref;
+	private Button ref; //Allows user to refresh?
 
-	private ToggleGroup tg;
+	private ToggleGroup tg; //not sure
 	private ToggleGroup tg1;
 
-	private Date from;
-	private Date until;
-	private int yearNo;
-	private ArrayList<Integer> years;
+	private Date from; //Start date of analysis
+ 	private Date until; //End date of analysis
+	private int yearNo; //Number of the year
+	private ArrayList<Integer> years; //Storage for years
 
+	/**
+	 * Method to initialize the GUI.
+	 */
 	public void initialize() {
 
 		years = new ArrayList<>();
@@ -132,6 +138,7 @@ public class SalesController {
 
 	}
 
+	//NOT SURE AWHAT THIS DOES
 	public void ref() {
 
 		if(!piechart.isSelected()) {
@@ -179,8 +186,12 @@ public class SalesController {
 
 	}
 
+	/**
+	 * Method to get a bar chart object representing a specific year.
+	 * @param int - the year of the bar chart you want.
+	 */
 	public BarChart<String, Number> getBarChart(int year) {
-
+		//Setting up the bar chart
 		final CategoryAxis xAxis = new CategoryAxis();
 		final NumberAxis yAxis = new NumberAxis();
 
@@ -215,7 +226,7 @@ public class SalesController {
 		String d = dateFormatter.format(date);
 
 		for (Artwork a : soldArtworks) {
-
+			//Checks the date of the sales and adds to arraylist
 			if (a.getDateAdded().after(from) && a.getDateAdded().before(until)) {
 				int month = a.getDateAdded().getMonth();
 
@@ -237,11 +248,14 @@ public class SalesController {
 
 		bc.getData().addAll(series1, series2);
 
-		return bc;
+		return bc; //The created barchart
 	}
 
+	/**
+	 * Method to return a pie chart object.
+	 */
 	public PieChart getPieChart() {
-
+		//Setting the pie chart
 		LocalDate date1 = dateFrom.getValue();
 
 		LocalDate date2 = dateTo.getValue();
@@ -256,7 +270,7 @@ public class SalesController {
 
 		for (Artwork art : soldArtworks) {
 			if (art.getDateAdded().after(date3) && art.getDateAdded().before(date4)) {
-
+				//Checking if sale was in date, adds to value if it is
 				if (art instanceof Sculpture) {
 					sculptureVal += art.getHighestBidAmount();
 				} else if (art instanceof Painting) {
@@ -272,11 +286,15 @@ public class SalesController {
 				new PieChart.Data("Paintings: " + paintingVal, paintingVal));
 
 		final PieChart chart = new PieChart(pieChartData);
-		return chart;
+		return chart; //The pie chart
 	}
 
+	/**
+	 * Method to return a line chart object representing a certain year.
+	 * @param int - the year in question.
+	 */
 	public LineChart getLineChart(int year) {
-
+		//Sets the chart
 		final CategoryAxis xAxis = new CategoryAxis();
 		final NumberAxis yAxis = new NumberAxis();
 
@@ -305,7 +323,7 @@ public class SalesController {
 		String d = dateFormatter.format(date);
 
 		for (Artwork a : soldArtworks) {
-
+			//Checks if sale is between the dates and adds to the chart if it is
 			if (a.getDateAdded().after(from) && a.getDateAdded().before(until)) {
 
 				int month = a.getDateAdded().getMonth();
@@ -328,10 +346,13 @@ public class SalesController {
 		lineChart.getData().add(data);
 
 		test();
-		return lineChart;
+		return lineChart; //The line chart objects
 
 	}
 
+	/**
+	 * Method to test that the date funtions are working proerly??
+	 */
 	public void test() {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
 		Date date = new Date();
@@ -345,14 +366,20 @@ public class SalesController {
 
 }
 
+/**
+ * Class for dates
+ */
 class Month {
 
-	private String name;
-	private int index;
-	private double sculptureProfit;
-	private double paintingsProfit;
-	private double total;
+	private String name; //Name of the month
+ 	private int index; //Number of the month
+	private double sculptureProfit; //Profit from sculpture sales
+	private double paintingsProfit; //Profit from painting sales
+	private double total; //Total profit from sales
 
+	/**
+	 * A constructor for a new Month object.
+	 */
 	public Month(String name, int index) {
 
 		this.name = name;
@@ -360,63 +387,99 @@ class Month {
 
 	}
 
+	/**
+	 * Method to return the of the month.
+	 * @return String - name of the month e.g. January.
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Method to set the same of the month.
+	 * @param String - name of the month.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Method to get the index of the month.
+	 * @return int - index of the month.
+	 */
 	public int getIndex() {
 		return index;
 	}
 
+	/**
+	 * Method to set the index of a month.
+	 * @param int - index of the month.
+	 */
 	public void setIndex(int index) {
 		this.index = index;
 	}
 
+	/**
+	 * Method to get the profit from sculpture sales.
+	 * @return double - profit from sulptures.
+	 */
 	public double getSculptureProfit() {
 		return sculptureProfit;
 	}
 
+	/**
+	 * Method to set the profit made by sculpture sales.
+	 * @param double - sculpture profit.
+	 */
 	public void setSculptureProfit(double sculptureProfit) {
 		this.sculptureProfit = sculptureProfit;
 	}
 
+	/**
+	 * Method to return the profit made by painting sales.
+	 * @return double - painting profit.
+	 */
 	public double getPaintingsProfit() {
 		return paintingsProfit;
 	}
 
+	/**
+	 * Method to set the profit made by painting sales.
+	 * @param double - painting profit.
+	 */
 	public void setPaintingsProfit(double paintingsProfit) {
 		this.paintingsProfit = paintingsProfit;
 	}
 
+	/**
+	 * Method to work out a sum of painting profits.
+	 * @param double - profit from sale.
+	 */
 	public void addPaintingsProfit(double profit) {
 		paintingsProfit += profit;
 	}
-
+	
+	/**
+	 * Method to work out a sum of painting profits.
+	 * @param double - profit from sale.
+	 */
 	public void addSculpturesProfit(double profit) {
 		sculptureProfit += profit;
 	}
-
+	/**
+	 * Method to get the total profits from sales.
+	 * @return double - total profits.
+	 */
 	public double getTotal() {
 		return sculptureProfit + paintingsProfit;
 	}
 
+	/**
+	 * Method to set the total profits from sales.
+	 * @param double - total profits.
+	 */
 	public void setTotal(double total) {
 		this.total = total;
-	}
-
-}
-
-class Week extends Month {
-
-	private int weekOfYear;
-
-	public Week(String name, int index) {
-		super(name, index);
-		// TODO Auto-generated constructor stub
 	}
 
 }

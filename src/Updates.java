@@ -36,7 +36,6 @@ public class Updates {
 		// Getting the date the user last logged in
 		date = user.getLastLogin();
 
-		System.out.println("Last login: " + date); //printing when the user last logged in
 		
 		// check if the user has logged in before (not null) 
 		if (user.getLastLogin() != null) { 
@@ -55,18 +54,14 @@ public class Updates {
 		ArrayList<Bid> newBids = new ArrayList<>();
 
 		ArrayList<Bid> allBids = FileReader.getBids();
-		System.out.println(user.getFullName());
 		ArrayList<Bid> userBids = user.getPlacedBids();
-		System.out.println(userBids.size() + "asdasdasd");
 
 		for (Bid bid : allBids) {
 
-			System.out.println(bid.getBidDate() + "dsaas");
 
 			Artwork a = bid.getArtwork();
 
 			if (user.getBiddedArtworks().contains(a) && bid.getBidDate().after(date) && bid.getBidder() != user) {
-				System.out.println("asddddd");
 
 				newBids.add(bid);
 
@@ -96,7 +91,6 @@ public class Updates {
 	 */
 	public static void addArtworks() {
 		ArrayList<Artwork> arts = FileReader.getArtworks();
-		System.out.println(arts.size());
 		for (Artwork a : arts) {
 			if (a.getDateAdded().after(date)) {
 				newArtworks.add(a);
@@ -114,7 +108,6 @@ public class Updates {
 	public void addBids() {
 		ArrayList<Bid> bids = FileReader.getBids();
 		for (Bid bid : bids) {
-			System.out.println("title " + bid.getTitle());
 			if (bid.getBidDate().after(date)) {
 				newBids.add(bid);
 			}
@@ -131,13 +124,11 @@ public class Updates {
 		ending = new ArrayList<Artwork>();
 		ArrayList<Bid> bids = LoginController.getUser().getPlacedBids();
 		for (Bid b : bids) {
-			System.out.println("not added");
 			Artwork artwork = b.getArtwork();
 			if (artwork.leftBids() < i) {
 				if (!ending.contains(artwork)) {
 					ending.add(artwork);
 				}
-				System.out.println("added");
 			}
 		}
 		return ending;

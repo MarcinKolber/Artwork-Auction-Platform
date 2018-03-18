@@ -31,6 +31,7 @@ public class Writer {
 		try {
 			PrintWriter writer = new PrintWriter(path, "UTF-8");
 			writer.println(user.getTextFileOutput());
+			writer.println(user.getDateString());
 			writer.close();
 		} catch (IOException e) {
 			throw new IOException("error writing to file of user " + user.getUsername());

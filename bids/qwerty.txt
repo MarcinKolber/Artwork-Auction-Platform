@@ -1,2 +1,0 @@
-painting,qwerty,Test,3333.0,Mar 10 2018 22:06:44 PM
-sculpture,qwerty,testing1,130.0,Mar 16 2018 05:46:17 AM

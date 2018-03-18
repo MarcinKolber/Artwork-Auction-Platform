@@ -131,9 +131,7 @@ public class SearchingController {
 					minimum = minPrice;
 					maximum = maxPrice;
 					//print out the values
-					System.out.println(min);
-					System.out.println(max);
-
+	
 				} catch (Exception e) { //if something goes wrong, set the min and max to default values
 					minimum = Double.MIN_VALUE;
 					maximum = Double.MAX_VALUE;
@@ -208,8 +206,7 @@ public class SearchingController {
 					if (artwork.getTitle().toLowerCase().contains(userInput.toLowerCase())) {
 						AuctionView l = new AuctionView(artwork);
 						l.getTitle().setStyle("-fx-background-color: rgb(255, 153, 0, 0.5);");
-						System.out.println("min " + minimum);
-						System.out.println("max " + maximum);
+
 
 						if (sculptures.isSelected() && artwork instanceof Sculpture
 								&& artwork.getHighestBidAmount() > minimum && artwork.getHighestBidAmount() <= maximum) {
@@ -277,7 +274,6 @@ public class SearchingController {
 			else if (descriptions.isSelected() && !author.isSelected()) { // 2
 				s.getChildren().clear();
 
-				System.out.println("Case two");
 				String userInput = searchingTextField.getText();
 
 				if (!userInput.trim().isEmpty()) {

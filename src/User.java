@@ -367,8 +367,16 @@ public class User {
 		String d = dateFormatter.format(accountCreationDate);
 		
 		String output = this.username + "," + this.firstName + "," + this.lastName + "," + this.address + ","
-				+ this.phonenumber + "," + this.avatarIndex + "," + this.postcode+"\n"+d;
+				+ this.phonenumber + "," + this.avatarIndex + "," + this.postcode;
 		return output;
+	}
+	
+	public String getDateString() {
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
+
+		String d = dateFormatter.format(accountCreationDate);
+		
+		return d;
 	}
 
 	/**
@@ -543,7 +551,13 @@ public class User {
 
 	public Date getLastLogin() {
 		int n = logins.size();
-		return logins.get(n - 1);
+		
+		if(n>0) {
+			return logins.get(n - 1);
+		} else {
+			return new Date();
+		}
+		
 	}
 
 	public void addCustomGallery(CustomGallery gallery) {

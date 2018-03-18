@@ -19,95 +19,100 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+/**
+ * This class is used to display an Artwork object.
+ */
 public class ShowArtworkController {
 
 	@FXML
-	private BorderPane mainSection;
+	private BorderPane mainSection; //Panel for display
 
 	@FXML
-	private ImageView mainPic;
+	private ImageView mainPic; //Holder for an image
 
 	@FXML
-	private ImageView pic1;
+	private ImageView pic1; //Holder for an image
 
 	@FXML
-	private ImageView pic2;
+	private ImageView pic2; //Holder for an image
 
 	@FXML
-	private ImageView pic3;
+	private ImageView pic3; //Holder for an image
 
 	@FXML
-	private ImageView pic4;
+	private ImageView pic4; //Holder for an image
 
 	@FXML
-	private Label categoryA;
+	private Label categoryA; //Holder for text
 
 	@FXML
-	private Label titleA;
+	private Label titleA; //Holder for text
+
+	@FXML 
+	private Label creatorA; //Holder for text
 
 	@FXML
-	private Label creatorA;
+	private Label yearA; //Holder for text
 
 	@FXML
-	private Label yearA;
+	private Label noOfBidsA; //Holder for text
 
 	@FXML
-	private Label noOfBidsA;
+	private Label bidsLimitA; //Holder for text
 
 	@FXML
-	private Label bidsLimitA;
+	private Label postcode1; //Holder for text
 
 	@FXML
-	private Label postcode1;
+	private Label postcode2; //Holder for text
 
 	@FXML
-	private Label postcode2;
+	private Label widthA; //Holder for text
 
 	@FXML
-	private Label widthA;
+	private Label heightA; //Holder for text
 
 	@FXML
-	private Label heightA;
+	private Label depthA; //Holder for text
 
 	@FXML
-	private Label depthA;
+	private Label materialA; //Holder for text
 
 	@FXML
-	private Label materialA;
+	private Label description; //Holder for text
 
 	@FXML
-	private Label description;
+	private ChoiceBox<String> track; //NOT SURE
 
 	@FXML
-	private ChoiceBox<String> track;
+	private Button addToCustomGallery; //Allows user to add artwork to custom galleries
 
 	@FXML
-	private Button addToCustomGallery;
+	private Label currentPrice; //Holder for text
 
 	@FXML
-	private Label currentPrice;
+	private Label sellerA; //Holder for text
 
 	@FXML
-	private Label sellerA;
+	private Button addToFav; //Allows user to add to favourite list
 
 	@FXML
-	private Button addToFav;
+	private ImageView sellerAvatar; //Holder for image
 
 	@FXML
-	private ImageView sellerAvatar;
+	private TextField bidAmount; //Allows input for a bid amount
 
 	@FXML
-	private TextField bidAmount;
+	private Button placeBid; //Allows user to place bids
 
 	@FXML
-	private Button placeBid;
+	private Label noOfBids; //Holder for text
 
-	@FXML
-	private Label noOfBids;
+	private static Artwork artwork; //Artwork object in question
 
-	private static Artwork artwork;
-
+	/**
+	 * Method to initialize the GUI.
+	 */
 	public void initialize() {
 
 		// Get the owner of sculpture
@@ -154,7 +159,7 @@ public class ShowArtworkController {
 			heightA.setText(((Painting) artwork).getHeight() + "");
 
 		}
-
+		//Displays information
 		yearA.setText(artwork.getCreationYear() + "");
 		creatorA.setText(artwork.getCreator());
 		noOfBidsA.setText(artwork.getNumberOfPlacedBids() + "");
@@ -172,7 +177,7 @@ public class ShowArtworkController {
 		} else { // Otherwise, display the reserve price
 			currentPrice.setText(artwork.getReservePrice() + "");
 		}
-
+		//Action handlers
 		addToFav.setOnAction(e -> showUser());
 		placeBid.setOnAction(e -> addBid());
 
@@ -180,25 +185,28 @@ public class ShowArtworkController {
 
 	}
 
+	/**
+	 * Method to create a custom gallery and artwork to it.
+	 */
 	public void addToCustomGallery() {
 
-		CustomGallery cg = LoginController.getUser().getCustomGallery(track.getValue());
+		CustomGallery cg = LoginController.getUser().getCustomGallery(track.getValue()); //New gallery
 
 		if (cg.hasArtwork(artwork)) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("An artwork is already in the gallery");
-			alert.showAndWait();
+			alert.showAndWait(); //Checks if the image is already in the gallery
 		
 		} else {
 			Writer.addArtworkToGallery(LoginController.getUser(), artwork, cg);
 
 			boolean success = LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
-			
+			//Adds the artwork if it isn't already in the gallery
 			if(success) {
 				
 				Writer.addArtworkToGallery(LoginController.getUser(), artwork,
-						LoginController.getUser().getCustomGallery(track.getValue()));
+						LoginController.getUser().getCustomGallery(track.getValue())); //Saves gallery addition to memory
 
 				LoginController.getUser().getCustomGallery(track.getValue()).addArtwork(artwork);
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -210,7 +218,7 @@ public class ShowArtworkController {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
 				alert.setHeaderText("Limit has been reached");
-				alert.showAndWait();
+				alert.showAndWait(); //Error checking and warning
 			}
 
 		
@@ -220,6 +228,9 @@ public class ShowArtworkController {
 
 	}
 
+	/**
+	 * Method to show the information of a selected user.
+	 */
 	public void showUser() {
 
 		User user = artwork.getOwner();
@@ -232,7 +243,7 @@ public class ShowArtworkController {
 
 		// Try to display the user
 		try {
-			Parent root = fxmlL.load();
+			Parent root = fxmlL.load(); //New window for user information
 
 			Scene scene = new Scene(root, 450, 300);
 
@@ -248,14 +259,25 @@ public class ShowArtworkController {
 		}
 	}
 
+	/**
+	 * Method to get an artwork object.
+	 * @return Artwork - the artwork object.
+	 */
 	public static Artwork getArtwork() {
 		return artwork;
 	}
 
+	/**
+	 * Method to set an artwork.
+	 * @param Artwork - the artwork object.
+	 */
 	public static void setArtwork(Artwork artwork) {
 		ShowArtworkController.artwork = artwork;
 	}
 
+	/**
+	 * Method to add a bid to an artwork in the window.
+	 */
 	public void addBid() {
 
 		String type = "";

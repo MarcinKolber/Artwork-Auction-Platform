@@ -579,8 +579,10 @@ public class FileReader {
 	 * @throws ParseException
 	 */
 	public static User constructUser(String filename) throws ParseException {
+		User user = null;
 
 		try {
+
 			Scanner in = new Scanner(new File("userFiles//users//" + filename));
 			System.out.println("current file "+ filename);
 			in.useDelimiter(",");
@@ -593,7 +595,6 @@ public class FileReader {
 			avatarIndex = in.nextInt();
 			String postcode = in.next();
 			Date d = null;
-			User user = null;
 			
 			in.close();
 
@@ -609,23 +610,24 @@ public class FileReader {
 				user = new User(username, firstname, lastname, address, postcode, phonenumber, avatarIndex);
 				user.setAccountCreationDate(d);
 				user.setLogins(addLogins(user));
-				System.out.println("aaaaaaaa");
+				System.out.println("-----"+ username +"-------------");
 
 
 			} else {
 				user = new User(username, firstname, lastname, address, postcode, phonenumber, avatarIndex);
 				user.setLogins(addLogins(user));
-				System.out.println("sssssss");
+				System.out.println("-----"+ username +"-------------");
 
 			}
 			in1.close();
 
 			return user;
 		} catch (FileNotFoundException e) {
+			System.out.println("cccc");
 
 			e.printStackTrace();
 		}
-		return null;
+		return user;
 	}
 
 	private static ArrayList<Date> addLogins(User user) {
@@ -784,42 +786,46 @@ public class FileReader {
 		try {
 			System.out.println(user.getUsername());
 			File[] listOfFiles = new File("customGalleries//" + user.getUsername() + "//").listFiles();
-			for (File e : listOfFiles) {
-				try {
-					System.out.println(e.getName());
-					System.out.println("executed once");
-					Scanner in = new Scanner(e);
+			
+			if(listOfFiles.length>0) {
+				for (File e : listOfFiles) {
+					try {
+						System.out.println(e.getName());
+						System.out.println("executed once");
+						Scanner in = new Scanner(e);
 
-					in.useDelimiter("#");
-					String name = in.next();
-					String username1 = in.next();
-					String des = in.next();
-					String paint = in.next();
-					String sculp = in.next();
-					System.out.println(paint + sculp);
+						in.useDelimiter("#");
+						String name = in.next();
+						String username1 = in.next();
+						String des = in.next();
+						String paint = in.next();
+						String sculp = in.next();
+						System.out.println(paint + sculp);
 
-					int numberOfPaintings = Integer.parseInt(paint);
-					int numberOfSculptures = Integer.parseInt(sculp);
+						int numberOfPaintings = Integer.parseInt(paint);
+						int numberOfSculptures = Integer.parseInt(sculp);
 
-					CustomGallery ng = new CustomGallery(name, user, username1, numberOfPaintings, numberOfSculptures);
-					ng.setPath(e.getPath());
-					galleries.add(ng);
-					in.close();
+						CustomGallery ng = new CustomGallery(name, user, username1, numberOfPaintings, numberOfSculptures);
+						ng.setPath(e.getPath());
+						galleries.add(ng);
+						in.close();
 
-					Scanner in1 = new Scanner(e);
-					in1.nextLine();
-					while (in1.hasNextLine()) {
-						String line = in1.nextLine();
-						Artwork art = FileReader.getArtwork(line);
-						ng.addArtwork(art);
+						Scanner in1 = new Scanner(e);
+						in1.nextLine();
+						while (in1.hasNextLine()) {
+							String line = in1.nextLine();
+							Artwork art = FileReader.getArtwork(line);
+							ng.addArtwork(art);
+						}
+						in1.close();
+					} catch (Exception e1) {
+						System.out.println("error loading a file");
 					}
-					in1.close();
-				} catch (Exception e1) {
-					System.out.println("error loading a file");
 				}
 			}
+		
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("No galleries were found");
 
 		}
 

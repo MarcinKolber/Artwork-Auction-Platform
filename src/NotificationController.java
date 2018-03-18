@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public class NotificationController {
 
 	@FXML
-	private VBox one;
+	private VBox one; // 
 
 	@FXML
 	private StackPane stackPane;

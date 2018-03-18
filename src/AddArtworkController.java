@@ -194,7 +194,7 @@ public class AddArtworkController {
 				e.printStackTrace();
 			}
 
-			System.out.println(file.getPath());
+			//System.out.println(file.getPath());
 			counter++;
 		}
 	}
@@ -235,7 +235,6 @@ public class AddArtworkController {
 		double reservePriceD = Double.parseDouble(reservePriceA);
 
 		User user = LoginController.getUser();
-		System.out.println(user);
 			
 		
 		if (selectSculpture.isSelected()) {
