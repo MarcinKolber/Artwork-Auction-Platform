@@ -25,7 +25,6 @@ import javafx.scene.layout.VBox;
 
 public class SalesController {
 
-
     @FXML
     private VBox chartArea;
 
@@ -48,7 +47,6 @@ public class SalesController {
 
     @FXML
     private Button generateButton;
-
 
 	@FXML
 	private ChoiceBox<Integer> year;

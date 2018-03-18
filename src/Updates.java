@@ -9,12 +9,13 @@ import java.util.Date;
  */
 public class Updates {
 
-	// 
+	// Array lists for holding references to bids, users and artworks
 	private static ArrayList<Artwork> newArtworks;
 	private static ArrayList<Artwork> ending;
 	private static ArrayList<Bid> newBids;
 	private static ArrayList<User> users;
 
+	// 
 	private static Date date;
 	private static User user;
 
