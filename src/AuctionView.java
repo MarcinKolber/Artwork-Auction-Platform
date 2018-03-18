@@ -100,10 +100,17 @@ public class AuctionView extends VBox {
 		});
 	}
 
+	/**
+	 * Displays a window with an artwork
+	 * @throws IOException if a FXML file cannot be found
+	 */
 	public void displayInWindow() throws IOException {
-		ShowArtworkController.setArtwork(artwork);
-		Scene scene;
 
+		// Set an artwork
+		ShowArtworkController.setArtwork(artwork);
+		
+		// Open a new window
+		Scene scene;
 		scene = new Scene(FXMLLoader.load(getClass().getResource("ShowArtwork.fxml")));
 		Stage stage = new Stage();
 		stage.setScene(scene);
@@ -111,37 +118,39 @@ public class AuctionView extends VBox {
 		stage.show();
 	}
 
+	/**
+	 * Returns an artwork
+	 * @return artwork
+	 */
 	public Artwork getArtwork() {
 		return artwork;
 	}
 
+	/**
+	 * Sets an artwork 
+	 * @param artwork artwork to be set
+	 */
 	public void setArtwork(Artwork artwork) {
 		this.artwork = artwork;
 	}
 
-	public ImageView getImgView() {
-		return imgView;
-	}
 
-	public void setImgView(ImageView imgView) {
-		this.imgView = imgView;
-	}
-
+	/**
+	 * Returns a description
+	 * @return description of the view
+	 */
 	public Label getDescription() {
 		return description;
 	}
 
+	/**
+	 * Sets a description of the view
+	 * @param description
+	 */
 	public void setDescription(Label description) {
 		this.description = description;
 	}
 
-	public Label getRemaining() {
-		return remaining;
-	}
-
-	public void setRemaining(Label remaining) {
-		this.remaining = remaining;
-	}
 
 	public Label getYear() {
 		return year;
