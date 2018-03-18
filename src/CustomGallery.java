@@ -1,17 +1,33 @@
 import java.util.ArrayList;
 
+/**
+ * A class to represent a custom gallery made by an user to hold references to
+ * artworks
+ * 
+ * @author 869527
+ *
+ */
 public class CustomGallery {
 
-	private User user;
-	private String name;
-	private ArrayList<Artwork> artworks;
-	private String description;
-	private int numberOfPaintings;
-	private int numberOfSculptures;
-	private int currentPaintings;
-	private int currentSculptures;
+	private User user; // creator of a custom gallery
+	private String name; // name of the gallery
+	private ArrayList<Artwork> artworks; // list of artworks contained in the gallery
+	private String description; // description of a gallery
+	private int numberOfPaintings;	// limit of paintings
+	private int numberOfSculptures; // limit of sculptures
+	private int currentPaintings; // number of paintings held in the gallery
+	private int currentSculptures; // number of sculptures held in the gallery
 	private String path;
 
+	/**
+	 * A constructor of a custom gallery
+	 * 
+	 * @param name name of the gallery
+	 * @param user
+	 * @param description
+	 * @param paintings
+	 * @param sculptures
+	 */
 	public CustomGallery(String name, User user, String description, int paintings, int sculptures) {
 		this.name = name;
 		this.user = user;
