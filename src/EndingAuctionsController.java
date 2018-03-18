@@ -9,31 +9,40 @@ import javafx.scene.layout.FlowPane;
 
 /**
  * 
+ * A controller for displaying auctions coming to close
  * @author 869527
  *
  */
 public class EndingAuctionsController {
+	
+	private final int DEFAULT = 5;
 
 	@FXML
-	private FlowPane main;
+	private FlowPane main; // a container to hold ending auctions
 
 	@FXML
-	private Label date;
+	private Label date; // a label that shows the last login of the user
 
 	@FXML
-	private Slider slider;
+	private Slider slider; // slider to choose a number of maximum remaining bids
 
 	@FXML
-	private Label value;
+	private Label value; // a label to display a value of a slider
 
-	private int sliderValue;
+	private int sliderValue; // to keep a value of a slider
 
 	public void initialize() {
 
+		// Displays a time of the last login
 		date.setText(Updates.getDate() + "");
-		sliderValue = 5;
+		
+		// Set a value for a slider
+		sliderValue = DEFAULT;
+		
+		// Returns a list of auctions with an arbitrary number or remaining bids
 		ArrayList<Artwork> ending = Updates.endingAuctions(sliderValue);
 
+		// 
 		ArrayList<Listing> listings = new ArrayList<>();
 
 		for (Artwork a : ending) {
