@@ -175,7 +175,7 @@ public class CustomGallery {
 
 	/**
 	 * Sets a path to a text file with a gallery
-	 * @param path
+	 * @param path path to a text file
 	 */
 	public void setPath(String path) {
 		this.path = path;

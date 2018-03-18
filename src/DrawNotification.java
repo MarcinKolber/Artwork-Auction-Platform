@@ -1,34 +1,40 @@
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * A class to draw circles for notifications
+ * @author 869527
+ *
+ */
 public class DrawNotification {
 
-	
-	private Canvas canvas; 
-	
-	private GraphicsContext gc; // Object that allows drawing
+	// Parameters for width and height of ovals
+	private final static int DEFAULT_WIDTH = 75;
+	private final static int DEFAULT_HEIGHT = 75;
 
 	/**
-	 * Method to create the notification box
-	 * @param gc - graphics content
+	 * Method to create the red notification circle
+	 * @param gc - graphics content to be processed
 	 */
 	public static void drawShapes(GraphicsContext gc) {
-		Color color = new Color(0.502, 0.000, 0.004, 1);
+		
+		Color color = new Color(0.502, 0.000, 0.004, 1); // pick a color
 		gc.setFill(color);
-
-		gc.fillOval(0,0,75,75);
+		
+		// draw a circle
+		gc.fillOval(0,0,DEFAULT_WIDTH,DEFAULT_HEIGHT);
 	}
 
 	/**
-	 * Method to create the no-new notification box
-	 * @param gc - graphics content
+	 * Method to create the no-new blue notification circle
+	 * @param gc - graphics content to be processed
 	 */
 	public static void drawShapesBlue(GraphicsContext gc) {
-		Color color = new Color(0.000, 0.000, 0.502, 0.3);
+		Color color = new Color(0.000, 0.000, 0.502, 0.3); // pick a color
 		gc.setFill(color);
-
-		gc.fillOval(0,0,75,75);
+		
+		// draw a circle
+		gc.fillOval(0,0,DEFAULT_WIDTH,DEFAULT_HEIGHT);
 	}
 
 

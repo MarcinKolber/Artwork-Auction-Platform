@@ -1,34 +1,44 @@
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * A class to check for changes since the last login
+ * of an user
+ * @author 869527
+ *
+ */
 public class Updates {
 
+	// 
 	private static ArrayList<Artwork> newArtworks;
-	private static ArrayList<Artwork> wonArtworks;
-	private static ArrayList<Artwork> lostArtworks;
-
-	private static ArrayList<Bid> newBids;
 	private static ArrayList<Artwork> ending;
+	private static ArrayList<Bid> newBids;
 	private static ArrayList<User> users;
 
 	private static Date date;
 	private static User user;
 
 	/**
-	 * Method to create updates for the user
-	 * @param user1 - current logged in user
+	 * A constructor to handle notification for a specific user
+	 * @param user1 user for whom notifications are for
 	 */
 	public Updates(User user1) {
-		user = user1;
-		//creating the ArrayLists
+		
+		user = user1; // passing a reference to a static field of user
+		
+		// initializing array lists for artworks and bids
 		ending = new ArrayList<Artwork>();
 		newArtworks = new ArrayList<Artwork>();
 		newBids = new ArrayList<Bid>();
-		//getting the date the user last logged in
+		
+		
+		// Getting the date the user last logged in
 		date = user.getLastLogin();
 
 		System.out.println("Last login: " + date); //printing when the user last logged in
-		if (user.getLastLogin() != null) { //if the user has logged in before (not null)
+		
+		// check if the user has logged in before (not null) 
+		if (user.getLastLogin() != null) { 
 			addArtworks();
 			addBids();
 			addUsers();
