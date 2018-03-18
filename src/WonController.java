@@ -19,17 +19,22 @@ public class WonController {
     
     public void initialize() {
     	
+    	// Gets a list of won artworks 
     	ArrayList<Artwork> won = Updates.won();
     	
+    	// Displays time of the last login
 		date.setText(Updates.getDate()+"");
 
+		// Intialises a list of artwork views
 		ArrayList<Listing> listings = new ArrayList<>();
 		
+		// Adds artworks to a list to be displayed
 		for(Artwork artwork: won) {
 			Listing listing = new Listing(artwork);
 			listings.add(listing);
 		}
 		
+		// Displays a list of artworks
 		main.getChildren().addAll(listings);
     	
     }
