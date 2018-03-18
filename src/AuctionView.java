@@ -8,30 +8,49 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * A class to graphically represent an auction
+ * @author 869527
+ *
+ */
 public class AuctionView extends VBox {
 
-	private Artwork artwork;
-	private ImageView imgView;
-	private Label description;
-	private Label remaining;
-	private Label year;
-	private Label date;
-	private Label creator;
-	private Label highestBid;
-	private Label title;
-	private Label ended;
-	private int width;
+	private Artwork artwork;	// artwork to be displayed
+	private ImageView imgView;	// image (thumbnail) of the artwork
+	private Label description;	// text with description of the auction
+	private Label remaining;	// text with a number of remaining bids 
+	private Label year;			// a year of creation
+	private Label date;			// date of addition to the database
+	private Label creator;		// creator of the artwork
+	private Label highestBid;	// amount of the highest bid on the artwork
+	private Label title;		// title of the artwork
+	private Label ended;		// label that says whether an auction if active or finished 
+	
+	private final int IMG_WIDTH = 150;
+	private final int IMG_HEIGHT = 150;
+	private final int PADDING = 10;
+	private final int VIEW_WIDTH = 200;
+	private final int SPACING = 2;
 
+	
+	/**
+	 * Constructor of a view for an auction
+	 * @param artwork artwork that is on auction
+	 */
 	public AuctionView(Artwork artwork) {
-		width = 200;
-		this.artwork = artwork;
-		imgView = new ImageView();
-		imgView.setFitWidth(150);
-		imgView.setFitHeight(150);
-		this.setPadding(new Insets(10, 10, 10, 10));
+		this.artwork = artwork; 	// sets an artwork
+		imgView = new ImageView();	// creates an image view
+		
+		// Sets dimensions of the image
+		imgView.setFitWidth(IMG_WIDTH);
+		imgView.setFitHeight(IMG_HEIGHT);
+		
+		// Sets padding of the view
+		this.setPadding(new Insets(PADDING));
 
+		
+		// Displays information about the auction 
 		description = new Label();
-
 		imgView.setImage(artwork.getImage());
 		title = new Label("Title: " + artwork.getTitle());
 		highestBid = new Label("Current bid: " + artwork.getHighestBidAmount());
@@ -41,10 +60,14 @@ public class AuctionView extends VBox {
 		remaining = new Label("Remaining bids: " + artwork.leftBids());
 		description = new Label(artwork.getDescription());
 
+		// Wrapping description
 		description.setWrapText(true);
 
-		this.setMinWidth(width);
-		this.setSpacing(2);
+		// Set dimensions of the view
+		this.setMinWidth(VIEW_WIDTH);
+		this.setSpacing(SPACING);
+		
+		// Displays a different label depending on the status of the auction
 		if (artwork.isBidIsOver()) {
 			ended = new Label("ENDED");
 			ended.setStyle("-fx-background-color: rgb(200,0, 20,0.5); ");
@@ -55,8 +78,10 @@ public class AuctionView extends VBox {
 
 		}
 
+		// Adds elements to the view
 		getChildren().addAll(imgView, title, highestBid, creator, year, date, remaining, description, ended);
 
+		// If clicked, open an auction in a new window
 		setOnMouseClicked(e -> {
 			try {
 				displayInWindow();
@@ -66,6 +91,7 @@ public class AuctionView extends VBox {
 			}
 		});
 
+		// Change color of the background when a mouse enters a field, remove color when exits
 		setOnMouseEntered(e -> {
 			this.setStyle("-fx-background-color: rgb(0,0, 20,0.1);");
 		});
@@ -157,8 +183,6 @@ public class AuctionView extends VBox {
 		this.title = title;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
-	}
+
 
 }

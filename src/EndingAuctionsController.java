@@ -15,7 +15,7 @@ import javafx.scene.layout.FlowPane;
  */
 public class EndingAuctionsController {
 	
-	private final int DEFAULT = 5;
+	private final int DEFAULT = 5; // default number of remaining bids
 
 	@FXML
 	private FlowPane main; // a container to hold ending auctions
@@ -42,14 +42,17 @@ public class EndingAuctionsController {
 		// Returns a list of auctions with an arbitrary number or remaining bids
 		ArrayList<Artwork> ending = Updates.endingAuctions(sliderValue);
 
-		// 
-		ArrayList<AuctionView> listings = new ArrayList<>();
+		// A list of auctions
+		ArrayList<AuctionView> listing = new ArrayList<>();
 
+		
+		// Loop through auctions and add them to a list of auction views
 		for (Artwork a : ending) {
 			AuctionView l = new AuctionView(a);
-			listings.add(l);
+			listing.add(l);
 		}
 
+		// A listener to check value of a slider and refresh the screen 
 		slider.valueProperty().addListener(new ChangeListener<Object>() {
 
 			@Override
@@ -61,21 +64,30 @@ public class EndingAuctionsController {
 			}
 		});
 
-		main.getChildren().addAll(listings);
+		main.getChildren().addAll(listing);
 
 	}
 
+	/**
+	 * A method to refresh a container with displayed auctions
+	 */
 	public void refresh() {
+		
+		// Array lists of artworks and views of them
 		ArrayList<Artwork> ending = Updates.endingAuctions(sliderValue);
-		ArrayList<AuctionView> listings = new ArrayList<>();
+		ArrayList<AuctionView> listing = new ArrayList<>();
 
+		// Ensure nothing is left in the container
 		main.getChildren().clear();
-		for (Artwork a : ending) {
-			AuctionView l = new AuctionView(a);
-			listings.add(l);
+		
+		// Loop through auctions and add listings
+		for (Artwork artwork : ending) {
+			AuctionView l = new AuctionView(artwork);
+			listing.add(l);
 		}
 
-		main.getChildren().addAll(listings);
+		// Display all elements of the list
+		main.getChildren().addAll(listing);
 
 	}
 }
