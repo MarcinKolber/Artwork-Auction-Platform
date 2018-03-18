@@ -1,3 +1,9 @@
+/**
+ * Class for the gallery button in the custom gallery pop up window, used
+ * for selecting and displaying the custom gallery
+ * @author Ayden Ballard - 905438
+ */
+
 import java.util.Random;
 
 import javafx.scene.control.Button;

@@ -1,3 +1,8 @@
+/**
+ * Class to display custom galleries
+ * @author Ayden Ballard - 905438
+ */
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

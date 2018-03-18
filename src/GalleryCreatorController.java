@@ -1,3 +1,8 @@
+/**
+ * A class to create a new custom gallery
+ * @author Ayden Ballard - 905438
+ */
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 

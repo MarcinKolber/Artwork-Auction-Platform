@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * A class to represent a custom gallery made by an user to hold references to
  * artworks
  * 
- * @author 869527
+ * @author Ayden Ballard - 905438
  *
  */
 public class CustomGallery {
