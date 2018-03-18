@@ -224,35 +224,26 @@ public class Writer {
 	}
 
 	public static boolean removeFromGallery(CustomGallery customGallery, Artwork removed) throws FileNotFoundException, UnsupportedEncodingException {
-
 		final File ORIGINAL = new File(customGallery.getPath());
 		final File TEMP_FILE = new File(customGallery.getPath()+"1.txt");
-
-		
-
-
 		String toRemove = removed.getTitle();
 		String line = "";
 
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(ORIGINAL));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(TEMP_FILE));
-
 			while ((line = reader.readLine()) != null) {
 				if (null != line && !line.equalsIgnoreCase(toRemove)) {
 					writer.write(line + System.getProperty("line.separator"));
-					
 				}
 			}
-			
 			writer.close();
 			reader.close();
 			ORIGINAL.delete();
 			boolean successful = TEMP_FILE.renameTo(ORIGINAL);
-
-
 			return successful;
-		} catch (Exception e) {
+		}
+		catch(Exception e){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;

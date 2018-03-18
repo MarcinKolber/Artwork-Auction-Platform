@@ -140,7 +140,7 @@
          <center>
             <BorderPane fx:id="mainSection" minWidth="10.0" BorderPane.alignment="CENTER">
                <top>
-                  <VBox prefHeight="132.0" prefWidth="436.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="91.0" prefWidth="583.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label alignment="CENTER" prefHeight="43.0" prefWidth="597.0" text="Welcome to Artatawe!" textAlignment="CENTER">
                            <font>
@@ -155,16 +155,6 @@
                               </LinearGradient>
                            </textFill>
                         </Label>
-                        <Label fx:id="user1" text="User" textFill="WHITE">
-                           <font>
-                              <Font size="29.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="today" text="Today is" textFill="WHITE">
-                           <font>
-                              <Font size="29.0" />
-                           </font>
-                        </Label>
                      </children>
                   </VBox>
                </top>
@@ -172,8 +162,18 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                </padding>
                <left>
-                  <VBox prefHeight="372.0" prefWidth="246.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="440.0" prefWidth="344.0" BorderPane.alignment="CENTER">
                      <children>
+                        <Label fx:id="today" text="Today is" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="user1" text="User" textFill="WHITE">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
                         <Label text="Artatawe is an application created  to simplify bidding and buying artworks." textFill="WHITE" wrapText="true" />
                         <Label />
                         <Label text="Everyone can bid and put their artworks up to auction." textFill="WHITE" wrapText="true" />
@@ -182,7 +182,7 @@
                   </VBox>
                </left>
                <center>
-                  <VBox fx:id="updates" prefHeight="399.0" BorderPane.alignment="CENTER">
+                  <VBox fx:id="updates" maxWidth="1.7976931348623157E308" prefHeight="399.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label text="See what's new in Artatawe" textFill="WHITE">
                            <font>
@@ -193,37 +193,37 @@
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin></Label>
-                        <HBox fx:id="notificationBox" prefHeight="58.0" prefWidth="287.0" spacing="10.0">
+                        <HBox fx:id="notificationBox" prefHeight="58.0" spacing="10.0">
                            <children>
                               <Button minWidth="90.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Notifications" textFill="WHITE" />
-                              <Label prefHeight="65.0" prefWidth="187.0" text="A new panel notifying user about new events since the last login." textFill="WHITE" wrapText="true" />
+                              <Label prefHeight="65.0" text="A new panel notifying user about new events since the last login." textFill="WHITE" wrapText="true" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="7.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="searchingBox" prefHeight="58.0" prefWidth="287.0" spacing="10.0">
+                        <HBox fx:id="searchingBox" prefHeight="58.0" spacing="10.0">
                            <children>
                               <Button minWidth="90.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Advanced searching" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                              <Label prefHeight="65.0" prefWidth="187.0" text="Searching mechanism allowing user to find artworks by entering partial information." textFill="WHITE" wrapText="true" />
+                              <Label prefHeight="65.0" text="Searching mechanism allowing user to find artworks by entering partial information." textFill="WHITE" wrapText="true" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="7.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="salesBox" prefHeight="58.0" prefWidth="287.0" spacing="10.0">
+                        <HBox fx:id="salesBox" prefHeight="58.0" spacing="10.0">
                            <children>
                               <Button minWidth="90.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Sales statistics" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                              <Label prefHeight="58.0" prefWidth="187.0" text="A graphical representation of sale performance." textFill="WHITE" wrapText="true" />
+                              <Label prefHeight="58.0" text="A graphical representation of sale performance." textFill="WHITE" wrapText="true" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="7.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox fx:id="galleriesBox" prefHeight="56.0" prefWidth="287.0" spacing="10.0">
+                        <HBox fx:id="galleriesBox" prefHeight="56.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Custom galleries" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                              <Label prefHeight="50.0" prefWidth="187.0" text="Custom galleries for tracking auctions." textFill="WHITE" wrapText="true" />
+                              <Button minWidth="90.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="90.0" style="-fx-background-color: rgb(50,0,0);" text="Custom galleries" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label prefHeight="50.0" text="Custom galleries for tracking auctions." textFill="WHITE" wrapText="true" />
                            </children>
                         </HBox>
                      </children>

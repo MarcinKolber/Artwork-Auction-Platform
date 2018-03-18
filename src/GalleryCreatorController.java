@@ -17,26 +17,29 @@ import javafx.scene.image.Image;
 public class GalleryCreatorController {
 
 	@FXML
-	private TextField title;
+	private TextField title; //title of the gallery
 
 	@FXML
-	private TextArea description;
+	private TextArea description; //description of the gallery
 
 	@FXML
-	private Slider paintingSlider;
+	private Slider paintingSlider; //painting capacity slider
 
 	@FXML
-	private Label paintVal;
+	private Label paintVal; //painting capacity value
 
 	@FXML
-	private Slider sculpturesSlider;
+	private Slider sculpturesSlider; //sculpture capacity slider
 
 	@FXML
-	private Label sculpturesVal;
+	private Label sculpturesVal; //sculpture capacity value
 
 	@FXML
-	private Button addGallery;
+	private Button addGallery; //button to create gallery
 
+	/**
+	 * Method to initialize the Gallery
+	 */
 	public void initialize() {
 		paintingSlider.setMax(20); // set the paintingSlider max to 20
 		sculpturesSlider.setMax(20); // set the sculptureSlider max to 20
@@ -59,7 +62,8 @@ public class GalleryCreatorController {
 	}
 
 	/**
-	 * Method to add a new gallery
+	 * Method to create a new gallery and create the gallery text file,
+	 * it then alerts the user whether the gallery was successfully created or not
 	 */
 	public void addGallery() {
 		String gTitle = title.getText(); // storing the title of the gallery

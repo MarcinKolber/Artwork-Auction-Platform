@@ -774,19 +774,20 @@ public class FileReader {
 
 	}
 
+	/**
+	 * Method to get all of the CustomGalleries of this user and return them in an ArrayList
+	 * @param user - current user logged in
+	 * @return ArrayList of galleries
+	 */
 	public static ArrayList<CustomGallery> readGalleries(User user) {
-
 		ArrayList<CustomGallery> galleries = new ArrayList<>();
-
 		try {
 			System.out.println(user.getUsername());
 			File[] listOfFiles = new File("customGalleries//" + user.getUsername() + "//").listFiles();
 			for (File e : listOfFiles) {
-				
 				try {
 					System.out.println(e.getName());
 					System.out.println("executed once");
-
 					Scanner in = new Scanner(e);
 
 					in.useDelimiter("#");
@@ -798,7 +799,6 @@ public class FileReader {
 					System.out.println(paint + sculp);
 
 					int numberOfPaintings = Integer.parseInt(paint);
-
 					int numberOfSculptures = Integer.parseInt(sculp);
 
 					CustomGallery ng = new CustomGallery(name, user, username1, numberOfPaintings, numberOfSculptures);
@@ -807,9 +807,7 @@ public class FileReader {
 					in.close();
 
 					Scanner in1 = new Scanner(e);
-
 					in1.nextLine();
-
 					while (in1.hasNextLine()) {
 						String line = in1.nextLine();
 						Artwork art = FileReader.getArtwork(line);
@@ -819,8 +817,6 @@ public class FileReader {
 				} catch (Exception e1) {
 					System.out.println("error loading a file");
 				}
-				
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -832,10 +828,18 @@ public class FileReader {
 		return galleries;
 	}
 
+	/**
+	 * Method to get the array list of galleries
+	 * @return
+	 */
 	public static ArrayList<CustomGallery> getGalleries() {
 		return galleries;
 	}
 
+	/**
+	 * Method to set the array list of galleries
+	 * @param galleries - ArrayList of galleries
+	 */
 	public static void setGalleries(ArrayList<CustomGallery> galleries) {
 		FileReader.galleries = galleries;
 	}
