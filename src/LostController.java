@@ -6,7 +6,7 @@ import javafx.scene.layout.FlowPane;
 
 /**
  * Controller to display auctions lost since the last login
- * @author 869527
+ * @author Daniel Hart (873503)  
  *
  */
 public class LostController {

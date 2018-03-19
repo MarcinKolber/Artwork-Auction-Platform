@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 /**
  * A class extending VBox to display a bid
  * 
- * @author 869527 tbd
+ * @author Marcin Kolber (869527)
  *
  */
 public class BidView extends VBox {

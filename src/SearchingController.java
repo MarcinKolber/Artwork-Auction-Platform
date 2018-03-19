@@ -13,7 +13,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 
 /**
- * A class providing an advanced searching engine
+ * A class providing an advanced searching engine.
  * 
  * @author Marcin Kolber (869527)
  *
@@ -230,7 +230,7 @@ public class SearchingController {
 					}
 				}
 
-				searchingTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
+				searchingTextField.setOnKeyReleased(new EventHandler<KeyEvent>() { // dynamically handles input the keyboard
 					@Override
 					public void handle(KeyEvent event) {
 						String userInput = searchingTextField.getText();

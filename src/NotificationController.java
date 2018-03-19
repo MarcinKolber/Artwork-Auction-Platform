@@ -10,6 +10,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * A class to display a panel with notifications
+ * @author Joshua Thomas (907019)
+ *
+ */
 public class NotificationController {
 
 	@FXML

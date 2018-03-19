@@ -10,7 +10,7 @@ import javafx.scene.layout.FlowPane;
 /**
  * 
  * A controller for displaying auctions coming to close
- * @author 869527
+ * @author Daniel Hart (873503)  
  *
  */
 public class EndingAuctionsController {

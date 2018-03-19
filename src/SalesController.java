@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 
 /**
  * This class is used to create sales based graphs for analysis.
+ * @author Joshua Thomas (907019) and Marwan Refaie (689580)  
  */
 public class SalesController {
 

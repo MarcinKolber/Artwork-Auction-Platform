@@ -3,7 +3,7 @@ import javafx.scene.paint.Color;
 
 /**
  * A class to draw circles for notifications
- * @author 869527
+ * @author Marcin Kolber (869527)
  *
  */
 public class DrawNotification {

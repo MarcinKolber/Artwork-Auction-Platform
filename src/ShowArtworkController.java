@@ -21,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 /**
  * This class is used to display an Artwork object.
+ * @author Marcin Kolber (869527)
  */
 public class ShowArtworkController {
 

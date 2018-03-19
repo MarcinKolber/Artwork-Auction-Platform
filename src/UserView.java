@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 /**
  * This class is used to diplay a user.
+ * @author Marcin Kolber (869527)
  */
 public class UserView extends VBox {
 

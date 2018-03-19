@@ -46,16 +46,21 @@ public class GalleryCreatorController {
 
 	@FXML
 	private Button addGallery; //button to create gallery
+	
+	private final int MAX_SLIDER_VAL = 20;
 
 	/**
 	 * Method to initialize the Gallery
 	 */
 	public void initialize() {
-		paintingSlider.setMax(20); // set the paintingSlider max to 20
-		sculpturesSlider.setMax(20); // set the sculptureSlider max to 20
+		paintingSlider.setMax(MAX_SLIDER_VAL); // set the paintingSlider max to 20
+		sculpturesSlider.setMax(MAX_SLIDER_VAL); // set the sculptureSlider max to 20
 
+		// Sets a button to create a gallery on action
 		addGallery.setOnAction(e -> addGallery());
 
+		
+		// Refreshes the label when slider is used
 		paintingSlider.valueProperty().addListener(new ChangeListener<Object>() {
 			@Override
 			public void changed(ObservableValue<?> arg0, Object arg1, Object arg2) {

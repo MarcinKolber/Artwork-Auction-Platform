@@ -6,7 +6,7 @@ import javafx.scene.layout.FlowPane;
 
 /**
  * A controller to display won artworks
- * @author 869527
+ * @author Daniel Hart (873503)
  *
  */
 public class WonController {

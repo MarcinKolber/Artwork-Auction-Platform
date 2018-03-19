@@ -4,7 +4,7 @@ import java.util.Date;
 /**
  * A class to check for changes since the last login
  * of an user
- * @author 869527
+ * @author Marcin Kolber (869527)
  *
  */
 public class Updates {
