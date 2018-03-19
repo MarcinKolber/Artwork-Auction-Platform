@@ -269,7 +269,7 @@ public class ShowArtworkController {
 
 	/**
 	 * Method to set an artwork.
-	 * @param Artwork - the artwork object.
+	 * @param artwork - the artwork object.
 	 */
 	public static void setArtwork(Artwork artwork) {
 		ShowArtworkController.artwork = artwork;

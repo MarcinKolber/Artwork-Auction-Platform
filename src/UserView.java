@@ -19,7 +19,7 @@ public class UserView extends VBox {
 
 	/**
 	 * Method to set the user that is being diplayed.
-	 * @param User - the desired user.
+	 * @param user - the desired user.
 	 */
 	public UserView(User user) {
 		//Sets the image and imageView
@@ -47,6 +47,7 @@ public class UserView extends VBox {
 
 		FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("/UserDisplay.fxml"));
 
+		// Load the window
 		try {
 			Parent root = fxmlL.load();
 

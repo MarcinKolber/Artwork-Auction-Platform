@@ -17,6 +17,9 @@ public class WonController {
     @FXML
     private FlowPane main; // a container with won artworks
     
+    /**
+     * Initialises GUI
+     */
     public void initialize() {
     	
     	// Gets a list of won artworks 

@@ -198,7 +198,7 @@ public class Updates {
 
 	/**
 	 * Method to set the user
-	 * @param user
+	 * @param user an user for whose updates are computed
 	 */
 	public static void setUser(User user) {
 		Updates.user = user;
@@ -222,7 +222,7 @@ public class Updates {
 
 	/**
 	 * Method to get the last log in date
-	 * @return
+	 * @return a date of the last login
 	 */
 	public static Date getDate() {
 		return date;
@@ -230,7 +230,7 @@ public class Updates {
 
 	/**
 	 * Method to set the last log in date
-	 * @param date
+	 * @param date a date of the last login
 	 */
 	public static void setDate(Date date) {
 		Updates.date = date;

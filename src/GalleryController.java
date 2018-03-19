@@ -23,25 +23,30 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * Controlling displaying galleries
+ * @author Ayden Ballard (905438)
+ *
+ */
 public class GalleryController {
 
 
     @FXML
-    private Label selected;
+    private Label selected; // shows which galery was selected
 
 	@FXML
-	private FlowPane listGalleries;
+	private FlowPane listGalleries; // a container with gallery buttons
 
 	@FXML
-	private Button createNewGallery;
+	private Button createNewGallery; // button to create a new gallery
 
 	@FXML
-	private FlowPane display;
+	private FlowPane display; // a pane to display artworks
 
 	@FXML
-	private VBox vbox1;
+	private VBox vbox1; // box holding gallery buttons
 
-	private ArrayList<CustomGallery> galleries;
+	private ArrayList<CustomGallery> galleries; // a list of custom galleries made by the user
 
 	/**
 	 * Method to initialize the gallery window and adding the

@@ -3,6 +3,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+/**
+ * A class to represent notifications
+ * @author 869527
+ *
+ */
 public class NotificationField {
 
 	private int count;
@@ -13,9 +18,9 @@ public class NotificationField {
 
 	/**
 	 * Constructor the the notification field
-	 * @param box
-	 * @param canvas
-	 * @param label
+	 * @param box box to hold elements
+	 * @param canvas canvas for drawing a circle
+	 * @param label label with description
 	 */
 	public NotificationField(VBox box, Canvas canvas, Label label) {
 		this.label = label;
@@ -40,10 +45,10 @@ public class NotificationField {
 
 	/**
 	 * Constructor for the notification field
-	 * @param box
-	 * @param canvas
-	 * @param label
-	 * @param val
+	 * @param box box to hold elements
+	 * @param canvas canvas for drawing a circle
+	 * @param label label with description
+	 * @param val number of new elements
 	 */
 	public NotificationField(VBox box, Canvas canvas, Label label, int val) {
 		this.label = label;
@@ -69,7 +74,7 @@ public class NotificationField {
 
 	/**
 	 * Method to return isChange
-	 * @return
+	 * @return true if there was any change, false otherwise
 	 */
 	public boolean isChange() {
 		return change;
@@ -85,7 +90,7 @@ public class NotificationField {
 
 	/**
 	 * Method to get the Vbox
-	 * @return
+	 * @return vbox of the notification panel
 	 */
 	public VBox getVbox() {
 		return vbox;
@@ -93,7 +98,7 @@ public class NotificationField {
 
 	/**
 	 * Method to set the Vbox
-	 * @param vbox
+	 * @param vbox box to be set
 	 */
 	public void setVbox(VBox vbox) {
 		this.vbox = vbox;

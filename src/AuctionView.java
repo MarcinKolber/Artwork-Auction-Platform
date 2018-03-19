@@ -146,7 +146,7 @@ public class AuctionView extends VBox {
 
 	/**
 	 * Sets a description of the view
-	 * @param description
+	 * @param description description of an auction
 	 */
 	public void setDescription(Label description) {
 		this.description = description;

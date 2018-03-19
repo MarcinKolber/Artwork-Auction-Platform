@@ -43,7 +43,7 @@ public class Writer {
 	 * Method to write a custom gallery text file
 	 * @param user - user of the custom gallery
 	 * @param gallery - the custom gallery
-	 * @throws IOException
+	 * @throws IOException if a file cannot be found
 	 */
 	public static void createCustomGallery(User user, CustomGallery gallery) throws IOException {
 		File file = new File("customGalleries//" + user.getUsername() + "//");
@@ -82,8 +82,8 @@ public class Writer {
 
 	/**
 	 * Method to write a text file containing the users last log in date
- 	 * @param user
-	 * @throws IOException
+ 	 * @param user user for whose login is to be logged
+	 * @throws IOException if a file cannot be written to
 	 */
 	public static void addLogin(User user) throws IOException {
 		String path = "userFiles//" + user.getUsername() + ".txt";
@@ -224,12 +224,26 @@ public class Writer {
 		}
 	}
 
+	/**
+	 * Removes an artwork from a gallery.
+	 * @param customGallery gallery to be used
+	 * @param removed artwork to be remoced
+	 * @return true if result is a success, false otherwise
+	 * @throws FileNotFoundException if a file cannot be found
+	 * @throws UnsupportedEncodingException if coding cannot be supported
+	 */
 	public static boolean removeFromGallery(CustomGallery customGallery, Artwork removed) throws FileNotFoundException, UnsupportedEncodingException {
+		
+		// Declaring paths to two files
 		final File ORIGINAL = new File(customGallery.getPath());
 		final File TEMP_FILE = new File(customGallery.getPath()+"1.txt");
+		
+		// String to be removed
 		String toRemove = removed.getTitle();
+		
 		String line = "";
 
+		// Handling IO
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(ORIGINAL));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(TEMP_FILE));
@@ -238,15 +252,20 @@ public class Writer {
 					writer.write(line + System.getProperty("line.separator"));
 				}
 			}
+			
+			// Closing both writer and reader
 			writer.close();
 			reader.close();
+			
+			// Deleting the original file
 			ORIGINAL.delete();
+			
+			// Renaming the new file to the name of the old one
 			boolean successful = TEMP_FILE.renameTo(ORIGINAL);
+			
 			return successful;
 		}
 		catch(Exception e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return false;
 		}
 

@@ -59,11 +59,9 @@ public class SalesController {
 	private ArrayList<Artwork> soldArtworks; //Storage for sold artworks
 
 	@FXML
-	private Button ref; //Allows user to refresh?
+	private Button ref; //Allows user to refresh
 
-	private ToggleGroup tg; //not sure
-	private ToggleGroup tg1;
-
+	private ToggleGroup tg; // toggle group for radio buttons for types of charts
 	private Date from; //Start date of analysis
  	private Date until; //End date of analysis
 	private int yearNo; //Number of the year
@@ -138,9 +136,14 @@ public class SalesController {
 
 	}
 
-	//NOT SURE AWHAT THIS DOES
+
+
+	/**
+	 * Refreshes the area with a chart
+	 */
 	public void ref() {
 
+		// Handling dates
 		if(!piechart.isSelected()) {
 
 			dateFrom.setValue((LocalDate.of(yearNo, 1, 1)));
@@ -148,18 +151,18 @@ public class SalesController {
 		}
 		
 
+		// Getting dates from date pickers
 		LocalDate date1 = dateFrom.getValue();
 		LocalDate date2 = dateTo.getValue();
 
+		// Converting dates
 		Date date3 = Date.from(date1.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		Date date4 = Date.from(date2.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
 		from = date3;
 		until = date4;
 
-		System.out.println(date3);
-		System.out.println(date4);
-
+		// Displaying different charts depending on the selection
 		if (piechart.isSelected()) {
 			chartArea.getChildren().clear();
 			dateFrom.setDisable(false);
@@ -188,7 +191,8 @@ public class SalesController {
 
 	/**
 	 * Method to get a bar chart object representing a specific year.
-	 * @param int - the year of the bar chart you want.
+	 * @param year - the year of the bar chart you want.
+	 * @return a bar chart with computed data
 	 */
 	public BarChart<String, Number> getBarChart(int year) {
 		//Setting up the bar chart
@@ -253,6 +257,7 @@ public class SalesController {
 
 	/**
 	 * Method to return a pie chart object.
+	 * @return pie chart with displayed data
 	 */
 	public PieChart getPieChart() {
 		//Setting the pie chart
@@ -291,7 +296,8 @@ public class SalesController {
 
 	/**
 	 * Method to return a line chart object representing a certain year.
-	 * @param int - the year in question.
+	 * @param year - the year.
+	 * @return a line chart 
 	 */
 	public LineChart getLineChart(int year) {
 		//Sets the chart
@@ -303,6 +309,7 @@ public class SalesController {
 
 		XYChart.Series<String, Number> data = new XYChart.Series<>();
 
+		// Creates new months objects
 		Month[] months = new Month[12];
 		months[0] = new Month("January", 1);
 		months[1] = new Month("February", 2);
@@ -339,30 +346,18 @@ public class SalesController {
 			}
 		}
 
+		// Adds months to a chart
 		for (Month m : months) {
 			data.getData().add(new XYChart.Data(m.getName(), m.getTotal()));
 		}
 
 		lineChart.getData().add(data);
 
-		test();
 		return lineChart; //The line chart objects
 
 	}
 
-	/**
-	 * Method to test that the date funtions are working proerly??
-	 */
-	public void test() {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy HH:mm:ss a");
-		Date date = new Date();
 
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		int week = cal.get(Calendar.WEEK_OF_YEAR);
-		System.out.println(week + "asasaasd");
-
-	}
 
 }
 

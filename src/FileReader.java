@@ -188,7 +188,7 @@ public class FileReader {
 	 * @return ArrayList of users
 	 * @throws FileNotFoundException
 	 *             if file not found
-	 * @throws ParseException
+	 * @throws ParseException if a location cannot be opened
 	 */
 	public static ArrayList<User> readUserFile() throws FileNotFoundException, ParseException {
 		ArrayList<User> users = new ArrayList<>();
@@ -294,8 +294,6 @@ public class FileReader {
 	 * Method that creates a list of the user files and then calls the constructUser
 	 * method to add all users in the system into an ArrayList of Users
 	 * 
-	 * @throws FileNotFoundException
-	 *             - if file doesn't exist
 	 */
 	public static void readUserFiles() {
 
@@ -317,7 +315,6 @@ public class FileReader {
 	 * @throws FileNotFoundException
 	 *             if file can't be found
 	 */
-
 	public static void readPaintingFiles() throws FileNotFoundException {
 		paintings = new ArrayList<>();
 		File[] listOfFiles = new File("artworkFiles//paintings").listFiles();
@@ -420,8 +417,8 @@ public class FileReader {
 	 * 
 	 * @param filename
 	 *            - file name of the painting
-	 * @return Painting
-	 * @throws ParseException
+	 * @return Painting constructed painting object
+	 * @throws ParseException if a file cannot be parsed
 	 */
 	public static Painting constructPainting(String filename) throws ParseException {
 		final String PATH = "artworkFiles//paintings//" + filename;
@@ -576,7 +573,7 @@ public class FileReader {
 	 * @param filename
 	 *            - file name of the user
 	 * @return User
-	 * @throws ParseException
+	 * @throws ParseException if a file cannot be processed
 	 */
 	public static User constructUser(String filename) throws ParseException {
 		User user = null;
@@ -630,6 +627,11 @@ public class FileReader {
 		return user;
 	}
 
+	/**
+	 * Reads and adds logins to an user
+	 * @param user user for whom logs are being read
+	 * @return a list of logins
+	 */
 	private static ArrayList<Date> addLogins(User user) {
 		ArrayList<Date> logins = new ArrayList<>();
 		try {
@@ -836,7 +838,7 @@ public class FileReader {
 
 	/**
 	 * Method to get the array list of galleries
-	 * @return
+	 * @return an array of galleries
 	 */
 	public static ArrayList<CustomGallery> getGalleries() {
 		return galleries;

@@ -31,6 +31,9 @@ public class EndingAuctionsController {
 
 	private int sliderValue; // to keep a value of a slider
 
+	/**
+	 * Initialises the GUI
+	 */
 	public void initialize() {
 
 		// Displays a time of the last login

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * A class to represent a custom gallery made by an user to hold references to
  * artworks
- * @author Ayden Ballard - 905438
+ * @author Ayden Ballard (905438)
  *
  */
 public class CustomGallery {
@@ -125,7 +125,7 @@ public class CustomGallery {
 
 	/**
 	 * Sets a list of artworks in a gallery
-	 * @param artwork
+	 * @param artwork artworks to be displayed
 	 */
 	public void setArtworks(ArrayList<Artwork> artwork) {
 		this.artworks = artwork;
