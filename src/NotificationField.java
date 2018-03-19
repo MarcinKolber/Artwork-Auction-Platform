@@ -5,15 +5,15 @@ import javafx.scene.layout.VBox;
 
 /**
  * A class to represent notifications
- * @author 869527
+ * @author Marcin Kolber (869527)
  *
  */
 public class NotificationField {
 
-	private int count;
-	private VBox vbox;
-	private Canvas canvas;
-	private Label label;
+	private int count;	// number of new items
+	private VBox vbox; // box to be processed
+	private Canvas canvas; // canvas to draw notification on it
+	private Label label; // label of the 
 	private boolean change;
 
 	/**
